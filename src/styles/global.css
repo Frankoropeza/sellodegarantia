@@ -198,9 +198,7 @@ h1, h2, h3, h4, h5, h6 {
   border-width: 0;
 }
 
-/* ══════════════════════════════════════
-   Prose — Contenido de productos (markdown)
-   ══════════════════════════════════════ */
+/* Prose - Contenido de productos (markdown) */
 .prose {
   font-size: 1rem;
   line-height: 1.75;
