@@ -1,108 +1,290 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Base from '../layouts/Base.astro';
 import TopBar from '../components/TopBar.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import Footer from '../components/Footer.astro';
-import WaBubble from '../components/WaBubble.astro';
-import '../styles/global.css';
+import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 
-const WA = "5215556863599";
+import { SITE_NAME, PHONE, PHONE_HREF, WHATSAPP_HREF, EMAIL, CATEGORIES } from '../lib/config';
 ---
 
-<BaseLayout
-  title="Cotizar Sellos de Garantía y Película PVC | Presupuesto Sin Compromiso"
-  description="Solicita cotización de sellos de garantía, mangas termoencogibles, etiquetas impresas y bobinas PVC. Respuesta en menos de 2 horas. Envío de muestras gratis."
-  breadcrumbs={[
-    { text: "Inicio", href: "/" },
-    { text: "Cotizar", href: "/cotizar" },
-  ]}
+<Base
+  title="Cotizar — Solicite Cotización de Sellos de Garantía y Película PVC"
+  description="Solicite cotización de sellos de garantía, mangas retráctiles, etiquetas impresas y película de PVC termoencogible. Respuesta el mismo día hábil."
 >
   <TopBar />
   <Header />
 
   <Hero
-    title="Cotiza Tu Proyecto"
-    description="Cuéntanos qué necesitas y te enviamos presupuesto en menos de 2 horas. Muestras sin costo."
-    ctaPrimary={{ text: "WhatsApp Rápido", href: `https://wa.me/${WA}?text=${encodeURIComponent("Hola, necesito cotizar sellos de garantía / película PVC")}` }}
-    ctaSecondary={{ text: "Llamar", href: "tel:+525556863599" }}
-    seoParagraph1="Para darte una cotización precisa necesitamos conocer tu envase: tipo de producto (botella, frasco, garrafón), diámetro de la tapa, altura del sello, cantidad mensual estimada y si requieres impresión. Con esos datos te enviamos precio unitario, tiempo de entrega y podemos mandarte muestras físicas sin costo."
-    seoParagraph2="Si ya tienes un proveedor actual y quieres comparar precios, envíanos una muestra de tu sello actual o las especificaciones técnicas. Al ser fabricantes directos, nuestros precios son competitivos y podemos igualar o mejorar la calidad de tu producto actual."
-  />
+    badge="Cotización sin compromiso"
+    title="Cotice Su Proyecto de Sellado y Empaque"
+    description="Llene el formulario con los datos de su proyecto. Nuestro equipo comercial le envía cotización el mismo día hábil. También puede cotizar por teléfono o WhatsApp."
+    primaryCta={{ text: 'WhatsApp Directo', href: WHATSAPP_HREF }}
+    secondaryCta={{ text: 'Llamar Ahora', href: PHONE_HREF }}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Para cotizar necesitamos algunos datos básicos: tipo de producto (sello, manga, etiqueta, preforma o rollo), medidas del envase o diámetro de boca, si requiere impresión, cantidad aproximada y datos de contacto. Con esa información le enviamos precio unitario, precio por millar y tiempo de entrega.
+        </p>
+        <p class="hero-seo__text">
+          Si no tiene claro qué producto necesita, no hay problema. Mándenos una foto de su envase o del sello que actualmente usa y le asesoramos. Nuestro equipo técnico le recomienda calibre, tipo de material y método de aplicación según su línea de producción.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <div class="container">
+    <Breadcrumb items={[
+      { text: 'Inicio', href: '/' },
+      { text: 'Cotizar', href: '/cotizar/' },
+    ]} />
+  </div>
 
   <section class="section">
-    <div class="container" style="max-width: 700px;">
-      <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem; text-align: center;">Formulario de Cotización</h2>
-      <p style="text-align: center; color: var(--c-text-muted); margin-bottom: 2rem;">Completa los datos y te contactamos hoy</p>
-      
-      <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem;">
-        <div class="grid-2">
-          <div>
-            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Nombre *</label>
-            <input type="text" name="nombre" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem;" />
+    <div class="container">
+      <div class="quote-grid">
+        <!-- Form -->
+        <form class="quote-form" action={`mailto:${EMAIL}`} method="post" enctype="text/plain">
+          <h2 class="quote-form__heading">Formulario de Cotización</h2>
+          <p class="quote-form__intro">Todos los campos marcados con * son obligatorios. Respuesta en menos de 24 horas hábiles.</p>
+
+          <div class="form-group">
+            <label for="nombre">Nombre Completo *</label>
+            <input type="text" id="nombre" name="nombre" required autocomplete="name" />
           </div>
-          <div>
-            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Empresa</label>
-            <input type="text" name="empresa" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem;" />
+
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" autocomplete="organization" />
           </div>
-        </div>
-        
-        <div class="grid-2">
-          <div>
-            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Teléfono *</label>
-            <input type="tel" name="telefono" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem;" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Correo Electrónico *</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" name="telefono" required autocomplete="tel" />
+            </div>
           </div>
-          <div>
-            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Email *</label>
-            <input type="email" name="email" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem;" />
+
+          <div class="form-group">
+            <label for="producto">Producto de Interés *</label>
+            <select id="producto" name="producto" required>
+              <option value="">Seleccione un producto</option>
+              {CATEGORIES.map((cat) => (
+                <option value={cat.title}>{cat.title}</option>
+              ))}
+              <option value="Otro">Otro / No estoy seguro</option>
+            </select>
           </div>
-        </div>
-        
-        <div>
-          <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Producto que necesitas *</label>
-          <select name="producto" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem; background: #fff;">
-            <option value="">Selecciona un producto</option>
-            <option value="sellos-garantia">Sellos de Garantía</option>
-            <option value="mangas">Mangas Termoencogibles</option>
-            <option value="etiquetas">Etiquetas Impresas</option>
-            <option value="preformados">Preformados</option>
-            <option value="bobinas">Bobinas para Máquina</option>
-            <option value="maquinaria">Maquinaria de Aplicación</option>
-            <option value="otro">Otro / No sé</option>
-          </select>
-        </div>
-        
-        <div>
-          <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Cantidad estimada (piezas/mes)</label>
-          <select name="cantidad" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem; background: #fff;">
-            <option value="">Selecciona un rango</option>
-            <option value="5000-10000">5,000 - 10,000</option>
-            <option value="10000-50000">10,000 - 50,000</option>
-            <option value="50000-100000">50,000 - 100,000</option>
-            <option value="100000-500000">100,000 - 500,000</option>
-            <option value="500000+">Más de 500,000</option>
-          </select>
-        </div>
-        
-        <div>
-          <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Describe tu proyecto</label>
-          <textarea name="mensaje" rows="4" placeholder="Tipo de envase, dimensiones, si necesitas impresión, etc." style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--c-border); border-radius: var(--r-btn); font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 1rem;">
-          Enviar Cotización
-        </button>
-        <p style="text-align: center; font-size: 0.85rem; color: var(--c-text-muted);">
-          Te respondemos en menos de 2 horas durante horario laboral
-        </p>
-      </form>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cantidad">Cantidad Aproximada</label>
+              <select id="cantidad" name="cantidad">
+                <option value="">Seleccione rango</option>
+                <option value="1000-5000">1,000 – 5,000 piezas</option>
+                <option value="5000-10000">5,000 – 10,000 piezas</option>
+                <option value="10000-50000">10,000 – 50,000 piezas</option>
+                <option value="50000-100000">50,000 – 100,000 piezas</option>
+                <option value="100000+">Más de 100,000 piezas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="calibre">Calibre Preferido</label>
+              <select id="calibre" name="calibre">
+                <option value="">No sé / Asesoría</option>
+                <option value="40">40 micras</option>
+                <option value="50">50 micras</option>
+                <option value="60">60 micras</option>
+                <option value="80">80 micras</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="impresion">¿Requiere Impresión?</label>
+            <select id="impresion" name="impresion">
+              <option value="no">No, sello liso</option>
+              <option value="si-1-color">Sí, 1 color</option>
+              <option value="si-2-3-colores">Sí, 2-3 colores</option>
+              <option value="si-4-6-colores">Sí, 4-6 colores</option>
+              <option value="no-se">No estoy seguro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción del Proyecto</label>
+            <textarea id="descripcion" name="descripcion" rows="4" placeholder="Describa su envase, medidas, uso, industria, o cualquier detalle que nos ayude a cotizar con precisión."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--lg quote-form__submit">Enviar Solicitud de Cotización</button>
+        </form>
+
+        <!-- Sidebar info -->
+        <aside class="quote-aside">
+          <div class="quote-aside__card">
+            <h3>¿Prefiere contacto directo?</h3>
+            <p>Cotice por teléfono o WhatsApp y obtenga respuesta inmediata.</p>
+            <div class="quote-aside__links">
+              <a href={PHONE_HREF} class="btn btn--blue btn--lg">📞 {PHONE}</a>
+              <a href={WHATSAPP_HREF} target="_blank" rel="noopener" class="btn btn--outline btn--lg">💬 WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="quote-aside__card">
+            <h3>¿Qué datos necesitamos?</h3>
+            <ul class="quote-aside__list">
+              <li>Tipo de producto (sello, manga, etiqueta, rollo)</li>
+              <li>Diámetro y altura del envase o sello</li>
+              <li>Si necesita impresión y cuántos colores</li>
+              <li>Cantidad aproximada por pedido</li>
+              <li>Industria o uso del producto</li>
+            </ul>
+          </div>
+
+          <div class="quote-aside__card">
+            <h3>Tiempos de Respuesta</h3>
+            <ul class="quote-aside__list">
+              <li><strong>Cotización:</strong> mismo día hábil</li>
+              <li><strong>Sellos lisos:</strong> 3-5 días hábiles</li>
+              <li><strong>Sellos impresos:</strong> 10-15 días hábiles</li>
+              <li><strong>Maquinaria:</strong> consultar disponibilidad</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <Footer
-    phone="55 5686 3599"
-    whatsapp={WA}
-    email="ventas@sellodegarantia.com"
-  />
-  <WaBubble whatsapp={WA} message="Hola, necesito una cotización" tooltip="Cotizar por WA" />
-</BaseLayout>
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+  .quote-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+  .quote-form__heading {
+    font-size: var(--font-size-2xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-2);
+  }
+  .quote-form__intro {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-8);
+  }
+  .form-group {
+    margin-bottom: var(--space-5);
+  }
+  .form-group label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-800);
+    margin-bottom: var(--space-2);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    background: var(--color-white);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -1px;
+    border-color: var(--color-primary);
+  }
+  .form-group textarea {
+    resize: vertical;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .quote-form__submit {
+    width: 100%;
+  }
+  .quote-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .quote-aside__card {
+    padding: var(--space-6);
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+  }
+  .quote-aside__card h3 {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-3);
+  }
+  .quote-aside__card p {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-4);
+  }
+  .quote-aside__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .quote-aside__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .quote-aside__list li {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+  .quote-aside__list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  @media (min-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+  }
+  @media (min-width: 900px) {
+    .quote-grid { grid-template-columns: 3fr 2fr; }
+  }
+</style>
