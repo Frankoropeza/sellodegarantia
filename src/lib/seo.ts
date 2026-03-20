@@ -47,7 +47,7 @@ export function localBusinessSchema() {
     url: SITE_URL,
     image: `${SITE_URL}/logo.png`,
     description: SITE_DESCRIPTION,
-    telephone: PHONE_HREF,
+    telephone: `+52 ${PHONE}`,
     email: EMAIL,
     priceRange: '$$',
     address: {
@@ -63,14 +63,19 @@ export function localBusinessSchema() {
       latitude: GEO.lat,
       longitude: GEO.lng,
     },
-    openingHoursSpecification: HOURS.structured.map((h) => ({
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: h.days.split('-').length > 1
-        ? h.days
-        : [h.days],
-      opens: h.open,
-      closes: h.close,
-    })),
+    openingHoursSpecification: HOURS.structured.map((h) => {
+      const dayMap: Record<string, string[]> = {
+        'Mo-Fr': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        'Sa': ['Saturday'],
+        'Su': ['Sunday'],
+      };
+      return {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: dayMap[h.days] || [h.days],
+        opens: h.open,
+        closes: h.close,
+      };
+    }),
     areaServed: {
       '@type': 'Country',
       name: 'Mexico',
@@ -127,8 +132,9 @@ export function productSchema(opts: {
   description: string;
   url: string;
   category?: string;
+  image?: string;
 }) {
-  return {
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: opts.name,
@@ -148,5 +154,21 @@ export function productSchema(opts: {
       '@type': 'Country',
       name: 'Mexico',
     },
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      priceCurrency: 'MXN',
+      price: '0',
+      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+      url: `${SITE_URL}/cotizar/`,
+      seller: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+      },
+    },
   };
+  if (opts.image) {
+    schema.image = opts.image;
+  }
+  return schema;
 }

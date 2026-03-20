@@ -15,12 +15,11 @@ import { PHONE, PHONE_HREF, WHATSAPP_HREF, HOURS } from '../lib/config';
 
 <script is:inline>
 (function(){
-  let last=0;const tb=document.getElementById('topbar');
+  var tb=document.getElementById('topbar');
   if(!tb)return;
+  tb.style.transition='transform 0.3s ease';
   window.addEventListener('scroll',function(){
-    const y=window.scrollY;
-    tb.style.display=y>80?'none':'';
-    last=y;
+    tb.style.transform=window.scrollY>80?'translateY(-100%)':'translateY(0)';
   },{passive:true});
 })();
 </script>

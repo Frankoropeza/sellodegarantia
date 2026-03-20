@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sellodegarantia.com/sitemap-index.xml

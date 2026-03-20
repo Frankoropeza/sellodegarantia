@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import TopBar from '../components/TopBar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppBubble from '../components/WhatsAppBubble.astro';
+---
+
+<Base
+  title="Página No Encontrada | Sello de Garantía"
+  description="La página que busca no existe. Visite nuestro catálogo de sellos de garantía, mangas retráctiles y película PVC termoencogible."
+>
+  <TopBar />
+  <Header />
+
+  <section class="section error-section">
+    <div class="container text-center">
+      <h1 class="error-title">404</h1>
+      <p class="error-subtitle">Página no encontrada</p>
+      <p class="error-text">La página que busca no existe o fue movida. Use los enlaces de abajo para encontrar lo que necesita.</p>
+      <div class="error-links">
+        <a href="/" class="btn btn--primary btn--lg">Ir al Inicio</a>
+        <a href="/productos/" class="btn btn--outline btn--lg">Ver Productos</a>
+        <a href="/cotizar/" class="btn btn--outline btn--lg">Cotizar</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .error-section {
+    padding: var(--space-24) 0;
+  }
+  .error-title {
+    font-size: 6rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: var(--space-4);
+  }
+  .error-subtitle {
+    font-size: var(--font-size-2xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-4);
+  }
+  .error-text {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-600);
+    max-width: 500px;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+  }
+  .error-links {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>
