@@ -2,16 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import TopBar from '../../components/TopBar.astro';
 import Header from '../../components/Header.astro';
-import Hero from '../../components/Hero.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
-import FaqSection from '../../components/FaqSection.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import Footer from '../../components/Footer.astro';
 import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 
 import { getCollection, render } from 'astro:content';
-import { SITE_NAME, CATEGORIES } from '../../lib/config';
+import { SITE_NAME, CATEGORIES, WHATSAPP } from '../../lib/config';
 import { organizationSchema, localBusinessSchema, breadcrumbSchema, productSchema } from '../../lib/seo';
 
 export async function getStaticPaths() {
@@ -26,7 +23,6 @@ const { producto } = Astro.props;
 const { Content } = await render(producto);
 const data = producto.data;
 
-// Find parent category
 const parentCat = CATEGORIES.find(c => c.slug === data.categoria);
 const parentTitle = parentCat?.title ?? 'Productos';
 const parentSlug = parentCat?.slug ?? '';
@@ -38,9 +34,8 @@ const breadcrumbs = [
   { text: data.title.split('—')[0].trim(), href: `/productos/${producto.id}/` },
 ];
 
-// Related products from same category
 const allProducts = await getCollection('productos', ({ data: d }) => d.categoria === data.categoria);
-const related = allProducts.filter(p => p.id !== producto.id).sort((a, b) => a.data.orden - b.data.orden).slice(0, 3);
+const related = allProducts.filter(p => p.id !== producto.id).sort((a, b) => a.data.orden - b.data.orden).slice(0, 4);
 
 const structuredData = [
   organizationSchema(),
@@ -53,6 +48,9 @@ const structuredData = [
     category: parentTitle,
   }),
 ];
+
+const waMsg = `Hola, me interesa cotizar: ${data.title.split('—')[0].trim()}`;
+const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
 ---
 
 <Base
@@ -64,73 +62,158 @@ const structuredData = [
   <Header />
   <Breadcrumb items={breadcrumbs} />
 
-  <Hero
-    badge={parentTitle}
-    title={data.title.split('—')[0].trim()}
-    description={data.description}
-    primaryCta={{ text: 'Cotizar Este Producto', href: '/cotizar/' }}
-    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
-    metrics={[]}
-  />
+  <!-- Product Hero: Image + Key Info -->
+  <section class="product-hero">
+    <div class="container">
+      <div class="product-hero__grid">
+        <!-- Image / Gallery -->
+        <div class="product-hero__gallery">
+          <div class="product-hero__main-img">
+            {data.imagen ? (
+              <img src={data.imagen} alt={data.title} width="800" height="600" loading="eager" decoding="async" />
+            ) : (
+              <div class="product-hero__placeholder">
+                <span>Imagen del producto</span>
+              </div>
+            )}
+          </div>
+          {data.galeria && data.galeria.length > 1 && (
+            <div class="product-hero__thumbs">
+              {data.galeria.map((img) => (
+                <div class="product-hero__thumb">
+                  <img src={img} alt="" width="160" height="120" loading="lazy" decoding="async" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
+        <!-- Key Info -->
+        <div class="product-hero__info">
+          <span class="product-hero__badge">{parentTitle}</span>
+          <h1 class="product-hero__title">{data.title.split('—')[0].trim()}</h1>
+          <p class="product-hero__subtitle">{data.title.includes('—') ? data.title.split('—')[1].trim() : ''}</p>
+          <p class="product-hero__desc">{data.description}</p>
+
+          <!-- Quick Specs -->
+          {data.specs && data.specs.length > 0 && (
+            <div class="product-hero__specs">
+              {data.specs.slice(0, 6).map((spec) => (
+                <div class="product-hero__spec">
+                  <span class="product-hero__spec-label">{spec.label}</span>
+                  <span class="product-hero__spec-value">{spec.value}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <!-- CTAs -->
+          <div class="product-hero__ctas">
+            <a href="/cotizar/" class="btn--product-primary">Solicitar Cotización</a>
+            <a href={waHref} target="_blank" rel="noopener" class="btn--product-wa">
+              WhatsApp Directo
+            </a>
+            <a href="/contacto/" class="btn--product-outline">Pedir Muestras Gratis</a>
+          </div>
+
+          <p class="product-hero__note">Respuesta en menos de 24 horas · Muestras sin costo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Bar -->
   <CtaBanner
     title={`¿Necesita ${data.title.split('—')[0].trim().toLowerCase()}?`}
-    subtitle="Muestras sin costo. Cotización en menos de 24 horas."
+    subtitle="Fabricamos a la medida exacta de su envase. Cotización sin compromiso."
     btnText="Cotizar Ahora"
     btnHref="/cotizar/"
     variant="accent"
   />
 
-  <!-- Product Content -->
+  <!-- Content + Sidebar -->
   <section class="section">
     <div class="container">
       <div class="product-layout">
         <!-- Main Content -->
-        <div class="product-content">
+        <main class="product-main">
           <div class="prose">
             <Content />
           </div>
-        </div>
 
-        <!-- Sidebar -->
-        <aside class="product-sidebar">
-          <!-- Specs Table -->
+          <!-- Full Specs Table -->
           {data.specs && data.specs.length > 0 && (
-            <div class="sidebar-card">
-              <h3 class="sidebar-card__title">Especificaciones Técnicas</h3>
-              <table class="sidebar-specs">
-                {data.specs.map((spec) => (
+            <div class="specs-block">
+              <h2 class="specs-block__title">Especificaciones Técnicas Completas</h2>
+              <table class="specs-table">
+                <thead>
                   <tr>
-                    <td class="sidebar-specs__label">{spec.label}</td>
-                    <td class="sidebar-specs__value">{spec.value}</td>
+                    <th>Característica</th>
+                    <th>Especificación</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
+                  {data.specs.map((spec) => (
+                    <tr>
+                      <td>{spec.label}</td>
+                      <td>{spec.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           )}
+        </main>
 
+        <!-- Sidebar -->
+        <aside class="product-sidebar">
           <!-- CTA Card -->
           <div class="sidebar-card sidebar-card--cta">
-            <h3 class="sidebar-card__title">¿Le interesa este producto?</h3>
-            <p class="sidebar-card__desc">Envíenos las medidas de su envase y le cotizamos a su medida.</p>
+            <h3 class="sidebar-card__title">Cotizar este producto</h3>
+            <p class="sidebar-card__desc">Envíenos las medidas de su envase y le mandamos presupuesto + muestras sin costo.</p>
             <a href="/cotizar/" class="sidebar-btn sidebar-btn--primary">Solicitar Cotización</a>
-            <a href="/contacto/" class="sidebar-btn sidebar-btn--outline">Pedir Muestras Gratis</a>
+            <a href={waHref} target="_blank" rel="noopener" class="sidebar-btn sidebar-btn--wa">WhatsApp Directo</a>
           </div>
+
+          <!-- Category Navigation -->
+          {parentCat && (
+            <div class="sidebar-card">
+              <h3 class="sidebar-card__title">Más en {parentTitle}</h3>
+              <div class="sidebar-nav">
+                {parentCat.subcategories.map((sub) => (
+                  <a href={sub.href} class="sidebar-nav__link">{sub.name}</a>
+                ))}
+              </div>
+              <a href={`/productos/${parentSlug}/`} class="sidebar-nav__back">← Ver todos los {parentTitle.toLowerCase()}</a>
+            </div>
+          )}
 
           <!-- Related Products -->
           {related.length > 0 && (
             <div class="sidebar-card">
-              <h3 class="sidebar-card__title">Otros productos</h3>
+              <h3 class="sidebar-card__title">Productos relacionados</h3>
               <div class="sidebar-related">
                 {related.map((r) => (
                   <a href={`/productos/${r.id}/`} class="sidebar-related__item">
-                    <span class="sidebar-related__name">{r.data.title.split('—')[0].trim()}</span>
+                    <span>{r.data.title.split('—')[0].trim()}</span>
                     <span class="sidebar-related__arrow">→</span>
                   </a>
                 ))}
               </div>
             </div>
           )}
+
+          <!-- All Categories -->
+          <div class="sidebar-card">
+            <h3 class="sidebar-card__title">Todas las categorías</h3>
+            <div class="sidebar-nav">
+              {CATEGORIES.map((cat) => (
+                <a href={`/productos/${cat.slug}/`} class={`sidebar-nav__link ${cat.slug === data.categoria ? 'sidebar-nav__link--active' : ''}`}>
+                  {cat.title}
+                </a>
+              ))}
+            </div>
+          </div>
         </aside>
       </div>
     </div>
@@ -149,135 +232,249 @@ const structuredData = [
 </Base>
 
 <style>
+  /* ══ Product Hero ══ */
+  .product-hero {
+    padding: var(--space-10) 0;
+    background: var(--color-gray-50);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+  .product-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .product-hero__main-img {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--color-gray-200);
+  }
+  .product-hero__main-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .product-hero__placeholder {
+    aspect-ratio: 4/3;
+    background: var(--color-primary);
+    opacity: 0.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--color-gray-600);
+  }
+  .product-hero__thumbs {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .product-hero__thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--color-gray-200);
+    cursor: pointer;
+  }
+  .product-hero__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-hero__badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  .product-hero__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+  .product-hero__subtitle {
+    font-size: 1rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .product-hero__desc {
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Quick Specs Grid */
+  .product-hero__specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: #fff;
+  }
+  .product-hero__spec {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--color-gray-100);
+    border-right: 1px solid var(--color-gray-100);
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .product-hero__spec:nth-child(even) { border-right: none; }
+  .product-hero__spec:nth-last-child(-n+2) { border-bottom: none; }
+  .product-hero__spec-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-gray-500);
+    font-weight: 500;
+  }
+  .product-hero__spec-value {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+  }
+
+  /* CTAs */
+  .product-hero__ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .btn--product-primary {
+    display: block;
+    text-align: center;
+    padding: 0.875rem 1.5rem;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,71,171,0.25);
+    transition: background 0.2s;
+  }
+  .btn--product-primary:hover { background: var(--color-secondary); }
+  .btn--product-wa {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    background: #25D366;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .btn--product-wa:hover { background: #1fb855; }
+  .btn--product-outline {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-radius: 8px;
+    border: 2px solid var(--color-primary);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn--product-outline:hover { background: var(--color-primary); color: #fff; }
+  .product-hero__note {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  /* ══ Content Layout ══ */
   .product-layout {
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: 1fr 360px;
     gap: 3rem;
     align-items: start;
   }
 
-  /* Prose / Content */
-  .prose {
-    font-size: 1rem;
-    line-height: 1.75;
-    color: var(--color-gray-900);
-  }
-  .prose h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
-    color: var(--color-gray-900);
-  }
-  .prose h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-  }
-  .prose p {
-    margin-bottom: 1.25rem;
-    color: var(--color-gray-600);
-  }
+  /* Prose */
+  .prose { font-size: 1rem; line-height: 1.75; color: var(--color-gray-700); }
+  .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 0.75rem; color: var(--color-gray-900); border-bottom: 2px solid var(--color-accent); padding-bottom: 0.5rem; }
+  .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; color: var(--color-gray-900); }
+  .prose p { margin-bottom: 1.25rem; }
   .prose strong { color: var(--color-gray-900); }
-  .prose ul, .prose ol {
-    margin-bottom: 1.25rem;
-    padding-left: 1.5rem;
-  }
-  .prose li {
-    margin-bottom: 0.5rem;
-    color: var(--color-gray-600);
-    list-style: disc;
-  }
+  .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+  .prose li { margin-bottom: 0.5rem; list-style: disc; }
   .prose ol li { list-style: decimal; }
+
+  /* Specs Table */
+  .specs-block { margin-top: 3rem; }
+  .specs-block__title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-gray-900); border-bottom: 2px solid var(--color-accent); padding-bottom: 0.5rem; }
+  .specs-table { width: 100%; border-collapse: collapse; }
+  .specs-table th { text-align: left; padding: 0.875rem 1.25rem; background: var(--color-primary); color: #fff; font-weight: 600; font-size: 0.9375rem; }
+  .specs-table td { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--color-gray-200); font-size: 0.9375rem; color: var(--color-gray-900); }
+  .specs-table tr:nth-child(even) td { background: var(--color-gray-50); }
 
   /* Sidebar */
   .product-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
     position: sticky;
-    top: calc(var(--header-height, 70px) + 1.5rem);
+    top: calc(var(--header-height, 64px) + 1.5rem);
   }
   .sidebar-card {
     background: #fff;
     border: 1px solid var(--color-gray-200);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
   }
   .sidebar-card--cta {
     background: var(--color-gray-50);
-    border-color: var(--color-primary);
-    border-width: 2px;
-  }
-  .sidebar-card__title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    margin-bottom: 0.75rem;
-  }
-  .sidebar-card__desc {
-    font-size: 0.875rem;
-    color: var(--color-gray-600);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-
-  /* Specs Table */
-  .sidebar-specs {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .sidebar-specs tr { border-bottom: 1px solid var(--color-gray-100); }
-  .sidebar-specs tr:last-child { border-bottom: none; }
-  .sidebar-specs td { padding: 0.5rem 0; font-size: 0.8125rem; }
-  .sidebar-specs__label { color: var(--color-gray-600); font-weight: 500; width: 45%; }
-  .sidebar-specs__value { color: var(--color-gray-900); font-weight: 600; }
-
-  /* Sidebar Buttons */
-  .sidebar-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    transition: background 0.2s;
-  }
-  .sidebar-btn--primary {
-    background: var(--color-primary);
-    color: #fff;
-  }
-  .sidebar-btn--primary:hover { background: var(--color-secondary); }
-  .sidebar-btn--outline {
-    background: transparent;
-    color: var(--color-primary);
     border: 2px solid var(--color-primary);
   }
-  .sidebar-btn--outline:hover { background: var(--color-primary); color: #fff; }
+  .sidebar-card__title { font-size: 1rem; font-weight: 700; color: var(--color-gray-900); margin-bottom: 0.5rem; }
+  .sidebar-card__desc { font-size: 0.8125rem; color: var(--color-gray-600); line-height: 1.5; margin-bottom: 1rem; }
 
-  /* Related */
+  .sidebar-btn { display: block; width: 100%; text-align: center; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; transition: background 0.2s; }
+  .sidebar-btn--primary { background: var(--color-primary); color: #fff; }
+  .sidebar-btn--primary:hover { background: var(--color-secondary); }
+  .sidebar-btn--wa { background: #25D366; color: #fff; }
+  .sidebar-btn--wa:hover { background: #1fb855; }
+
+  .sidebar-nav { display: flex; flex-direction: column; }
+  .sidebar-nav__link { padding: 0.5rem 0; font-size: 0.8125rem; color: var(--color-gray-700); border-bottom: 1px solid var(--color-gray-100); }
+  .sidebar-nav__link:hover { color: var(--color-primary); }
+  .sidebar-nav__link--active { color: var(--color-primary); font-weight: 600; }
+  .sidebar-nav__link:last-child { border-bottom: none; }
+  .sidebar-nav__back { display: block; margin-top: 0.75rem; font-size: 0.8125rem; font-weight: 600; color: var(--color-primary); }
+
   .sidebar-related { display: flex; flex-direction: column; }
-  .sidebar-related__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.625rem 0;
-    border-bottom: 1px solid var(--color-gray-100);
-    font-size: 0.8125rem;
-    color: var(--color-gray-900);
-  }
+  .sidebar-related__item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100); font-size: 0.8125rem; color: var(--color-gray-700); }
   .sidebar-related__item:last-child { border-bottom: none; }
   .sidebar-related__item:hover { color: var(--color-primary); }
   .sidebar-related__arrow { color: var(--color-primary); font-weight: 600; }
 
   @media (max-width: 1024px) {
-    .product-layout { grid-template-columns: 1fr 320px; gap: 2rem; }
+    .product-hero__grid { grid-template-columns: 1fr; gap: 2rem; }
+    .product-layout { grid-template-columns: 1fr 300px; gap: 2rem; }
   }
   @media (max-width: 768px) {
     .product-layout { grid-template-columns: 1fr; }
     .product-sidebar { position: static; }
+    .product-hero__specs { grid-template-columns: 1fr; }
+    .product-hero__spec { border-right: none; }
   }
 </style>
