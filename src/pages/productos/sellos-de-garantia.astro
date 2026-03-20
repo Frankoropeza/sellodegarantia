@@ -1,0 +1,428 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, breadcrumbSchema, faqSchema } from '../../lib/seo';
+
+const faqs = [
+  {
+    question: '¿Qué diámetros de sellos manejan?',
+    answer: 'Fabricamos sellos de garantía desde 20mm hasta 120mm de diámetro. Cada sello se produce a la medida exacta de su tapa — no vendemos medidas genéricas. Envíenos una muestra de su envase o las medidas y le fabricamos el sello exacto.',
+  },
+  {
+    question: '¿Cuál es la diferencia entre un sello liso y uno impreso?',
+    answer: 'El sello liso es película PVC transparente o de color sin ninguna impresión — solo cumple función de inviolabilidad. El sello impreso lleva su logotipo, datos legales, código de barras o diseño personalizado mediante rotograbado a 6 tintas. El sello impreso también funciona como herramienta de marca.',
+  },
+  {
+    question: '¿Los sellos cumplen con normativa COFEPRIS?',
+    answer: 'Sí. Nuestra película PVC es grado alimenticio y cumple los requerimientos para contacto indirecto con alimentos y medicamentos. Proporcionamos fichas técnicas del material para sus trámites regulatorios.',
+  },
+  {
+    question: '¿Cómo se aplican los sellos de garantía?',
+    answer: 'Se colocan manualmente sobre la tapa del envase y se contraen con calor. Puede usar una pistola de calor para tirajes pequeños o un túnel de calor para líneas de producción automatizadas. Nosotros fabricamos ambos equipos.',
+  },
+  {
+    question: '¿Qué calibre de película necesito?',
+    answer: 'Depende de la forma de su envase y su línea de producción. Calibre 40 micras para envases regulares, 50-60 para formas irregulares, y 80 para aplicaciones de alta resistencia. Le asesoramos según su caso específico.',
+  },
+  {
+    question: '¿Puedo pedir muestras antes de hacer un pedido?',
+    answer: 'Sí. Enviamos muestras sin costo a cualquier parte de México. Solo necesitamos las medidas de su tapa (diámetro y altura del sello) para fabricar la muestra a su medida exacta.',
+  },
+];
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Productos', href: '/productos/' },
+  { text: 'Sellos de Garantía', href: '/productos/sellos-de-garantia/' },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  breadcrumbSchema(breadcrumbs),
+  faqSchema(faqs),
+];
+
+const productos = [
+  {
+    title: 'Sello Liso Transparente',
+    subtitle: 'Película PVC cristal sin impresión para inviolabilidad básica',
+    specs: [
+      'PVC cristal alta transparencia',
+      'Calibres: 40, 50, 60 micras',
+      'Diámetros: 20mm a 120mm',
+      'Pedido mínimo: 5,000 piezas',
+    ],
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Sello Liso de Color',
+    subtitle: 'Película PVC pigmentada en colores estándar y personalizados',
+    specs: [
+      'Colores: rojo, azul, verde, dorado, negro',
+      'Colores Pantone bajo pedido',
+      'Calibres: 40, 50, 60 micras',
+      'Mismo precio que transparente',
+    ],
+    image: '/img/productos/sello-liso-color-pvc.avif',
+  },
+  {
+    title: 'Sello Impreso a 6 Tintas',
+    subtitle: 'Su logotipo, datos legales y diseño personalizado sobre PVC',
+    specs: [
+      'Impresión rotograbado 6 colores',
+      'Logotipo, código de barras, texto legal',
+      'Diseño incluido o archivo del cliente',
+      'Pedido mínimo: 10,000 piezas',
+    ],
+    image: '/img/productos/sello-impreso-6-tintas-pvc.avif',
+  },
+  {
+    title: 'Sello con Perforación',
+    subtitle: 'Línea de corte para apertura fácil sin herramientas',
+    specs: [
+      'Micro-perforación controlada',
+      'Apertura limpia sin residuos',
+      'Disponible liso o impreso',
+      'Ideal para farmacéutica y alimentos',
+    ],
+    image: '/img/productos/sello-perforado-pvc.avif',
+  },
+  {
+    title: 'Sello para Garrafón 20L',
+    subtitle: 'Banda termoencogible para garrafones de agua purificada',
+    specs: [
+      'Diámetro estándar garrafón PET y PC',
+      'Calibre 60-80 micras (alta resistencia)',
+      'Liso o impreso con marca',
+      'Volúmenes industriales disponibles',
+    ],
+    image: '/img/productos/sello-garrafon-20-litros.avif',
+  },
+  {
+    title: 'Sello para Frasco Farmacéutico',
+    subtitle: 'Sello de seguridad grado alimenticio para medicamentos y suplementos',
+    specs: [
+      'PVC grado alimenticio',
+      'Compatible con COFEPRIS',
+      'Calibre 40-50 micras',
+      'Ficha técnica del material incluida',
+    ],
+    image: '/img/productos/sello-frasco-farmaceutico.avif',
+  },
+];
+---
+
+<Base
+  title={`Sellos de Garantía PVC Termoencogible | ${SITE_NAME}`}
+  description="Fabricamos sellos de garantía de PVC termoencogible: lisos, de color, impresos a 6 tintas y con perforación. Calibres 40-80 micras. Pedidos desde 5,000 piezas. Envíos nacionales."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Producto Estrella"
+    title="Sellos de Garantía de PVC Termoencogible"
+    description="Bandas termoencogibles que sellan la unión entre tapa y envase. Evidencian cualquier intento de apertura. Fabricación a medida en calibres de 40 a 80 micras, lisos o impresos a 6 tintas."
+    primaryCta={{ text: 'Cotizar Sellos', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      { value: '20-120', label: 'mm diámetro' },
+      { value: '4', label: 'Calibres' },
+      { value: '6', label: 'Tintas' },
+      { value: '5K', label: 'Mín. piezas' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Los sellos de garantía de PVC termoencogible son bandas de película plástica que se colocan sobre la tapa de botellas, frascos, garrafones y envases. Al aplicar calor, la película se contrae y se adhiere firmemente a la unión entre tapa y envase, creando un precinto visible que evidencia cualquier intento de apertura. En Sello de Garantía fabricamos estas bandas en nuestra planta de Iztapalapa desde 1998, con película PVC en calibres de 40, 50, 60 y 80 micras.
+        </p>
+        <p class="hero-seo__text">
+          Ofrecemos sellos lisos (transparentes o de color), sellos impresos a 6 tintas por rotograbado con logotipos y datos legales, y sellos con micro-perforación para apertura fácil. Cada sello se fabrica a la medida exacta de su envase — diámetro de tapa, altura del sello y calibre según la forma del envase. Atendemos industria farmacéutica, alimenticia, de bebidas, agua embotellada, vinos, licores y productos naturistas en toda la República Mexicana.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- CTA Post-Hero -->
+  <CtaBanner
+    title="¿Necesita sellos para su producto?"
+    subtitle="Envíenos las medidas de su tapa y le mandamos muestras sin costo."
+    btnText="Solicitar Muestras"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <!-- Productos -->
+  <section class="section" id="sellos">
+    <div class="container">
+      <SectionHeader
+        badge="Catálogo"
+        title="Tipos de Sellos de Garantía"
+        subtitle="Cada sello se fabrica a la medida exacta de su envase. Seleccione el tipo que necesita o contáctenos para asesoría personalizada."
+      />
+      <div class="products-grid">
+        {productos.map((p) => (
+          <article class="product-card">
+            <div class="product-card__image-wrap">
+              {p.image ? (
+                <img src={p.image} alt={p.title} class="product-card__image" loading="lazy" decoding="async" width="640" height="360" />
+              ) : (
+                <div class="product-card__placeholder"></div>
+              )}
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title">{p.title}</h3>
+              <p class="product-card__sub">{p.subtitle}</p>
+              <ul class="product-card__specs">
+                {p.specs.map((spec) => (
+                  <li class="product-card__spec">{spec}</li>
+                ))}
+              </ul>
+              <div class="product-card__ctas">
+                <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                <a href="/contacto/" class="product-card__btn product-card__btn--outline">Pedir muestra</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Especificaciones Técnicas -->
+  <section class="section" style="background: var(--color-gray-50);">
+    <div class="container">
+      <SectionHeader
+        badge="Especificaciones"
+        title="Datos Técnicos de Nuestros Sellos"
+        subtitle="Información detallada para que su equipo de compras y producción pueda evaluar correctamente."
+      />
+      <div class="specs-table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Especificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Material</td><td>Película PVC termoencogible</td></tr>
+            <tr><td>Calibres disponibles</td><td>40, 50, 60 y 80 micras</td></tr>
+            <tr><td>Rango de diámetros</td><td>20mm a 120mm</td></tr>
+            <tr><td>Encogimiento</td><td>55-60% transversal</td></tr>
+            <tr><td>Temperatura de aplicación</td><td>90°C - 130°C</td></tr>
+            <tr><td>Colores</td><td>Transparente, cristal, pigmentados (Pantone bajo pedido)</td></tr>
+            <tr><td>Impresión</td><td>Rotograbado hasta 6 tintas</td></tr>
+            <tr><td>Perforación</td><td>Micro-perforación para apertura fácil (opcional)</td></tr>
+            <tr><td>Grado alimenticio</td><td>Sí — apto contacto indirecto con alimentos</td></tr>
+            <tr><td>Pedido mínimo (liso)</td><td>5,000 piezas</td></tr>
+            <tr><td>Pedido mínimo (impreso)</td><td>10,000 piezas</td></tr>
+            <tr><td>Entrega (liso)</td><td>3-5 días hábiles</td></tr>
+            <tr><td>Entrega (impreso)</td><td>10-15 días hábiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Pre-FAQ -->
+  <CtaBanner
+    title="¿Listo para cotizar sus sellos de garantía?"
+    subtitle="Respuesta en menos de 24 horas. Muestras sin costo a cualquier parte de México."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="Sobre Sellos de Garantía"
+        subtitle="Las dudas más comunes de nuestros clientes sobre sellos termoencogibles."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <!-- CTA Pre-Footer -->
+  <CtaBanner
+    title="Fabricante directo — precios de planta"
+    subtitle="Sin intermediarios. Usted habla directo con quien fabrica su sello."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .product-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .product-card__image-wrap {
+    aspect-ratio: 16 / 9;
+    background: var(--color-primary, #0047AB);
+    overflow: hidden;
+  }
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .product-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary, #0047AB);
+    opacity: 0.15;
+  }
+  .product-card__body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+  }
+  .product-card__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin: 0;
+  }
+  .product-card__sub {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+  .product-card__specs {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    margin-top: 0.25rem;
+  }
+  .product-card__spec {
+    font-size: 0.875rem;
+    color: var(--color-gray-900);
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+    border-bottom: 1px solid var(--color-accent, #FF6B00);
+    position: relative;
+  }
+  .product-card__spec::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary, #0047AB);
+    font-weight: 700;
+  }
+  .product-card__spec:last-child { border-bottom: none; }
+  .product-card__ctas {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+  .product-card__btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .product-card__btn--primary {
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,71,171,0.2);
+  }
+  .product-card__btn--primary:hover { background: var(--color-secondary, #1A1A2E); }
+  .product-card__btn--outline {
+    background: transparent;
+    color: var(--color-primary, #0047AB);
+    border: 2px solid var(--color-primary, #0047AB);
+  }
+  .product-card__btn--outline:hover {
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+  }
+
+  /* Specs Table */
+  .specs-table-wrap {
+    overflow-x: auto;
+    margin-top: var(--space-6);
+  }
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .specs-table th {
+    text-align: left;
+    padding: 0.875rem 1.25rem;
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+    font-weight: 600;
+  }
+  .specs-table td {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--color-gray-200, #E2E8F0);
+    color: var(--color-gray-900);
+  }
+  .specs-table tr:nth-child(even) td {
+    background: #fff;
+  }
+  .specs-table tr:nth-child(odd) td {
+    background: var(--color-gray-50, #F8FAFC);
+  }
+</style>
