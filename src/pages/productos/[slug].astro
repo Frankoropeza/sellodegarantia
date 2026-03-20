@@ -70,12 +70,7 @@ const structuredData = [
     description={data.description}
     primaryCta={{ text: 'Cotizar Este Producto', href: '/cotizar/' }}
     secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
-    metrics={[
-      ...(data.calibres ? [{ value: data.calibres.split(',').length.toString(), label: 'Calibres' }] : []),
-      ...(data.diametros ? [{ value: data.diametros, label: 'Diámetros' }] : []),
-      ...(data.pedidoMinimo ? [{ value: data.pedidoMinimo, label: 'Mínimo' }] : []),
-      ...(data.tiempoEntrega ? [{ value: data.tiempoEntrega, label: 'Entrega' }] : []),
-    ]}
+    metrics={[]}
   />
 
   <CtaBanner

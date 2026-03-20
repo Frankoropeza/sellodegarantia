@@ -24,7 +24,7 @@ const schemaData = {
 ---
 
 <nav class="breadcrumb" aria-label="Breadcrumb">
-  <ol class="breadcrumb__list">
+  <ol class="breadcrumb__list container">
     {items.map((item, i) => (
       <li class="breadcrumb__item">
         {i < items.length - 1 ? (
@@ -44,7 +44,9 @@ const schemaData = {
 
 <style>
   .breadcrumb {
-    padding: var(--space-4) 0;
+    padding: var(--space-3) 0;
+    background: var(--color-gray-50, #F8FAFC);
+    border-bottom: 1px solid var(--color-gray-200, #E2E8F0);
   }
   .breadcrumb__list {
     display: flex;
