@@ -1,7 +1,7 @@
 // seo.ts — JSON-LD Schema generators for Sello de Garantía
 import {
   SITE_NAME, SITE_URL, LEGAL_NAME, SITE_DESCRIPTION,
-  PHONE_HREF, EMAIL, WHATSAPP_HREF,
+  PHONE, PHONE_HREF, EMAIL, WHATSAPP_HREF,
   HOURS, LOCATION, GEO, BRAND, EXPERIENCE_YEARS,
 } from './config';
 
@@ -14,9 +14,9 @@ export function organizationSchema() {
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     description: SITE_DESCRIPTION,
-    telephone: PHONE_HREF,
+    telephone: `+52 ${PHONE}`,
     email: EMAIL,
-    foundingDate: `${new Date().getFullYear() - EXPERIENCE_YEARS}`,
+    foundingDate: '1998',
     address: {
       '@type': 'PostalAddress',
       streetAddress: LOCATION.street,

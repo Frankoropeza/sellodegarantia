@@ -7,12 +7,14 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 
-import { SITE_NAME, PHONE, PHONE_HREF, WHATSAPP_HREF, EMAIL, CATEGORIES } from '../lib/config';
+import { SITE_NAME, PHONE, PHONE_HREF, WHATSAPP_HREF, WHATSAPP, EMAIL, CATEGORIES } from '../lib/config';
+import { localBusinessSchema, breadcrumbSchema } from '../lib/seo';
 ---
 
 <Base
-  title="Cotizar — Solicite Cotización de Sellos de Garantía y Película PVC"
+  title="Cotizar Sellos de Garantía y Película PVC"
   description="Solicite cotización de sellos de garantía, mangas retráctiles, etiquetas impresas y película de PVC termoencogible. Respuesta el mismo día hábil."
+  structuredData={[localBusinessSchema(), breadcrumbSchema([{ text: 'Inicio', href: '/' }, { text: 'Cotizar', href: '/cotizar/' }])]}
 >
   <TopBar />
   <Header />
@@ -47,7 +49,7 @@ import { SITE_NAME, PHONE, PHONE_HREF, WHATSAPP_HREF, EMAIL, CATEGORIES } from '
     <div class="container">
       <div class="quote-grid">
         <!-- Form -->
-        <form class="quote-form" action={`mailto:${EMAIL}`} method="post" enctype="text/plain">
+        <form class="quote-form" id="cotizar-form">
           <h2 class="quote-form__heading">Formulario de Cotización</h2>
           <p class="quote-form__intro">Todos los campos marcados con * son obligatorios. Respuesta en menos de 24 horas hábiles.</p>
 
@@ -164,6 +166,36 @@ import { SITE_NAME, PHONE, PHONE_HREF, WHATSAPP_HREF, EMAIL, CATEGORIES } from '
 
   <Footer />
   <WhatsAppBubble />
+
+  <script is:inline define:vars={{ WHATSAPP }}>
+    document.getElementById('cotizar-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var f = e.target;
+      var nombre = f.querySelector('#nombre').value;
+      var empresa = f.querySelector('#empresa').value;
+      var email = f.querySelector('#email').value;
+      var telefono = f.querySelector('#telefono').value;
+      var producto = f.querySelector('#producto').value;
+      var cantidad = f.querySelector('#cantidad').value;
+      var calibre = f.querySelector('#calibre').value;
+      var impresion = f.querySelector('#impresion').value;
+      var descripcion = f.querySelector('#descripcion').value;
+
+      var msg = 'Solicitud de Cotización\n\n';
+      msg += 'Nombre: ' + nombre + '\n';
+      if (empresa) msg += 'Empresa: ' + empresa + '\n';
+      msg += 'Email: ' + email + '\n';
+      msg += 'Teléfono: ' + telefono + '\n';
+      msg += 'Producto: ' + producto + '\n';
+      if (cantidad) msg += 'Cantidad: ' + cantidad + '\n';
+      if (calibre) msg += 'Calibre: ' + calibre + '\n';
+      msg += 'Impresión: ' + impresion + '\n';
+      if (descripcion) msg += 'Descripción: ' + descripcion + '\n';
+
+      var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    });
+  </script>
 </Base>
 
 <style>
