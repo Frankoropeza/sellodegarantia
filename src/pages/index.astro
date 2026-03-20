@@ -8,7 +8,7 @@ import CategoryCard from '../components/CategoryCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import IndustryCard from '../components/IndustryCard.astro';
 import CtaBanner from '../components/CtaBanner.astro';
-import FaqItem from '../components/FaqItem.astro';
+import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 
@@ -177,18 +177,12 @@ const features = [
 
   <!-- FAQ -->
   <section class="section" id="faq">
-    <div class="container">
-      <SectionHeader
-        badge="Preguntas Frecuentes"
-        title="Lo Que Nuestros Clientes Preguntan"
-        subtitle="Las dudas más comunes sobre nuestros sellos, mangas, impresión y tiempos de entrega."
-      />
-      <div class="faq-list">
-        {faqs.map((faq) => (
-          <FaqItem question={faq.question} answer={faq.answer} />
-        ))}
-      </div>
-    </div>
+    <SectionHeader
+      badge="Preguntas Frecuentes"
+      title="Lo Que Nuestros Clientes Preguntan"
+      subtitle="Las dudas más comunes sobre nuestros sellos, mangas, impresión y tiempos de entrega."
+    />
+    <FaqSection items={faqs} />
   </section>
 
   <!-- CTA Pre-Footer -->
