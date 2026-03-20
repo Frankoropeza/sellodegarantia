@@ -1,0 +1,78 @@
+---
+/**
+ * Breadcrumbs — OrigenLab Standard
+ * NO es fixed — se inserta dentro del flujo de la página.
+ * El header se encarga del posicionamiento fixed.
+ */
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+
+const schemaItems = items.map((item, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": item.label,
+  ...(item.href ? { "item": `https://mesaspicnic.com${item.href}` } : {})
+}));
+---
+
+<div class="bc">
+  <div class="container bc__inner">
+    {items.map((crumb, i) => (
+      <>
+        {crumb.href ? (
+          <a href={crumb.href} class="bc__link">{crumb.label}</a>
+        ) : (
+          <span class="bc__current">{crumb.label}</span>
+        )}
+        {i < items.length - 1 && <span class="bc__sep">/</span>}
+      </>
+    ))}
+  </div>
+</div>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": schemaItems
+})} />
+
+<style>
+  .bc {
+    background: var(--c-bg-alt, #F7F4F0);
+    border-bottom: 1px solid var(--c-border, #E7E0D8);
+  }
+
+  .bc__inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .bc__link {
+    color: var(--c-text-muted, #78716C);
+  }
+
+  .bc__link:hover {
+    color: var(--c-primary, #2C5530);
+  }
+
+  .bc__current {
+    color: var(--c-text, #1C1917);
+    font-weight: 600;
+  }
+
+  .bc__sep {
+    color: var(--c-border, #E7E0D8);
+    font-size: 0.75rem;
+  }
+</style>

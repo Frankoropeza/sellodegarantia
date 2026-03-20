@@ -1,0 +1,188 @@
+---
+/**
+ * ProductGallery — OrigenLab Standard
+ * Grid 4×2 de imágenes + Sidebar con productos recomendados.
+ * Sin animaciones. Código limpio.
+ */
+interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface RecommendedItem {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  recommended: RecommendedItem[];
+  sidebarTitle?: string;
+}
+
+const {
+  images,
+  recommended,
+  sidebarTitle = "También te puede interesar",
+} = Astro.props;
+---
+
+<div class="pg container">
+  <!-- Grid de imágenes -->
+  <div class="pg__gallery">
+    {images.map((img) => (
+      <div class="pg__item">
+        <img src={img.src} alt={img.alt} loading="lazy" width="400" height="225" />
+      </div>
+    ))}
+  </div>
+
+  <!-- Sidebar recomendaciones -->
+  <aside class="pg__sidebar">
+    <h3 class="pg__sidebar-title">{sidebarTitle}</h3>
+    <div class="pg__sidebar-list">
+      {recommended.map((item) => (
+        <a href={item.href} class="pg__rec">
+          {item.image ? (
+            <img src={item.image} alt={item.title} class="pg__rec-img" loading="lazy" width="80" height="80" />
+          ) : (
+            <div class="pg__rec-placeholder" aria-hidden="true">
+              <span>Img</span>
+            </div>
+          )}
+          <div class="pg__rec-info">
+            <span class="pg__rec-title">{item.title}</span>
+            <span class="pg__rec-desc">{item.description}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </aside>
+</div>
+
+<style>
+  .pg {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Gallery grid 4×2 */
+  .pg__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .pg__item {
+    border-radius: var(--radius-sm, 8px);
+    overflow: hidden;
+  }
+
+  .pg__item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Sidebar */
+  .pg__sidebar {
+    background: #fff;
+    border: 1px solid var(--c-border, #E7E0D8);
+    border-radius: var(--radius-md, 12px);
+    padding: 1.5rem;
+    position: sticky;
+    top: calc(var(--topbar-height, 36px) + var(--header-height, 70px) + 3.5rem);
+  }
+
+  .pg__sidebar-title {
+    font-size: 0.9375rem;
+    color: var(--c-text, #1C1917);
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+  }
+
+  .pg__sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .pg__rec {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid var(--c-border, #E7E0D8);
+    border-radius: var(--radius-sm, 8px);
+    transition: border-color 0.2s var(--ease, ease);
+  }
+
+  .pg__rec:hover {
+    border-color: var(--c-primary, #2C5530);
+  }
+
+  .pg__rec-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .pg__rec-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    background: var(--c-bg-alt, #F7F4F0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-text-muted, #78716C);
+    font-size: 0.6875rem;
+    flex-shrink: 0;
+  }
+
+  .pg__rec-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .pg__rec-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--c-text, #1C1917);
+  }
+
+  .pg__rec-desc {
+    font-size: 0.75rem;
+    color: var(--c-text-muted, #78716C);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1024px) {
+    .pg {
+      grid-template-columns: 1fr;
+    }
+
+    .pg__gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pg__sidebar {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pg__gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

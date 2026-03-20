@@ -1,0 +1,47 @@
+---
+/**
+ * GallerySection — OrigenLab Standard
+ * Grid de imágenes. Sin animaciones.
+ * El título se maneja externamente con SectionHeader.
+ */
+interface Props {
+  images: Array<{ src: string; alt: string }>;
+  id?: string;
+}
+
+const { images, id } = Astro.props;
+---
+
+<div class="container gallery" id={id}>
+  <div class="gallery__grid">
+    {images.map((img) => (
+      <div class="gallery__item">
+        <img src={img.src} alt={img.alt} loading="lazy" width="560" height="315" />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .gallery {
+    padding-bottom: 2rem;
+  }
+
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .gallery__item {
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+  }
+
+  .gallery__item img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+  }
+</style>

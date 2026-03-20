@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopBar from '../components/TopBar.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import WaBubble from '../components/WaBubble.astro';
+import '../styles/global.css';
+
+const WA = "5215556863599";
+---
+
+<BaseLayout
+  title="Contacto | Sello de Garantía — Fabricantes de Película PVC"
+  description="Contáctanos para cotizar sellos de garantía, mangas termoencogibles y etiquetas impresas. Tel: 55 5686 3599. Planta en CDMX, envíos a toda la República."
+  breadcrumbs={[
+    { text: "Inicio", href: "/" },
+    { text: "Contacto", href: "/contacto" },
+  ]}
+>
+  <TopBar />
+  <Header />
+
+  <Hero
+    title="Contacto"
+    description="Estamos listos para cotizar tu proyecto. Llámanos, escríbenos por WhatsApp o envía un correo."
+    ctaPrimary={{ text: "WhatsApp Directo", href: `https://wa.me/${WA}` }}
+    ctaSecondary={{ text: "Llamar Ahora", href: "tel:+525556863599" }}
+    seoParagraph1="Nuestra planta y oficinas están en el Barrio de Santa Bárbara, Iztapalapa, Ciudad de México. Atendemos de lunes a viernes de 9:00 a 18:00 y sábados de 9:00 a 14:00. Para cotizaciones urgentes, nuestro equipo de ventas responde por WhatsApp en menos de 2 horas durante horario laboral."
+    seoParagraph2="Si necesitas muestras de nuestros productos, envíanos las dimensiones de tu envase (diámetro de tapa, altura del sello) y te mandamos muestras sin costo a cualquier parte de México. Para visitas a planta, agenda tu cita por teléfono o WhatsApp."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="gap: 4rem;">
+        <!-- Info de contacto -->
+        <div>
+          <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Información de Contacto</h2>
+          
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <span style="font-size: 1.5rem;">📍</span>
+              <div>
+                <strong>Dirección</strong>
+                <p style="color: var(--c-text-muted);">2ª Cerrada del Tercer Anillo de Circunvalación No. 12<br>Barrio Santa Bárbara, Iztapalapa<br>Ciudad de México, C.P. 09000</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <span style="font-size: 1.5rem;">📞</span>
+              <div>
+                <strong>Teléfono</strong>
+                <p><a href="tel:+525556863599" style="color: var(--c-primary);">55 5686 3599</a></p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <span style="font-size: 1.5rem;">💬</span>
+              <div>
+                <strong>WhatsApp</strong>
+                <p><a href={`https://wa.me/${WA}`} style="color: var(--c-wa);">55 5686 3599</a></p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <span style="font-size: 1.5rem;">✉️</span>
+              <div>
+                <strong>Email</strong>
+                <p><a href="mailto:ventas@sellodegarantia.com" style="color: var(--c-primary);">ventas@sellodegarantia.com</a></p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+              <span style="font-size: 1.5rem;">🕘</span>
+              <div>
+                <strong>Horario</strong>
+                <p style="color: var(--c-text-muted);">Lunes a Viernes: 9:00 - 18:00<br>Sábado: 9:00 - 14:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mapa placeholder -->
+        <div>
+          <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Ubicación</h2>
+          <div style="background: var(--c-bg-alt); border-radius: var(--r-card); height: 400px; display: flex; align-items: center; justify-content: center; color: var(--c-text-muted);">
+            <p>Mapa — Google Maps embed pendiente</p>
+          </div>
+          <p style="margin-top: 1rem; color: var(--c-text-muted); font-size: 0.9rem;">
+            Estamos en Iztapalapa, CDMX. A 10 minutos de la estación del Metro Constitución de 1917.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer
+    phone="55 5686 3599"
+    whatsapp={WA}
+    email="ventas@sellodegarantia.com"
+  />
+  <WaBubble whatsapp={WA} message="Hola, necesito información" tooltip="Contactar" />
+</BaseLayout>

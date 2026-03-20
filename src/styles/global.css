@@ -1,0 +1,126 @@
+/* ============================================
+   SELLO DE GARANTÍA — Design Tokens
+   Palette: Industrial/Packaging — Professional B2B
+   ============================================ */
+
+:root {
+  /* Colors */
+  --c-primary: #0047AB;       /* Azul cobalto — confianza, industria */
+  --c-secondary: #1A1A2E;     /* Dark navy — seriedad */
+  --c-accent: #FF6B00;        /* Naranja industrial — CTAs, energía */
+  --c-green: #00C853;
+  --c-wa: #25D366;
+  --c-text: #1A1A2E;
+  --c-text-muted: #6B7280;
+  --c-bg: #FFFFFF;
+  --c-bg-alt: #F8F9FA;
+  --c-bg-dark: #1A1A2E;
+  --c-border: #E5E7EB;
+
+  /* Fonts */
+  --font-head: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Radii */
+  --r-card: 12px;
+  --r-btn: 8px;
+  --r-badge: 50px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.15);
+  --shadow-primary: 0 8px 25px rgba(0, 71, 171, 0.3);
+  --shadow-wa: 0 4px 20px rgba(37, 211, 102, 0.4);
+
+  /* Layout */
+  --container: 1200px;
+  --section-py: clamp(4rem, 8vw, 6rem);
+  --header-height: 70px;
+}
+
+/* ============================================
+   Base Reset
+   ============================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
+body {
+  font-family: var(--font-body);
+  color: var(--c-text);
+  background: var(--c-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-head); line-height: 1.2; font-weight: 700; }
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ============================================
+   Layout Utilities
+   ============================================ */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: var(--section-py) 0; }
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: var(--r-btn);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--c-primary);
+  color: #fff;
+}
+.btn-primary:hover { background: #003a8c; }
+.btn-accent {
+  background: var(--c-accent);
+  color: #fff;
+}
+.btn-accent:hover { background: #e55f00; }
+.btn-outline {
+  background: transparent;
+  color: var(--c-primary);
+  border: 2px solid var(--c-primary);
+}
+.btn-outline:hover { background: var(--c-primary); color: #fff; }
+.btn-wa {
+  background: var(--c-wa);
+  color: #fff;
+}
+.btn-wa:hover { background: #1ebe57; }
+
+/* ============================================
+   Typography helpers
+   ============================================ */
+.text-primary { color: var(--c-primary); }
+.text-accent { color: var(--c-accent); }
+.text-muted { color: var(--c-text-muted); }
+.text-center { text-align: center; }
+
+/* ============================================
+   Grid helpers
+   ============================================ */
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.grid-4 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+
+@media (min-width: 768px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}

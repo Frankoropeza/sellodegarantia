@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopBar from '../components/TopBar.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Footer from '../components/Footer.astro';
+import WaBubble from '../components/WaBubble.astro';
+import '../styles/global.css';
+
+const WA = "5215556863599";
+---
+
+<BaseLayout
+  title="Nosotros | Fabricantes de Película PVC Termoencogible desde 1998"
+  description="28 años fabricando película PVC termoencogible en México. Planta propia en CDMX, equipo de 6-10 especialistas, cobertura nacional. Conoce nuestra historia."
+  breadcrumbs={[
+    { text: "Inicio", href: "/" },
+    { text: "Nosotros", href: "/nosotros" },
+  ]}
+>
+  <TopBar />
+  <Header />
+
+  <Hero
+    title="28 Años Fabricando Empaque en México"
+    description="Desde 1998, nuestra planta en Ciudad de México produce película PVC termoencogible para empresas de todos los tamaños."
+    ctaPrimary={{ text: "Solicitar Cotización", href: "/cotizar" }}
+    ctaSecondary={{ text: "Contactar", href: "/contacto" }}
+    seoParagraph1="Somos una empresa mexicana fundada en 1998, especializada en la fabricación de película de PVC termoencogible. Nuestra planta en el Barrio de Santa Bárbara, Iztapalapa, produce sellos de garantía, mangas, etiquetas impresas a seis tintas, preformados y bobinas para máquinas automáticas. Atendemos a más de 200 empresas en industria farmacéutica, alimenticia, de bebidas, licores, gasera y productos naturistas."
+    seoParagraph2="Lo que nos distingue es que controlamos todo el proceso: desde la extrusión de la película hasta la impresión, corte y entrega. También fabricamos la maquinaria de aplicación — túneles de calor y aplicadores — lo que nos permite dar soporte técnico completo a nuestros clientes. No somos intermediarios: somos fabricantes."
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        title="¿Por Qué Elegirnos?"
+        subtitle="Fabricante directo, sin intermediarios"
+      />
+      <div class="grid-3" style="margin-top: 3rem;">
+        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🏭 Planta Propia</h3>
+          <p style="color: var(--c-text-muted);">Fabricamos todo en nuestra planta de CDMX. Control total de calidad, tiempos y costos. Sin intermediarios que encarezcan tu producto.</p>
+        </div>
+        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">📐 Fabricación a Medida</h3>
+          <p style="color: var(--c-text-muted);">Cada envase es diferente. Fabricamos sellos, mangas y etiquetas con las dimensiones exactas que necesitas. Muestras sin costo antes de producción.</p>
+        </div>
+        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🔧 Maquinaria Incluida</h3>
+          <p style="color: var(--c-text-muted);">Fabricamos los equipos de aplicación para nuestra película. Soporte técnico de inicio a fin — no te dejamos solo después de la venta.</p>
+        </div>
+        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🖨️ Impresión a 6 Tintas</h3>
+          <p style="color: var(--c-text-muted);">Tu marca con calidad profesional. Imprimimos logos, datos, códigos de barras y diseños a todo color directamente sobre la película PVC.</p>
+        </div>
+        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🚚 Cobertura Nacional</h3>
+          <p style="color: var(--c-text-muted);">Enviamos a los 32 estados. En CDMX y zona metropolitana hacemos entregas directas. Para volúmenes grandes, coordinamos flete dedicado.</p>
+        </div>
+        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">⏱️ 28 Años de Experiencia</h3>
+          <p style="color: var(--c-text-muted);">Casi tres décadas resolviendo problemas de empaque para cientos de empresas. Ese conocimiento se traduce en productos que funcionan a la primera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="¿Listo para trabajar con un fabricante directo?"
+    subtitle="Sin intermediarios, sin sorpresas. Cotiza hoy."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar"
+    variant="vibrant"
+    whatsapp={WA}
+  />
+
+  <Footer
+    phone="55 5686 3599"
+    whatsapp={WA}
+    email="ventas@sellodegarantia.com"
+  />
+  <WaBubble whatsapp={WA} message="Hola, quiero conocer más sobre su empresa" tooltip="Contactar" />
+</BaseLayout>

@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopBar from '../components/TopBar.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import FaqItem from '../components/FaqItem.astro';
+import Footer from '../components/Footer.astro';
+import WaBubble from '../components/WaBubble.astro';
+import '../styles/global.css';
+
+const WA = "5215556863599";
+const WA_MSG = "Hola, necesito información sobre sellos de garantía y película termoencogible";
+
+const productos = [
+  {
+    title: "Sellos de Garantía",
+    description: "Película PVC termoencogible cortada a medida para sellar tapas de botellas, frascos y envases. Garantiza que el producto no ha sido abierto.",
+    image: "/img/productos/sellos-de-garantia-pvc-termoencogible.avif",
+    href: "/productos/sellos-de-garantia"
+  },
+  {
+    title: "Mangas Termoencogibles",
+    description: "Cobertura completa del envase con manga de PVC. Protección, identificación y presentación profesional en un solo paso.",
+    image: "/img/productos/mangas-termoencogibles-pvc.avif",
+    href: "/productos/mangas-termoencogibles"
+  },
+  {
+    title: "Etiquetas Impresas",
+    description: "Impresión a 6 tintas sobre película PVC termoencogible. Tu marca con colores vibrantes que se adaptan a la forma del envase.",
+    image: "/img/productos/etiquetas-impresas-pvc-6-tintas.avif",
+    href: "/productos/etiquetas-impresas"
+  },
+  {
+    title: "Preformados",
+    description: "Sellos y mangas pre-cortados a la medida exacta de tu envase. Listos para aplicar manualmente o con pistola de calor.",
+    image: "/img/productos/preformados-pvc-termoencogible.avif",
+    href: "/productos/preformados"
+  },
+  {
+    title: "Bobinas para Máquinas",
+    description: "Rollos de película PVC en bobina continua, impresos o sin impresión, para líneas de envasado automáticas de alta velocidad.",
+    image: "/img/productos/bobinas-pelicula-pvc-maquina-automatica.avif",
+    href: "/productos/bobinas"
+  },
+  {
+    title: "Maquinaria de Aplicación",
+    description: "Fabricamos equipos para la aplicación de película termoencogible. Túneles de calor y aplicadores diseñados para tu línea de producción.",
+    image: "/img/productos/maquinaria-aplicacion-termoencogible.avif",
+    href: "/productos/maquinaria"
+  },
+];
+
+const industrias = [
+  {
+    title: "Industria Farmacéutica",
+    description: "Sellos de seguridad para medicamentos, suplementos y productos de salud. Cumplimiento normativo COFEPRIS.",
+    image: "/img/industrias/farmaceutica-sellos-medicamentos.avif",
+    href: "/industrias/farmaceutica"
+  },
+  {
+    title: "Alimentos y Bebidas",
+    description: "Película grado alimenticio para salsas, miel, mermeladas, condimentos y productos perecederos.",
+    image: "/img/industrias/alimentos-bebidas-sellos-garantia.avif",
+    href: "/industrias/alimentos-bebidas"
+  },
+  {
+    title: "Agua y Envasadoras",
+    description: "Sellos para garrafones de 20L, botellas PET y presentaciones de agua purificada.",
+    image: "/img/industrias/agua-envasadoras-sellos-garrafon.avif",
+    href: "/industrias/agua-bebidas"
+  },
+  {
+    title: "Vinos y Licores",
+    description: "Cápsulas termoencogibles y sellos para botellas de vidrio. Acabado profesional para destilados y vinos.",
+    image: "/img/industrias/vinos-licores-capsulas-termoencogibles.avif",
+    href: "/industrias/vinos-licores"
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Cuál es el pedido mínimo?",
+    answer: "Trabajamos con pedidos desde 5,000 piezas en sellos estándar. Para productos personalizados con impresión, el mínimo es de 10,000 piezas. Contáctanos para cotizar tu volumen específico."
+  },
+  {
+    question: "¿En cuánto tiempo entregan?",
+    answer: "Sellos estándar sin impresión: 3-5 días hábiles. Productos con impresión personalizada: 10-15 días hábiles dependiendo del volumen y la complejidad del diseño."
+  },
+  {
+    question: "¿Hacen envíos a toda la República?",
+    answer: "Sí, enviamos a todos los estados de México por paquetería. En CDMX y zona metropolitana hacemos entregas directas. Para pedidos grandes, coordinamos el envío por fletera."
+  },
+  {
+    question: "¿Qué materiales manejan?",
+    answer: "Nuestra especialidad es la película de PVC termoencogible. Manejamos diferentes calibres (40, 50, 60 y 80 micras) y colores. También trabajamos con PET termoencogible para aplicaciones especiales."
+  },
+  {
+    question: "¿Pueden imprimir mi logo y diseño?",
+    answer: "Sí, contamos con impresión a 6 tintas sobre película PVC. Podemos reproducir tu diseño completo incluyendo logos, información del producto, códigos de barras y datos regulatorios."
+  },
+  {
+    question: "¿Fabrican la maquinaria para aplicar los sellos?",
+    answer: "Sí, fabricamos túneles de calor y equipos de aplicación diseñados para trabajar con nuestra película. Esto garantiza compatibilidad y los mejores resultados en tu línea de producción."
+  },
+];
+---
+
+<BaseLayout
+  title="Sellos de Garantía y Película PVC Termoencogible | Fabricante México"
+  description="Fabricantes de sellos de garantía, mangas termoencogibles, etiquetas impresas a 6 tintas y bobinas de película PVC. 28 años de experiencia. Envíos a toda la República."
+>
+  <TopBar />
+  <Header />
+
+  <Hero
+    title="Sellos de Garantía y Película PVC Termoencogible"
+    description="Fabricamos película de PVC termoencogible para sellos de garantía, mangas, etiquetas impresas y preformados. 28 años protegiendo productos en México."
+    ctaPrimary={{ text: "Cotizar Ahora", href: "/cotizar" }}
+    ctaSecondary={{ text: "Hablar por WhatsApp", href: `https://wa.me/${WA}?text=${encodeURIComponent(WA_MSG)}` }}
+    seoParagraph1="Somos fabricantes mexicanos de película de PVC termoencogible con 28 años de experiencia en el mercado de empaque y embalaje. Nuestra planta en Ciudad de México produce sellos de garantía, mangas termoencogibles, etiquetas impresas a seis tintas, preformados y bobinas para máquinas automáticas de envasado. Atendemos industria farmacéutica, alimenticia, de bebidas, licores y productos naturistas en toda la República Mexicana."
+    seoParagraph2="Cada producto sale de nuestra línea de producción con control de calidad riguroso: calibre uniforme, encogimiento controlado y adherencia óptima. Además de la película, fabricamos la maquinaria de aplicación — túneles de calor y aplicadores — lo que nos permite garantizar resultados desde la materia prima hasta la línea de envasado de nuestros clientes."
+  />
+
+  <!-- Productos -->
+  <section class="section" style="background: var(--c-bg-alt);">
+    <div class="container">
+      <SectionHeader
+        title="Nuestros Productos"
+        subtitle="Soluciones en película PVC termoencogible"
+        copy1="Desde el sello de garantía más pequeño hasta la manga de cuerpo completo, fabricamos todo en nuestra planta de CDMX. Cada producto se diseña para las dimensiones exactas de tu envase."
+        copy2="Trabajamos con diferentes calibres, colores y acabados. Impresión a 6 tintas para que tu marca se vea profesional en el punto de venta."
+      />
+      <div class="grid-3" style="margin-top: 3rem;">
+        {productos.map(p => (
+          <ServiceCard
+            title={p.title}
+            description={p.description}
+            image={p.image}
+            href={p.href}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industrias -->
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        title="Industrias que Atendemos"
+        subtitle="28 años resolviendo empaque en México"
+        copy1="Conocemos los requerimientos de cada sector: normativas COFEPRIS para farmacéuticos, grado alimenticio para alimentos, resistencia UV para productos que se exhiben al sol."
+        copy2="No importa si produces 10,000 o 500,000 piezas al mes — ajustamos la producción a tu ritmo y te entregamos en el tiempo que necesitas."
+      />
+      <div class="grid-4" style="margin-top: 3rem;">
+        {industrias.map(i => (
+          <ServiceCard
+            title={i.title}
+            description={i.description}
+            image={i.image}
+            href={i.href}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CtaBanner
+    title="¿Necesitas sellos de garantía para tu producto?"
+    subtitle="Cotiza sin compromiso. Te respondemos en menos de 2 horas."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar"
+    variant="vibrant"
+    whatsapp={WA}
+  />
+
+  <!-- FAQ -->
+  <section class="section" style="background: var(--c-bg-alt);">
+    <div class="container">
+      <SectionHeader
+        title="Preguntas Frecuentes"
+        subtitle="Lo que nuestros clientes preguntan"
+      />
+      <div style="max-width: 800px; margin: 3rem auto 0;">
+        {faqs.map(f => (
+          <FaqItem question={f.question} answer={f.answer} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer
+    phone="55 5686 3599"
+    whatsapp={WA}
+    email="ventas@sellodegarantia.com"
+  />
+
+  <WaBubble
+    whatsapp={WA}
+    message={WA_MSG}
+    tooltip="¿Necesitas cotización?"
+  />
+</BaseLayout>
