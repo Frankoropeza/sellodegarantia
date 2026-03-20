@@ -13,6 +13,8 @@ pedidoMinimo: "5,000 piezas"
 tiempoEntrega: "3-5 días hábiles"
 destacado: true
 orden: 1
+heroSeo1: "En Sello de Garantía fabricamos bandas de película PVC cristal termoencogible para sellar la unión entre tapa y envase. Este sello transparente es el más solicitado por empresas farmacéuticas, envasadoras de agua, productores de alimentos y cualquier industria que requiere evidenciar la inviolabilidad del producto sin afectar su presentación visual. Trabajamos calibres de 40, 50 y 60 micras con un porcentaje de encogimiento del 55-60% transversal, lo que permite adaptarse a la mayoría de las tapas del mercado mexicano."
+heroSeo2: "Somos fabricantes directos con planta en Iztapalapa, Ciudad de México. Cada sello se produce al diámetro exacto de su tapa — no vendemos medidas genéricas. Enviamos muestras sin costo a cualquier parte de la República para que pruebe el sello en su línea de producción antes de hacer el pedido. Si necesita volúmenes industriales, nuestra capacidad de producción permite tirajes desde 5,000 hasta millones de piezas con tiempos de entrega de 3 a 5 días hábiles."
 specs:
   - label: "Material"
     value: "Película PVC termoencogible cristal"

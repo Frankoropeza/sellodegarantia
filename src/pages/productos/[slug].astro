@@ -74,10 +74,10 @@ const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
     <Fragment slot="hero-seo">
       <div class="hero-seo">
         <p class="hero-seo__text">
-          {data.title.includes('—') ? data.title.split('—')[1].trim() + '. ' : ''}{data.description}
+          {data.heroSeo1 || data.description}
         </p>
         <p class="hero-seo__text">
-          Fabricamos a la medida exacta de su envase. Envíenos las dimensiones de su tapa y le cotizamos en menos de 24 horas. Muestras sin costo a cualquier parte de la República Mexicana.
+          {data.heroSeo2 || 'Somos fabricantes directos con planta en Ciudad de México. Cada producto se fabrica a la medida exacta de su envase. Envíenos las dimensiones y le cotizamos en menos de 24 horas. Muestras sin costo a cualquier parte de la República Mexicana.'}
         </p>
       </div>
     </Fragment>

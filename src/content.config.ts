@@ -19,6 +19,8 @@ const productos = defineCollection({
     diametros: z.string().optional(),
     pedidoMinimo: z.string().optional(),
     tiempoEntrega: z.string().optional(),
+    heroSeo1: z.string().optional(),
+    heroSeo2: z.string().optional(),
     destacado: z.boolean().default(false),
     orden: z.number().default(0),
   }),
