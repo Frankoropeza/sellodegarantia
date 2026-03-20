@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CategoryCard from '../components/CategoryCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import IndustryCard from '../components/IndustryCard.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import FaqItem from '../components/FaqItem.astro';
 import Footer from '../components/Footer.astro';
@@ -135,9 +136,9 @@ const features = [
       />
       <div class="grid-4">
         {INDUSTRIES.slice(0, 8).map((ind) => (
-          <ServiceCard
+          <IndustryCard
             title={ind.name}
-            description={ind.description || `Sellos de garantía y mangas para la industria ${ind.name.toLowerCase()}.`}
+            description={ind.description}
             href={ind.href}
             image={ind.image}
           />
