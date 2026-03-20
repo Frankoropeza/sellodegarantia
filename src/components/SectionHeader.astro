@@ -1,77 +1,53 @@
 ---
-/**
- * SectionHeader Component — OrigenLab Standard
- * ─────────────────────────────────────────────
- * Título de sección en 2 columnas:
- *   Col 1: Heading (H2-H6 configurable)
- *   Col 2: Dos párrafos descriptivos
- * Respeta jerarquía SEO: H1 solo en Hero, secciones usan H2+
- * Sin animaciones. Código limpio.
- */
 interface Props {
-  tag?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   title: string;
-  paragraph1: string;
-  paragraph2: string;
+  subtitle: string;
+  badge?: string;
 }
 
-const {
-  tag = 'h2',
-  title,
-  paragraph1,
-  paragraph2,
-} = Astro.props;
-
-const Tag = tag;
+const { title, subtitle, badge } = Astro.props;
 ---
 
-<div class="sh">
-  <div class="container sh__grid">
-    <div class="sh__col1">
-      <Tag class="sh__title">{title}</Tag>
-    </div>
-    <div class="sh__col2">
-      <p class="sh__text">{paragraph1}</p>
-      <p class="sh__text">{paragraph2}</p>
-    </div>
+<div class="section-header">
+  <div class="section-header__left">
+    {badge && <span class="section-header__badge">{badge}</span>}
+    <h2 class="section-header__title">{title}</h2>
+  </div>
+  <div class="section-header__right">
+    <p class="section-header__subtitle">{subtitle}</p>
   </div>
 </div>
 
 <style>
-  .sh {
-    padding-bottom: 2.5rem;
-  }
-
-  .sh__grid {
+  .section-header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
   }
-
-  .sh__title {
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    color: var(--c-text, #1C1917);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+  .section-header__badge {
+    display: inline-block;
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
   }
-
-  .sh__col2 {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .section-header__title {
+    font-size: var(--font-size-3xl);
+    color: var(--color-gray-900);
   }
-
-  .sh__text {
-    font-size: 0.9375rem;
-    color: var(--c-text-muted, #78716C);
-    line-height: 1.75;
+  .section-header__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-600);
+    line-height: var(--line-height-relaxed);
   }
-
-  @media (max-width: 768px) {
-    .sh__grid {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
+  @media (min-width: 768px) {
+    .section-header {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: end;
     }
   }
 </style>

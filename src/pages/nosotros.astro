@@ -1,85 +1,257 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Base from '../layouts/Base.astro';
 import TopBar from '../components/TopBar.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import Footer from '../components/Footer.astro';
-import WaBubble from '../components/WaBubble.astro';
-import '../styles/global.css';
+import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 
-const WA = "5215556863599";
+import { SITE_NAME, LOCATION, EXPERIENCE_YEARS } from '../lib/config';
+import { organizationSchema } from '../lib/seo';
 ---
 
-<BaseLayout
-  title="Nosotros | Fabricantes de Película PVC Termoencogible desde 1998"
-  description="28 años fabricando película PVC termoencogible en México. Planta propia en CDMX, equipo de 6-10 especialistas, cobertura nacional. Conoce nuestra historia."
-  breadcrumbs={[
-    { text: "Inicio", href: "/" },
-    { text: "Nosotros", href: "/nosotros" },
-  ]}
+<Base
+  title="Nosotros — Quiénes Somos"
+  description={`${SITE_NAME} (Tumipack México) fabrica película de PVC termoencogible desde 1998. Planta propia en Iztapalapa, CDMX. ${EXPERIENCE_YEARS} años de experiencia en sellado industrial.`}
+  structuredData={[organizationSchema()]}
 >
   <TopBar />
   <Header />
 
   <Hero
-    title="28 Años Fabricando Empaque en México"
-    description="Desde 1998, nuestra planta en Ciudad de México produce película PVC termoencogible para empresas de todos los tamaños."
-    ctaPrimary={{ text: "Solicitar Cotización", href: "/cotizar" }}
-    ctaSecondary={{ text: "Contactar", href: "/contacto" }}
-    seoParagraph1="Somos una empresa mexicana fundada en 1998, especializada en la fabricación de película de PVC termoencogible. Nuestra planta en el Barrio de Santa Bárbara, Iztapalapa, produce sellos de garantía, mangas, etiquetas impresas a seis tintas, preformados y bobinas para máquinas automáticas. Atendemos a más de 200 empresas en industria farmacéutica, alimenticia, de bebidas, licores, gasera y productos naturistas."
-    seoParagraph2="Lo que nos distingue es que controlamos todo el proceso: desde la extrusión de la película hasta la impresión, corte y entrega. También fabricamos la maquinaria de aplicación — túneles de calor y aplicadores — lo que nos permite dar soporte técnico completo a nuestros clientes. No somos intermediarios: somos fabricantes."
-  />
+    badge="Nuestra historia"
+    title="28 Años Fabricando Sellos de Garantía en México"
+    description="Somos Tumipack México SA de CV, fabricantes de película de PVC termoencogible con planta propia en la Ciudad de México. Desde 1998, nuestro trabajo es proteger productos con sellos que garantizan inviolabilidad."
+    primaryCta={{ text: 'Solicitar Cotización', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Contactar', href: '/contacto/' }}
+    metrics={[
+      { value: '1998', label: 'Fundación' },
+      { value: '28', label: 'Años' },
+      { value: '32', label: 'Estados' },
+      { value: '8+', label: 'Industrias' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Sello de Garantía es la marca comercial de Tumipack México SA de CV, empresa mexicana dedicada a la fabricación de película de PVC termoencogible para la industria del empaque. Nuestra planta de producción está ubicada en Iztapalapa, Ciudad de México, donde contamos con equipo de extrusión, impresión rotograbado y corte automatizado para producir sellos, mangas, etiquetas y preformas de la más alta calidad.
+        </p>
+        <p class="hero-seo__text">
+          A lo largo de casi tres décadas hemos trabajado con empresas farmacéuticas, embotelladoras de agua, productores de alimentos, vinícolas, gaseras y fabricantes de productos naturales en todo el país. Nuestra propuesta es directa: usted trata con el fabricante, sin intermediarios, con precios competitivos y tiempos de entrega que cumplimos.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
 
+  <div class="container">
+    <Breadcrumb items={[
+      { text: 'Inicio', href: '/' },
+      { text: 'Nosotros', href: '/nosotros/' },
+    ]} />
+  </div>
+
+  <!-- History -->
   <section class="section">
     <div class="container">
       <SectionHeader
-        title="¿Por Qué Elegirnos?"
-        subtitle="Fabricante directo, sin intermediarios"
+        badge="Historia"
+        title="De Taller a Planta Industrial"
+        subtitle="En 1998 comenzamos como un taller pequeño fabricando sellos lisos para embotelladoras. Hoy producimos millones de piezas al mes para ocho industrias diferentes."
       />
-      <div class="grid-3" style="margin-top: 3rem;">
-        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🏭 Planta Propia</h3>
-          <p style="color: var(--c-text-muted);">Fabricamos todo en nuestra planta de CDMX. Control total de calidad, tiempos y costos. Sin intermediarios que encarezcan tu producto.</p>
+      <div class="content-grid">
+        <div class="content-block">
+          <h3>Los Primeros Años (1998-2005)</h3>
+          <p>Tumipack México nació atendiendo embotelladoras de agua en la Ciudad de México. El producto era simple: sellos de garantía lisos, sin impresión, en un solo calibre. Pero la calidad del material y la puntualidad en entregas nos ganaron clientes que crecieron con nosotros.</p>
         </div>
-        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">📐 Fabricación a Medida</h3>
-          <p style="color: var(--c-text-muted);">Cada envase es diferente. Fabricamos sellos, mangas y etiquetas con las dimensiones exactas que necesitas. Muestras sin costo antes de producción.</p>
+        <div class="content-block">
+          <h3>Crecimiento e Impresión (2005-2015)</h3>
+          <p>Invertimos en equipo de impresión rotograbado que nos permitió ofrecer sellos y mangas con impresión a color. Esto abrió las puertas a la industria farmacéutica y de alimentos, donde la marca impresa en el sello es un requisito. Ampliamos la planta y sumamos calibres de 40 a 80 micras.</p>
         </div>
-        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🔧 Maquinaria Incluida</h3>
-          <p style="color: var(--c-text-muted);">Fabricamos los equipos de aplicación para nuestra película. Soporte técnico de inicio a fin — no te dejamos solo después de la venta.</p>
+        <div class="content-block">
+          <h3>Hoy: Fabricante Completo (2015-presente)</h3>
+          <p>Actualmente fabricamos toda la línea de productos termoencogibles: sellos, mangas full-body, etiquetas, preformas y película en rollo. También manufacturamos maquinaria de aplicación — túneles de calor y aplicadoras — para ofrecer al cliente una solución de línea completa.</p>
         </div>
-        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🖨️ Impresión a 6 Tintas</h3>
-          <p style="color: var(--c-text-muted);">Tu marca con calidad profesional. Imprimimos logos, datos, códigos de barras y diseños a todo color directamente sobre la película PVC.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiators -->
+  <section class="section" style="background: var(--color-gray-50);">
+    <div class="container">
+      <SectionHeader
+        badge="Diferenciadores"
+        title="Por Qué Trabajar con Nosotros"
+        subtitle="No somos distribuidores ni revendedores. Fabricamos cada pieza en nuestra planta. Estas son las ventajas concretas."
+      />
+      <div class="grid-3">
+        <div class="diff-card">
+          <h3 class="diff-card__title">Precio de Fábrica</h3>
+          <p class="diff-card__text">Al comprar directo al fabricante, elimina márgenes de intermediarios. Nuestros precios reflejan costos reales de producción.</p>
         </div>
-        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">🚚 Cobertura Nacional</h3>
-          <p style="color: var(--c-text-muted);">Enviamos a los 32 estados. En CDMX y zona metropolitana hacemos entregas directas. Para volúmenes grandes, coordinamos flete dedicado.</p>
+        <div class="diff-card">
+          <h3 class="diff-card__title">Fabricación a la Medida</h3>
+          <p class="diff-card__text">Cada producto se manufactura según las dimensiones exactas de su envase. No vendemos medidas genéricas ni inventario preexistente.</p>
         </div>
-        <div style="padding: 2rem; background: var(--c-bg-alt); border-radius: var(--r-card);">
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">⏱️ 28 Años de Experiencia</h3>
-          <p style="color: var(--c-text-muted);">Casi tres décadas resolviendo problemas de empaque para cientos de empresas. Ese conocimiento se traduce en productos que funcionan a la primera.</p>
+        <div class="diff-card">
+          <h3 class="diff-card__title">Control de Calidad Interno</h3>
+          <p class="diff-card__text">Controlamos el proceso completo: extrusión, impresión, corte y empaque. Cada lote pasa por revisión antes de salir de planta.</p>
+        </div>
+        <div class="diff-card">
+          <h3 class="diff-card__title">Asesoría Técnica</h3>
+          <p class="diff-card__text">Le ayudamos a elegir calibre, tipo de sello y método de aplicación. Conocemos los requerimientos de cada industria.</p>
+        </div>
+        <div class="diff-card">
+          <h3 class="diff-card__title">Tiempos de Entrega Reales</h3>
+          <p class="diff-card__text">Sellos lisos en 3-5 días hábiles. Impresos en 10-15 días. Le damos fechas que cumplimos, no promesas vagas.</p>
+        </div>
+        <div class="diff-card">
+          <h3 class="diff-card__title">Cobertura Nacional</h3>
+          <p class="diff-card__text">Enviamos a los 32 estados. Entrega directa en CDMX y zona metropolitana. Paquetería y carga al interior de la República.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        badge="Proceso"
+        title="Cómo Trabajamos"
+        subtitle="Desde el primer contacto hasta la entrega en su planta, así es nuestro proceso de fabricación."
+      />
+      <div class="process-list">
+        <div class="process-step">
+          <span class="process-step__num">01</span>
+          <div>
+            <h3 class="process-step__title">Consulta y Cotización</h3>
+            <p class="process-step__text">Nos envía las especificaciones de su envase: diámetro, altura del sello, si necesita impresión, cantidad estimada. Le cotizamos el mismo día.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">02</span>
+          <div>
+            <h3 class="process-step__title">Diseño y Aprobación</h3>
+            <p class="process-step__text">Si el sello lleva impresión, desarrollamos el diseño o adaptamos el que usted nos envíe. Le mandamos prueba digital para aprobación antes de producir.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">03</span>
+          <div>
+            <h3 class="process-step__title">Fabricación</h3>
+            <p class="process-step__text">Extruimos la película de PVC en el calibre acordado, imprimimos (si aplica), cortamos y formamos los sellos o mangas según las medidas de su envase.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">04</span>
+          <div>
+            <h3 class="process-step__title">Control de Calidad</h3>
+            <p class="process-step__text">Revisamos contracción, adherencia de tintas, dimensiones y acabado visual. Solo sale de planta lo que cumple especificaciones.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="process-step__num">05</span>
+          <div>
+            <h3 class="process-step__title">Entrega</h3>
+            <p class="process-step__text">Empacamos y enviamos a su ubicación. En CDMX, entrega directa. Al interior, por paquetería o transporte de carga según el volumen.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <CtaBanner
-    title="¿Listo para trabajar con un fabricante directo?"
-    subtitle="Sin intermediarios, sin sorpresas. Cotiza hoy."
-    btnText="Solicitar Cotización"
-    btnHref="/cotizar"
-    variant="vibrant"
-    whatsapp={WA}
+    title="¿Listo para trabajar con nosotros?"
+    subtitle="Cotice su proyecto sin compromiso. Respuesta el mismo día."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="accent"
   />
 
-  <Footer
-    phone="55 5686 3599"
-    whatsapp={WA}
-    email="ventas@sellodegarantia.com"
-  />
-  <WaBubble whatsapp={WA} message="Hola, quiero conocer más sobre su empresa" tooltip="Contactar" />
-</BaseLayout>
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .content-block h3 {
+    font-size: var(--font-size-xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-3);
+  }
+  .content-block p {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-600);
+    line-height: var(--line-height-relaxed);
+  }
+  .diff-card {
+    padding: var(--space-6);
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+  }
+  .diff-card__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-2);
+  }
+  .diff-card__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    line-height: var(--line-height-relaxed);
+  }
+  .process-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 700px;
+  }
+  .process-step {
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+  }
+  .process-step__num {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .process-step__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-1);
+  }
+  .process-step__text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    line-height: var(--line-height-relaxed);
+  }
+  @media (min-width: 768px) {
+    .content-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>

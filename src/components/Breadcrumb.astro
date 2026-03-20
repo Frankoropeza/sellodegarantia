@@ -1,0 +1,73 @@
+---
+import { SITE_URL } from '../lib/config';
+
+interface BreadcrumbItem {
+  text: string;
+  href: string;
+}
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.text,
+    item: item.href.startsWith('http') ? item.href : `${SITE_URL}${item.href}`,
+  })),
+};
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol class="breadcrumb__list">
+    {items.map((item, i) => (
+      <li class="breadcrumb__item">
+        {i < items.length - 1 ? (
+          <>
+            <a href={item.href} class="breadcrumb__link">{item.text}</a>
+            <span class="breadcrumb__sep">/</span>
+          </>
+        ) : (
+          <span class="breadcrumb__current" aria-current="page">{item.text}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+<style>
+  .breadcrumb {
+    padding: var(--space-4) 0;
+  }
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+  }
+  .breadcrumb__link {
+    color: var(--color-primary);
+  }
+  .breadcrumb__link:hover {
+    text-decoration: underline;
+  }
+  .breadcrumb__sep {
+    color: var(--color-gray-400);
+  }
+  .breadcrumb__current {
+    color: var(--color-gray-600);
+  }
+</style>

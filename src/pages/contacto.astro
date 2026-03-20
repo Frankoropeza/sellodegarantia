@@ -1,103 +1,177 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Base from '../layouts/Base.astro';
 import TopBar from '../components/TopBar.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import Footer from '../components/Footer.astro';
-import WaBubble from '../components/WaBubble.astro';
-import '../styles/global.css';
+import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 
-const WA = "5215556863599";
+import { SITE_NAME, PHONE, PHONE_HREF, WHATSAPP_HREF, EMAIL, HOURS, LOCATION } from '../lib/config';
+import { localBusinessSchema } from '../lib/seo';
 ---
 
-<BaseLayout
-  title="Contacto | Sello de Garantía — Fabricantes de Película PVC"
-  description="Contáctanos para cotizar sellos de garantía, mangas termoencogibles y etiquetas impresas. Tel: 55 5686 3599. Planta en CDMX, envíos a toda la República."
-  breadcrumbs={[
-    { text: "Inicio", href: "/" },
-    { text: "Contacto", href: "/contacto" },
-  ]}
+<Base
+  title="Contacto — Ubícanos y Comunícate con Nosotros"
+  description={`Contacta a ${SITE_NAME}. Teléfono: ${PHONE}. Email: ${EMAIL}. Planta en ${LOCATION.borough}, ${LOCATION.state}. Horario: ${HOURS.display}.`}
+  structuredData={[localBusinessSchema()]}
 >
   <TopBar />
   <Header />
 
   <Hero
-    title="Contacto"
-    description="Estamos listos para cotizar tu proyecto. Llámanos, escríbenos por WhatsApp o envía un correo."
-    ctaPrimary={{ text: "WhatsApp Directo", href: `https://wa.me/${WA}` }}
-    ctaSecondary={{ text: "Llamar Ahora", href: "tel:+525556863599" }}
-    seoParagraph1="Nuestra planta y oficinas están en el Barrio de Santa Bárbara, Iztapalapa, Ciudad de México. Atendemos de lunes a viernes de 9:00 a 18:00 y sábados de 9:00 a 14:00. Para cotizaciones urgentes, nuestro equipo de ventas responde por WhatsApp en menos de 2 horas durante horario laboral."
-    seoParagraph2="Si necesitas muestras de nuestros productos, envíanos las dimensiones de tu envase (diámetro de tapa, altura del sello) y te mandamos muestras sin costo a cualquier parte de México. Para visitas a planta, agenda tu cita por teléfono o WhatsApp."
-  />
+    badge="Contacto"
+    title="Hable Directo con el Fabricante"
+    description="Estamos en Iztapalapa, Ciudad de México. Atendemos por teléfono, WhatsApp y correo. Si necesita cotización, también puede usar nuestro formulario de cotización."
+    primaryCta={{ text: 'WhatsApp Directo', href: WHATSAPP_HREF }}
+    secondaryCta={{ text: 'Solicitar Cotización', href: '/cotizar/' }}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          La planta de Sello de Garantía (Tumipack México SA de CV) se encuentra en la 2ª Cerrada del Tercer Anillo de Circunvalación No. 12, Barrio Santa Bárbara, alcaldía Iztapalapa, Ciudad de México, CP 09000. Nuestro horario de atención es de lunes a viernes de 9:00 a 18:00 horas y sábados de 9:00 a 14:00 horas.
+        </p>
+        <p class="hero-seo__text">
+          Para cotizaciones, preguntas técnicas sobre calibres y materiales, seguimiento de pedidos o cualquier consulta, puede comunicarse por teléfono, WhatsApp o correo electrónico. Nuestro equipo comercial responde cotizaciones el mismo día hábil en que las recibe.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <div class="container">
+    <Breadcrumb items={[
+      { text: 'Inicio', href: '/' },
+      { text: 'Contacto', href: '/contacto/' },
+    ]} />
+  </div>
 
   <section class="section">
     <div class="container">
-      <div class="grid-2" style="gap: 4rem;">
-        <!-- Info de contacto -->
-        <div>
-          <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Información de Contacto</h2>
-          
-          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-              <span style="font-size: 1.5rem;">📍</span>
-              <div>
-                <strong>Dirección</strong>
-                <p style="color: var(--c-text-muted);">2ª Cerrada del Tercer Anillo de Circunvalación No. 12<br>Barrio Santa Bárbara, Iztapalapa<br>Ciudad de México, C.P. 09000</p>
-              </div>
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h2 class="contact-info__heading">Datos de Contacto</h2>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon">📞</span>
+            <div>
+              <p class="contact-info__label">Teléfono</p>
+              <a href={PHONE_HREF} class="contact-info__value">{PHONE}</a>
             </div>
-            
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-              <span style="font-size: 1.5rem;">📞</span>
-              <div>
-                <strong>Teléfono</strong>
-                <p><a href="tel:+525556863599" style="color: var(--c-primary);">55 5686 3599</a></p>
-              </div>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon">💬</span>
+            <div>
+              <p class="contact-info__label">WhatsApp</p>
+              <a href={WHATSAPP_HREF} target="_blank" rel="noopener" class="contact-info__value">Enviar mensaje</a>
             </div>
-            
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-              <span style="font-size: 1.5rem;">💬</span>
-              <div>
-                <strong>WhatsApp</strong>
-                <p><a href={`https://wa.me/${WA}`} style="color: var(--c-wa);">55 5686 3599</a></p>
-              </div>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon">✉️</span>
+            <div>
+              <p class="contact-info__label">Correo Electrónico</p>
+              <a href={`mailto:${EMAIL}`} class="contact-info__value">{EMAIL}</a>
             </div>
-            
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-              <span style="font-size: 1.5rem;">✉️</span>
-              <div>
-                <strong>Email</strong>
-                <p><a href="mailto:ventas@sellodegarantia.com" style="color: var(--c-primary);">ventas@sellodegarantia.com</a></p>
-              </div>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon">🕐</span>
+            <div>
+              <p class="contact-info__label">Horario</p>
+              <p class="contact-info__value">{HOURS.display}</p>
             </div>
-            
-            <div style="display: flex; gap: 1rem; align-items: flex-start;">
-              <span style="font-size: 1.5rem;">🕘</span>
-              <div>
-                <strong>Horario</strong>
-                <p style="color: var(--c-text-muted);">Lunes a Viernes: 9:00 - 18:00<br>Sábado: 9:00 - 14:00</p>
-              </div>
+          </div>
+
+          <div class="contact-info__item">
+            <span class="contact-info__icon">📍</span>
+            <div>
+              <p class="contact-info__label">Dirección</p>
+              <p class="contact-info__value">{LOCATION.full}</p>
             </div>
           </div>
         </div>
 
-        <!-- Mapa placeholder -->
-        <div>
-          <h2 style="font-size: 1.75rem; margin-bottom: 2rem;">Ubicación</h2>
-          <div style="background: var(--c-bg-alt); border-radius: var(--r-card); height: 400px; display: flex; align-items: center; justify-content: center; color: var(--c-text-muted);">
-            <p>Mapa — Google Maps embed pendiente</p>
+        <!-- Map placeholder -->
+        <div class="contact-map">
+          <div class="contact-map__embed">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.5!2d-99.0875!3d19.3573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDIxJzI2LjMiTiA5OcKwMDUnMTUuMCJX!5e0!3m2!1ses!2smx!4v1"
+              width="100%"
+              height="400"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de Sello de Garantía en Google Maps"
+            ></iframe>
           </div>
-          <p style="margin-top: 1rem; color: var(--c-text-muted); font-size: 0.9rem;">
-            Estamos en Iztapalapa, CDMX. A 10 minutos de la estación del Metro Constitución de 1917.
-          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <Footer
-    phone="55 5686 3599"
-    whatsapp={WA}
-    email="ventas@sellodegarantia.com"
-  />
-  <WaBubble whatsapp={WA} message="Hola, necesito información" tooltip="Contactar" />
-</BaseLayout>
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+  .contact-info__heading {
+    font-size: var(--font-size-2xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--space-8);
+  }
+  .contact-info__item {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+  }
+  .contact-info__icon {
+    font-size: var(--font-size-xl);
+    flex-shrink: 0;
+  }
+  .contact-info__label {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    margin-bottom: var(--space-1);
+  }
+  .contact-info__value {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-900);
+  }
+  a.contact-info__value:hover {
+    color: var(--color-primary);
+  }
+  .contact-map__embed {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-gray-200);
+  }
+  .contact-map__embed iframe {
+    display: block;
+  }
+  @media (min-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
