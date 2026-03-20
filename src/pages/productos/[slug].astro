@@ -1,0 +1,288 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+
+import { getCollection, render } from 'astro:content';
+import { SITE_NAME, CATEGORIES } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, breadcrumbSchema, productSchema } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const productos = await getCollection('productos');
+  return productos.map((producto) => ({
+    params: { slug: producto.id },
+    props: { producto },
+  }));
+}
+
+const { producto } = Astro.props;
+const { Content } = await render(producto);
+const data = producto.data;
+
+// Find parent category
+const parentCat = CATEGORIES.find(c => c.slug === data.categoria);
+const parentTitle = parentCat?.title ?? 'Productos';
+const parentSlug = parentCat?.slug ?? '';
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Productos', href: '/productos/' },
+  { text: parentTitle, href: `/productos/${parentSlug}/` },
+  { text: data.title.split('—')[0].trim(), href: `/productos/${producto.id}/` },
+];
+
+// Related products from same category
+const allProducts = await getCollection('productos', ({ data: d }) => d.categoria === data.categoria);
+const related = allProducts.filter(p => p.id !== producto.id).sort((a, b) => a.data.orden - b.data.orden).slice(0, 3);
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  breadcrumbSchema(breadcrumbs),
+  productSchema({
+    name: data.title,
+    description: data.description,
+    url: `/productos/${producto.id}/`,
+    category: parentTitle,
+  }),
+];
+---
+
+<Base
+  title={`${data.title} | ${SITE_NAME}`}
+  description={data.description}
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge={parentTitle}
+    title={data.title.split('—')[0].trim()}
+    description={data.description}
+    primaryCta={{ text: 'Cotizar Este Producto', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      ...(data.calibres ? [{ value: data.calibres.split(',').length.toString(), label: 'Calibres' }] : []),
+      ...(data.diametros ? [{ value: data.diametros, label: 'Diámetros' }] : []),
+      ...(data.pedidoMinimo ? [{ value: data.pedidoMinimo, label: 'Mínimo' }] : []),
+      ...(data.tiempoEntrega ? [{ value: data.tiempoEntrega, label: 'Entrega' }] : []),
+    ]}
+  />
+
+  <CtaBanner
+    title={`¿Necesita ${data.title.split('—')[0].trim().toLowerCase()}?`}
+    subtitle="Muestras sin costo. Cotización en menos de 24 horas."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <!-- Product Content -->
+  <section class="section">
+    <div class="container">
+      <div class="product-layout">
+        <!-- Main Content -->
+        <div class="product-content">
+          <div class="prose">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="product-sidebar">
+          <!-- Specs Table -->
+          {data.specs && data.specs.length > 0 && (
+            <div class="sidebar-card">
+              <h3 class="sidebar-card__title">Especificaciones Técnicas</h3>
+              <table class="sidebar-specs">
+                {data.specs.map((spec) => (
+                  <tr>
+                    <td class="sidebar-specs__label">{spec.label}</td>
+                    <td class="sidebar-specs__value">{spec.value}</td>
+                  </tr>
+                ))}
+              </table>
+            </div>
+          )}
+
+          <!-- CTA Card -->
+          <div class="sidebar-card sidebar-card--cta">
+            <h3 class="sidebar-card__title">¿Le interesa este producto?</h3>
+            <p class="sidebar-card__desc">Envíenos las medidas de su envase y le cotizamos a su medida.</p>
+            <a href="/cotizar/" class="sidebar-btn sidebar-btn--primary">Solicitar Cotización</a>
+            <a href="/contacto/" class="sidebar-btn sidebar-btn--outline">Pedir Muestras Gratis</a>
+          </div>
+
+          <!-- Related Products -->
+          {related.length > 0 && (
+            <div class="sidebar-card">
+              <h3 class="sidebar-card__title">Otros productos</h3>
+              <div class="sidebar-related">
+                {related.map((r) => (
+                  <a href={`/productos/${r.id}/`} class="sidebar-related__item">
+                    <span class="sidebar-related__name">{r.data.title.split('—')[0].trim()}</span>
+                    <span class="sidebar-related__arrow">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo — precios de planta"
+    subtitle="Sin intermediarios. 28 años de experiencia en película PVC termoencogible."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="primary"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Prose / Content */
+  .prose {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-gray-900);
+  }
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-gray-900);
+  }
+  .prose h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose p {
+    margin-bottom: 1.25rem;
+    color: var(--color-gray-600);
+  }
+  .prose strong { color: var(--color-gray-900); }
+  .prose ul, .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .prose li {
+    margin-bottom: 0.5rem;
+    color: var(--color-gray-600);
+    list-style: disc;
+  }
+  .prose ol li { list-style: decimal; }
+
+  /* Sidebar */
+  .product-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: calc(var(--header-height, 70px) + 1.5rem);
+  }
+  .sidebar-card {
+    background: #fff;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .sidebar-card--cta {
+    background: var(--color-gray-50);
+    border-color: var(--color-primary);
+    border-width: 2px;
+  }
+  .sidebar-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin-bottom: 0.75rem;
+  }
+  .sidebar-card__desc {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Specs Table */
+  .sidebar-specs {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .sidebar-specs tr { border-bottom: 1px solid var(--color-gray-100); }
+  .sidebar-specs tr:last-child { border-bottom: none; }
+  .sidebar-specs td { padding: 0.5rem 0; font-size: 0.8125rem; }
+  .sidebar-specs__label { color: var(--color-gray-600); font-weight: 500; width: 45%; }
+  .sidebar-specs__value { color: var(--color-gray-900); font-weight: 600; }
+
+  /* Sidebar Buttons */
+  .sidebar-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s;
+  }
+  .sidebar-btn--primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .sidebar-btn--primary:hover { background: var(--color-secondary); }
+  .sidebar-btn--outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+  .sidebar-btn--outline:hover { background: var(--color-primary); color: #fff; }
+
+  /* Related */
+  .sidebar-related { display: flex; flex-direction: column; }
+  .sidebar-related__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    font-size: 0.8125rem;
+    color: var(--color-gray-900);
+  }
+  .sidebar-related__item:last-child { border-bottom: none; }
+  .sidebar-related__item:hover { color: var(--color-primary); }
+  .sidebar-related__arrow { color: var(--color-primary); font-weight: 600; }
+
+  @media (max-width: 1024px) {
+    .product-layout { grid-template-columns: 1fr 320px; gap: 2rem; }
+  }
+  @media (max-width: 768px) {
+    .product-layout { grid-template-columns: 1fr; }
+    .product-sidebar { position: static; }
+  }
+</style>

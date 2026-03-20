@@ -64,6 +64,7 @@ const productos = [
       'Pedido mínimo: 5,000 piezas',
     ],
     image: '/img/productos/sello-liso-transparente-pvc.avif',
+    slug: 'sello-liso-transparente',
   },
   {
     title: 'Sello Liso de Color',
@@ -194,7 +195,11 @@ const productos = [
                 ))}
               </ul>
               <div class="product-card__ctas">
-                <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                {p.slug ? (
+                  <a href={`/productos/${p.slug}/`} class="product-card__btn product-card__btn--primary">Ver producto</a>
+                ) : (
+                  <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                )}
                 <a href="/contacto/" class="product-card__btn product-card__btn--outline">Pedir muestra</a>
               </div>
             </div>
