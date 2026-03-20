@@ -12,85 +12,121 @@ interface Props {
 }
 
 const { title, subtitle, href, image, subcategories = [] } = Astro.props;
-const placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="450" fill="%23e5e7eb"%3E%3Crect width="800" height="450"/%3E%3Ctext x="400" y="225" text-anchor="middle" dominant-baseline="middle" font-family="Inter,sans-serif" font-size="18" fill="%239ca3af"%3EImagen pendiente%3C/text%3E%3C/svg%3E';
-const imgSrc = image || placeholder;
 ---
 
-<div class="cat-card">
-  <a href={href} class="cat-card__img-wrap">
-    <img src={imgSrc} alt={title} width="800" height="450" loading="lazy" decoding="async" class="cat-card__img" />
-  </a>
-  <div class="cat-card__body">
-    <a href={href} class="cat-card__header">
-      <h3 class="cat-card__title">{title}</h3>
-      <p class="cat-card__subtitle">{subtitle}</p>
-    </a>
-    {subcategories.length > 0 && (
-      <ul class="cat-card__list">
-        {subcategories.map((sub) => (
-          <li>
-            <a href={sub.href} class="cat-card__link">→ {sub.name}</a>
-          </li>
-        ))}
-      </ul>
+<article class="category-card">
+  <div class="category-card__image-wrapper">
+    {image ? (
+      <img src={image} alt={title} class="category-card__image" loading="lazy" decoding="async" width="640" height="360" />
+    ) : (
+      <div class="category-card__image-placeholder"></div>
     )}
   </div>
-</div>
+  <div class="category-card__body">
+    <h3 class="category-card__title">{title}</h3>
+    <p class="category-card__sub">{subtitle}</p>
+    {subcategories.length > 0 && (
+      <div class="category-card__products">
+        {subcategories.map((sub) => (
+          <a href={sub.href} class="category-card__product-btn">{sub.name}</a>
+        ))}
+      </div>
+    )}
+    <a href={href} class="category-card__btn">{title}</a>
+  </div>
+</article>
 
 <style>
-  .cat-card {
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-200);
-    border-radius: var(--radius-lg);
+  .category-card {
+    background: #fff;
+    border-radius: 12px;
     overflow: hidden;
-    transition: border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
   }
-  .cat-card:hover {
-    border-color: var(--color-primary);
-  }
-  .cat-card__img-wrap {
-    display: block;
+  .category-card__image-wrapper {
+    width: 100%;
     aspect-ratio: 16 / 9;
+    background: var(--color-primary, #0047AB);
     overflow: hidden;
-    background: var(--color-gray-100);
   }
-  .cat-card__img {
+  .category-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
   }
-  .cat-card__body {
-    padding: var(--space-5) var(--space-6) var(--space-6);
+  .category-card__image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary, #0047AB);
+    opacity: 0.15;
   }
-  .cat-card__header {
-    display: block;
-    margin-bottom: var(--space-3);
-  }
-  .cat-card__title {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-gray-900);
-    margin-bottom: var(--space-1);
-  }
-  .cat-card__subtitle {
-    font-size: var(--font-size-sm);
-    color: var(--color-gray-600);
-    line-height: var(--line-height-relaxed);
-  }
-  .cat-card__list {
+  .category-card__body {
+    padding: 1.25rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
-    border-top: 1px solid var(--color-gray-100);
-    padding-top: var(--space-3);
+    flex: 1;
+    gap: 0.5rem;
   }
-  .cat-card__link {
+  .category-card__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gray-900, #0F172A);
+    line-height: 1.25;
+    margin: 0;
+  }
+  .category-card__sub {
+    font-size: 0.875rem;
+    color: var(--color-gray-600, #475569);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .category-card__products {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 0.25rem;
+  }
+  .category-card__product-btn {
     display: block;
-    padding: var(--space-1) 0;
-    font-size: var(--font-size-sm);
-    color: var(--color-primary);
+    font-size: 0.875rem;
+    color: var(--color-gray-900, #0F172A);
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+    border-bottom: 1px solid var(--color-gray-100, #F1F5F9);
+    position: relative;
   }
-  .cat-card__link:hover {
-    color: var(--color-accent);
+  .category-card__product-btn::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary, #0047AB);
+    font-weight: 700;
+  }
+  .category-card__product-btn:last-child {
+    border-bottom: none;
+  }
+  .category-card__product-btn:hover {
+    color: var(--color-primary, #0047AB);
+  }
+  .category-card__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.875rem 1.5rem;
+    margin-top: auto;
+    border-radius: 8px;
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .category-card__btn:hover {
+    background: var(--color-secondary, #1A1A2E);
   }
 </style>
