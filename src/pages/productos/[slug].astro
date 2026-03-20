@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import TopBar from '../../components/TopBar.astro';
 import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
 import CtaBanner from '../../components/CtaBanner.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import Footer from '../../components/Footer.astro';
@@ -62,65 +63,25 @@ const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
   <Header />
   <Breadcrumb items={breadcrumbs} />
 
-  <!-- Product Hero: Image + Key Info -->
-  <section class="product-hero">
-    <div class="container">
-      <div class="product-hero__grid">
-        <!-- Image / Gallery -->
-        <div class="product-hero__gallery">
-          <div class="product-hero__main-img">
-            {data.imagen ? (
-              <img src={data.imagen} alt={data.title} width="800" height="600" loading="eager" decoding="async" />
-            ) : (
-              <div class="product-hero__placeholder">
-                <span>Imagen del producto</span>
-              </div>
-            )}
-          </div>
-          {data.galeria && data.galeria.length > 1 && (
-            <div class="product-hero__thumbs">
-              {data.galeria.map((img) => (
-                <div class="product-hero__thumb">
-                  <img src={img} alt="" width="160" height="120" loading="lazy" decoding="async" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <!-- Key Info -->
-        <div class="product-hero__info">
-          <span class="product-hero__badge">{parentTitle}</span>
-          <h1 class="product-hero__title">{data.title.split('—')[0].trim()}</h1>
-          <p class="product-hero__subtitle">{data.title.includes('—') ? data.title.split('—')[1].trim() : ''}</p>
-          <p class="product-hero__desc">{data.description}</p>
-
-          <!-- Quick Specs -->
-          {data.specs && data.specs.length > 0 && (
-            <div class="product-hero__specs">
-              {data.specs.slice(0, 6).map((spec) => (
-                <div class="product-hero__spec">
-                  <span class="product-hero__spec-label">{spec.label}</span>
-                  <span class="product-hero__spec-value">{spec.value}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <!-- CTAs -->
-          <div class="product-hero__ctas">
-            <a href="/cotizar/" class="btn--product-primary">Solicitar Cotización</a>
-            <a href={waHref} target="_blank" rel="noopener" class="btn--product-wa">
-              WhatsApp Directo
-            </a>
-            <a href="/contacto/" class="btn--product-outline">Pedir Muestras Gratis</a>
-          </div>
-
-          <p class="product-hero__note">Respuesta en menos de 24 horas · Muestras sin costo</p>
-        </div>
+  <Hero
+    badge={parentTitle}
+    title={data.title.split('—')[0].trim()}
+    description={data.description}
+    primaryCta={{ text: 'Solicitar Cotización', href: '/cotizar/' }}
+    secondaryCta={{ text: 'WhatsApp Directo', href: waHref }}
+    metrics={[]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          {data.title.includes('—') ? data.title.split('—')[1].trim() + '. ' : ''}{data.description}
+        </p>
+        <p class="hero-seo__text">
+          Fabricamos a la medida exacta de su envase. Envíenos las dimensiones de su tapa y le cotizamos en menos de 24 horas. Muestras sin costo a cualquier parte de la República Mexicana.
+        </p>
       </div>
-    </div>
-  </section>
+    </Fragment>
+  </Hero>
 
   <!-- CTA Bar -->
   <CtaBanner
@@ -232,173 +193,19 @@ const waHref = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
 </Base>
 
 <style>
-  /* ══ Product Hero ══ */
-  .product-hero {
-    padding: var(--space-10) 0;
-    background: var(--color-gray-50);
-    border-bottom: 1px solid var(--color-gray-200);
-  }
-  .product-hero__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-  .product-hero__main-img {
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fff;
-    border: 1px solid var(--color-gray-200);
-  }
-  .product-hero__main-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .product-hero__placeholder {
-    aspect-ratio: 4/3;
-    background: var(--color-primary);
-    opacity: 0.1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    color: var(--color-gray-600);
-  }
-  .product-hero__thumbs {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-  }
-  .product-hero__thumb {
-    width: 80px;
-    height: 60px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid var(--color-gray-200);
-    cursor: pointer;
-  }
-  .product-hero__thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .product-hero__badge {
-    display: inline-block;
-    background: var(--color-primary);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 50px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-  }
-  .product-hero__title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-gray-900);
-    line-height: 1.2;
-    margin-bottom: 0.25rem;
-  }
-  .product-hero__subtitle {
-    font-size: 1rem;
-    color: var(--color-primary);
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
-  .product-hero__desc {
-    font-size: 0.9375rem;
-    color: var(--color-gray-600);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Quick Specs Grid */
-  .product-hero__specs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--color-gray-200);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    background: #fff;
-  }
-  .product-hero__spec {
-    padding: 0.625rem 0.875rem;
-    border-bottom: 1px solid var(--color-gray-100);
-    border-right: 1px solid var(--color-gray-100);
+  /* ══ Hero SEO ══ */
+  .hero-seo {
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: var(--space-4);
   }
-  .product-hero__spec:nth-child(even) { border-right: none; }
-  .product-hero__spec:nth-last-child(-n+2) { border-bottom: none; }
-  .product-hero__spec-label {
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-gray-500);
-    font-weight: 500;
-  }
-  .product-hero__spec-value {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: var(--color-gray-900);
-  }
-
-  /* CTAs */
-  .product-hero__ctas {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .btn--product-primary {
-    display: block;
-    text-align: center;
-    padding: 0.875rem 1.5rem;
-    background: var(--color-primary);
-    color: #fff;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,71,171,0.25);
-    transition: background 0.2s;
-  }
-  .btn--product-primary:hover { background: var(--color-secondary); }
-  .btn--product-wa {
-    display: block;
-    text-align: center;
-    padding: 0.75rem 1.5rem;
-    background: #25D366;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    border-radius: 8px;
-    transition: background 0.2s;
-  }
-  .btn--product-wa:hover { background: #1fb855; }
-  .btn--product-outline {
-    display: block;
-    text-align: center;
-    padding: 0.75rem 1.5rem;
-    background: transparent;
-    color: var(--color-primary);
-    font-weight: 600;
-    font-size: 0.9375rem;
-    border-radius: 8px;
-    border: 2px solid var(--color-primary);
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn--product-outline:hover { background: var(--color-primary); color: #fff; }
-  .product-hero__note {
-    font-size: 0.8125rem;
-    color: var(--color-gray-500);
-    margin-top: 0.75rem;
-    text-align: center;
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
   }
 
   /* ══ Content Layout ══ */
