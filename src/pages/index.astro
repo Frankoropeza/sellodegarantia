@@ -95,6 +95,15 @@ const features = [
     </Fragment>
   </Hero>
 
+  <!-- CTA Post-Hero -->
+  <CtaBanner
+    title="¿Busca un fabricante de sellos de garantía?"
+    subtitle="Cotización en menos de 24 horas. Muestras sin costo."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
   <!-- Products Section -->
   <section class="section" id="productos">
     <div class="container">
@@ -128,9 +137,9 @@ const features = [
         {INDUSTRIES.slice(0, 8).map((ind) => (
           <ServiceCard
             title={ind.name}
-            description={`Fabricación de sellos de garantía y mangas retráctiles para la industria ${ind.name.toLowerCase()}.`}
+            description={ind.description || `Sellos de garantía y mangas para la industria ${ind.name.toLowerCase()}.`}
             href={ind.href}
-            icon={ind.icon}
+            image={ind.image}
           />
         ))}
       </div>
@@ -181,6 +190,15 @@ const features = [
       </div>
     </div>
   </section>
+
+  <!-- CTA Pre-Footer -->
+  <CtaBanner
+    title="Listo para proteger su producto"
+    subtitle="28 años de experiencia respaldan cada sello que fabricamos. Hablemos de su proyecto."
+    btnText="Contactar Ahora"
+    btnHref="/contacto/"
+    variant="primary"
+  />
 
   <Footer />
   <WhatsAppBubble />
