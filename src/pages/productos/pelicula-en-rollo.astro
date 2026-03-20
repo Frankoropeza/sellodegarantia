@@ -1,0 +1,306 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+
+const faqs = [
+  {
+    question: '¿Qué calibre de película necesito para mi máquina de sellos?',
+    answer: 'Depende del tipo de sello o manga que produzca y de la velocidad de su línea. El calibre 40 micras es ideal para sellos de garantía de envases regulares y líneas de alta velocidad. El calibre 50 es el más versátil para sellos y mangas parciales. El calibre 60 para mangas de cuerpo completo y envases con formas complejas. El calibre 80 para aplicaciones de alta resistencia como garrafones y envases industriales.',
+  },
+  {
+    question: '¿Cuál es el ancho estándar de los rollos?',
+    answer: 'Fabricamos rollos en anchos desde 30mm hasta 600mm. Los anchos más comunes para sellos de garantía son 30-80mm. Para mangas de media botella: 100-200mm. Para mangas de cuerpo completo: 200-400mm. Para multipak: 300-600mm. También fabricamos anchos personalizados al milímetro exacto.',
+  },
+  {
+    question: '¿Los rollos son compatibles con mi máquina termoencogible?',
+    answer: 'En general sí. Nuestra película PVC es compatible con la mayoría de las máquinas de sellado del mercado. Lo que varía es el ancho del rollo y el diámetro del núcleo (core). Los cores estándar son de 3 pulgadas (76mm) de diámetro interior. Si su máquina requiere un core diferente, nos lo indican y lo fabricamos.',
+  },
+  {
+    question: '¿Puedo comprar rollo impreso para usar en mi propia máquina?',
+    answer: 'Sí. Fabricamos bobinas impresas por rotograbado hasta 6 tintas listas para alimentar máquinas de corte y aplicación automáticas. El diseño queda registrado cada cierto paso (pitch) que coincide con la altura de su sello o manga. Necesitamos las medidas de su máquina y el diseño para calibrar el pitch de impresión.',
+  },
+  {
+    question: '¿Cuánto pesa un rollo estándar?',
+    answer: 'El peso varía por el calibre y el ancho del rollo. Un rollo estándar de 60mm de ancho x 40 micras de calibre x 5,000 metros pesa aproximadamente 18kg. Para calibre 80 micras el mismo rollo pesa alrededor de 24kg. Le proporcionamos la ficha técnica completa con pesos y dimensiones de embalaje para su logística.',
+  },
+  {
+    question: '¿Hacen envíos nacionales de rollos?',
+    answer: 'Sí. Enviamos a toda la República Mexicana vía paquetería o transporte de carga según el volumen del pedido. Para pedidos de 1 a 5 rollos usamos paquetería (2-3 días). Para pedidos mayores coordinamos transporte de carga con tiempos de 2 a 5 días hábiles según el destino.',
+  },
+];
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Productos', href: '/productos/' },
+  { text: 'Película en Rollo', href: '/productos/pelicula-en-rollo/' },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  faqSchema(faqs),
+];
+
+const productos = [
+  {
+    title: 'Rollo Calibre 40 Micras',
+    subtitle: 'Película PVC termoencogible de alta velocidad para sellos estándar',
+    specs: [
+      'Calibre: 40 micras ±2μ tolerancia',
+      'Encogimiento 55-60% transversal',
+      'Anchos: 30mm a 600mm',
+      'Ideal para líneas de alta velocidad',
+    ],
+    image: '/img/productos/rollo-calibre-40-pvc.avif',
+    slug: 'rollo-calibre-40',
+  },
+  {
+    title: 'Rollo Calibre 50 Micras',
+    subtitle: 'Calibre intermedio para sellos y mangas de uso general',
+    specs: [
+      'Calibre: 50 micras ±2μ tolerancia',
+      'Mayor adaptabilidad a formas irregulares',
+      'Anchos: 30mm a 600mm',
+      'El más versátil del catálogo',
+    ],
+    image: '/img/productos/rollo-calibre-50-pvc.avif',
+    slug: 'rollo-calibre-50',
+  },
+  {
+    title: 'Rollo Calibre 60 Micras',
+    subtitle: 'Película de mayor espesor para mangas de cuerpo completo',
+    specs: [
+      'Calibre: 60 micras ±2μ tolerancia',
+      'Encogimiento 60-65% transversal',
+      'Mejor adaptación a curvas pronunciadas',
+      'Para mangas full-body y envases especiales',
+    ],
+    image: '/img/productos/rollo-calibre-60-pvc.avif',
+    slug: 'rollo-calibre-60',
+  },
+  {
+    title: 'Rollo Calibre 80 Micras',
+    subtitle: 'Película de alta resistencia para garrafones y aplicaciones industriales',
+    specs: [
+      'Calibre: 80 micras ±3μ tolerancia',
+      'Máxima resistencia al manejo y transporte',
+      'Para garrafones 20L y envases grandes',
+      'Soporta mayor tensión sin romperse',
+    ],
+    image: '/img/productos/rollo-calibre-80-pvc.avif',
+    slug: 'rollo-calibre-80',
+  },
+  {
+    title: 'Bobina Impresa para Máquina Automática',
+    subtitle: 'Rollo con impresión rotograbado lista para alimentar su máquina',
+    specs: [
+      'Impresión rotograbado hasta 6 tintas',
+      'Pitch calibrado a medida de su máquina',
+      'Core 3" (76mm) estándar',
+      'Registro de color ±0.2mm',
+    ],
+    image: '/img/productos/bobina-impresa-automatica-pvc.avif',
+    slug: 'bobina-impresa-automatica',
+  },
+  {
+    title: 'Bobina a Medida Personalizada',
+    subtitle: 'Rollo fabricado al ancho, diámetro y calibre exacto que su proceso requiere',
+    specs: [
+      'Ancho exacto al milímetro',
+      'Diámetro de rollo personalizable',
+      'Core: 3" o 6" según equipo',
+      'Sin longitud mínima de rollo forzada',
+    ],
+    image: '/img/productos/bobina-medida-personalizada-pvc.avif',
+    slug: 'bobina-medida-personalizada',
+  },
+];
+---
+
+<Base
+  title={`Película PVC Termoencogible en Rollo | ${SITE_NAME}`}
+  description="Rollos de película PVC termoencogible en calibres 40, 50, 60 y 80 micras. Anchos personalizados. Bobinas impresas para máquinas automáticas. Fabricante directo en México."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Materia Prima"
+    title="Película PVC Termoencogible en Rollo"
+    description="Rollos de PVC termoencogible para fabricar sus propios sellos y mangas en planta. Calibres 40, 50, 60 y 80 micras. Anchos al milímetro. Bobinas impresas para máquinas automáticas."
+    primaryCta={{ text: 'Cotizar Rollos', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Solicitar Muestras', href: '/contacto/' }}
+    metrics={[
+      { value: '4', label: 'Calibres' },
+      { value: '30-600', label: 'mm ancho' },
+      { value: '80', label: 'Micras máx.' },
+      { value: '3"', label: 'Core estándar' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Si su empresa tiene máquinas de corte y aplicación de sellos o mangas, puede comprar directamente el rollo de película PVC termoencogible y producir en planta. Fabricamos rollos en calibres de 40, 50, 60 y 80 micras con anchos desde 30mm hasta 600mm. Cada rollo se produce al ancho exacto que su máquina requiere — no vendemos anchos estándar que luego hay que cortar y desperdiciar material. El núcleo (core) estándar es de 3 pulgadas (76mm), compatible con la mayoría de los equipos del mercado.
+        </p>
+        <p class="hero-seo__text">
+          Para empresas con líneas de producción automatizadas fabricamos bobinas impresas por rotograbado hasta 6 tintas con el pitch calibrado a las dimensiones exactas de su máquina. Esto permite producir sellos y mangas impresas directamente en línea sin proceso adicional. También fabricamos bobinas a medida con ancho, diámetro y longitud personalizados para clientes con requerimientos específicos de almacenamiento o proceso. Enviamos a toda la República Mexicana.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Necesita rollo de PVC para su maquinaria?"
+    subtitle="Fabricamos al ancho y calibre exacto de su proceso. Cotización en 24 horas."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section" id="rollos">
+    <div class="container">
+      <SectionHeader
+        badge="Catálogo"
+        title="Tipos de Película en Rollo"
+        subtitle="Cuatro calibres disponibles más bobinas impresas y a medida. Seleccione el que necesita."
+      />
+      <div class="products-grid">
+        {productos.map((p) => (
+          <article class="product-card">
+            <div class="product-card__image-wrap">
+              {p.image ? (
+                <img src={p.image} alt={p.title} class="product-card__image" loading="lazy" decoding="async" width="640" height="360" />
+              ) : (
+                <div class="product-card__placeholder"></div>
+              )}
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title">{p.title}</h3>
+              <p class="product-card__sub">{p.subtitle}</p>
+              <ul class="product-card__specs">
+                {p.specs.map((spec) => (
+                  <li class="product-card__spec">{spec}</li>
+                ))}
+              </ul>
+              <div class="product-card__ctas">
+                {p.slug ? (
+                  <a href={`/productos/${p.slug}/`} class="product-card__btn product-card__btn--primary">Ver producto</a>
+                ) : (
+                  <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                )}
+                <a href="/contacto/" class="product-card__btn product-card__btn--outline">Pedir muestra</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-gray-50);">
+    <div class="container">
+      <SectionHeader
+        badge="Especificaciones"
+        title="Datos Técnicos de Película en Rollo"
+        subtitle="Ficha técnica completa para su departamento de producción."
+      />
+      <div class="specs-table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Especificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Material</td><td>Película PVC termoencogible</td></tr>
+            <tr><td>Calibres disponibles</td><td>40, 50, 60 y 80 micras (±2-3μ tolerancia)</td></tr>
+            <tr><td>Rango de anchos</td><td>30mm a 600mm (al milímetro exacto)</td></tr>
+            <tr><td>Encogimiento transversal</td><td>55-65% según calibre</td></tr>
+            <tr><td>Encogimiento longitudinal</td><td>Menor al 5%</td></tr>
+            <tr><td>Core estándar</td><td>3 pulgadas (76mm) diámetro interior</td></tr>
+            <tr><td>Core alternativo</td><td>6 pulgadas (152mm) bajo pedido</td></tr>
+            <tr><td>Diámetro máximo del rollo</td><td>Hasta 500mm</td></tr>
+            <tr><td>Impresión disponible</td><td>Rotograbado hasta 6 tintas</td></tr>
+            <tr><td>Temperatura de aplicación</td><td>85°C - 130°C</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="¿Listo para cotizar su rollo de PVC?"
+    subtitle="Respuesta en menos de 24 horas. Muestras de material sin costo."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="Sobre Película en Rollo"
+        subtitle="Las dudas más comunes sobre rollos de PVC termoencogible."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo — precios de planta"
+    subtitle="Sin intermediarios. Usted habla directo con quien produce su rollo."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo { display: flex; flex-direction: column; gap: var(--space-4); }
+  .hero-seo__text { background: rgba(255,255,255,0.08); padding: var(--space-5); border-radius: var(--radius-md); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: rgba(255,255,255,0.88); }
+  .products-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+  @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+  .product-card { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04); }
+  .product-card__image-wrap { aspect-ratio: 16/9; background: var(--color-primary, #0047AB); overflow: hidden; }
+  .product-card__image { width: 100%; height: 100%; object-fit: cover; }
+  .product-card__placeholder { width: 100%; height: 100%; background: var(--color-primary, #0047AB); opacity: 0.15; }
+  .product-card__body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; gap: 0.5rem; }
+  .product-card__title { font-size: 1.125rem; font-weight: 700; color: var(--color-gray-900); margin: 0; }
+  .product-card__sub { font-size: 0.875rem; color: var(--color-gray-600); margin: 0; }
+  .product-card__specs { display: flex; flex-direction: column; gap: 0; flex: 1; margin-top: 0.25rem; }
+  .product-card__spec { font-size: 0.875rem; color: var(--color-gray-900); padding: 0.5rem 0; padding-left: 1rem; border-bottom: 1px solid var(--color-accent, #FF6B00); position: relative; }
+  .product-card__spec::before { content: "•"; position: absolute; left: 0; color: var(--color-primary, #0047AB); font-weight: 700; }
+  .product-card__spec:last-child { border-bottom: none; }
+  .product-card__ctas { display: flex; gap: 0.5rem; margin-top: auto; padding-top: 0.75rem; }
+  .product-card__btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; transition: background 0.2s; }
+  .product-card__btn--primary { background: var(--color-primary, #0047AB); color: #fff; }
+  .product-card__btn--primary:hover { background: var(--color-secondary, #1A1A2E); }
+  .product-card__btn--outline { background: transparent; color: var(--color-primary, #0047AB); border: 2px solid var(--color-primary, #0047AB); }
+  .product-card__btn--outline:hover { background: var(--color-primary, #0047AB); color: #fff; }
+  .specs-table-wrap { overflow-x: auto; margin-top: var(--space-6); }
+  .specs-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .specs-table th { text-align: left; padding: 0.875rem 1.25rem; background: var(--color-primary, #0047AB); color: #fff; font-weight: 600; }
+  .specs-table td { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--color-gray-200, #E2E8F0); color: var(--color-gray-900); }
+  .specs-table tr:nth-child(even) td { background: #fff; }
+  .specs-table tr:nth-child(odd) td { background: var(--color-gray-50, #F8FAFC); }
+</style>

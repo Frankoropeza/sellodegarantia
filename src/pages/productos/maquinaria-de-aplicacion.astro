@@ -1,0 +1,304 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+
+const faqs = [
+  {
+    question: '¿Cuál es la diferencia entre un túnel de vapor y uno de aire caliente?',
+    answer: 'El túnel de vapor utiliza agua convertida en vapor para calentar de manera uniforme y suave la película PVC. Es ideal para mangas de cuerpo completo con geometrías complejas porque el vapor rodea el envase por todos los ángulos. El túnel de aire caliente es más económico, más fácil de mantener y perfecto para sellos de garantía y mangas simples. Para empezar, el túnel de aire es la opción más práctica; para escalar a mangas complejas, el túnel de vapor da mejores resultados.',
+  },
+  {
+    question: '¿A qué velocidad trabajan los túneles de calor?',
+    answer: 'Nuestros túneles de aire trabajan entre 20 y 60 envases por minuto dependiendo del tamaño del sello y la temperatura de proceso. Los túneles de vapor alcanzan de 30 a 120 envases por minuto para mangas de cuerpo completo. La velocidad final depende del tamaño del envase, el calibre de la película y la temperatura del túnel.',
+  },
+  {
+    question: '¿Las aplicadoras automáticas son compatibles con cualquier envase?',
+    answer: 'Las aplicadoras automáticas se configuran para un rango específico de diámetros de envase (típicamente 40mm a 120mm) y alturas de sello (20mm a 150mm). Si su línea maneja distintos formatos, ofrecemos aplicadoras con cambio rápido de formato (herramienta de cambio en menos de 10 minutos). Para formatos muy variados recomendamos la versión semiautomática que permite mayor flexibilidad.',
+  },
+  {
+    question: '¿Ofrecen instalación y capacitación del equipo?',
+    answer: 'Sí. La instalación y capacitación están incluidas en el precio de todos nuestros equipos. Un técnico de nuestro equipo instala el equipo en su planta, lo calibra con su producto real y capacita al operador. El tiempo de instalación es de medio día para equipos semiautomáticos y 1-2 días para líneas automáticas completas.',
+  },
+  {
+    question: '¿Tienen refacciones disponibles para los equipos?',
+    answer: 'Sí. Mantenemos un inventario permanente de refacciones críticas: resistencias de calefacción, ventiladores, correas transportadoras, sensores de temperatura y PLC. Las refacciones se envían en 24 horas para toda la República. También ofrecemos contratos de mantenimiento preventivo con visitas trimestrales.',
+  },
+  {
+    question: '¿Puedo probar el equipo con mi producto antes de comprarlo?',
+    answer: 'Sí. Invitamos a sus técnicos a nuestra planta en Iztapalapa para hacer pruebas con su envase real. Evaluamos la película adecuada, la temperatura correcta y la velocidad de línea antes de recomendar el equipo. El objetivo es que cuando instale el equipo en su planta, funcione desde el primer día.',
+  },
+];
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Productos', href: '/productos/' },
+  { text: 'Maquinaria de Aplicación', href: '/productos/maquinaria-de-aplicacion/' },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  faqSchema(faqs),
+];
+
+const productos = [
+  {
+    title: 'Túnel de Calor por Vapor',
+    subtitle: 'Contracción uniforme para mangas de cuerpo completo y formas complejas',
+    specs: [
+      'Vapor a 100°C - 120°C uniforme',
+      'Velocidad: 30-120 envases/min',
+      'Ideal para mangas full-body',
+      'Menor tensión en la película',
+    ],
+    image: '/img/productos/tunel-calor-vapor-industrial.avif',
+    slug: 'tunel-calor-vapor',
+  },
+  {
+    title: 'Túnel de Calor por Aire',
+    subtitle: 'Solución económica y eficiente para sellos de garantía y mangas simples',
+    specs: [
+      'Temperatura ajustable 60°C - 180°C',
+      'Velocidad: 20-60 envases/min',
+      'Mantenimiento sencillo y económico',
+      'Instalación lista en 2 horas',
+    ],
+    image: '/img/productos/tunel-calor-aire-industrial.avif',
+    slug: 'tunel-calor-aire',
+  },
+  {
+    title: 'Aplicadora Automática',
+    subtitle: 'Colocación y contracción de sellos o mangas sin intervención manual',
+    specs: [
+      'Velocidad: 40-100 envases/min',
+      'Diámetros: 40mm a 120mm',
+      'Cambio de formato en 10 minutos',
+      'Integrable a línea de producción existente',
+    ],
+    image: '/img/productos/aplicadora-automatica-mangas.avif',
+    slug: 'aplicadora-automatica',
+  },
+  {
+    title: 'Aplicadora Semiautomática',
+    subtitle: 'Colocación manual + contracción automática en túnel integrado',
+    specs: [
+      'Velocidad: 15-30 envases/min',
+      'Operación con un solo operador',
+      'Sin inversión en transportador',
+      'Ideal para tirajes medios y variados',
+    ],
+    image: '/img/productos/aplicadora-semiautomatica-mangas.avif',
+    slug: 'aplicadora-semiautomatica',
+  },
+  {
+    title: 'Pistola de Calor Industrial',
+    subtitle: 'Contracción manual para tirajes pequeños y muestras',
+    specs: [
+      'Temperatura: 50°C - 600°C ajustable',
+      'Flujo de aire: 250-500 L/min',
+      'Peso: 0.8kg — ergonómica',
+      'Sin instalación — lista de inmediato',
+    ],
+    image: '/img/productos/pistola-calor-industrial-pvc.avif',
+    slug: 'pistola-calor-industrial',
+  },
+  {
+    title: 'Refacciones y Servicio Técnico',
+    subtitle: 'Piezas originales y mantenimiento preventivo para todos nuestros equipos',
+    specs: [
+      'Inventario permanente de refacciones',
+      'Envío en 24 horas a toda la República',
+      'Contratos de mantenimiento preventivo',
+      'Soporte técnico telefónico y presencial',
+    ],
+    image: '/img/productos/refacciones-servicio-tecnico.avif',
+    slug: 'refacciones-servicio',
+  },
+];
+---
+
+<Base
+  title={`Maquinaria de Aplicación Termoencogible | ${SITE_NAME}`}
+  description="Túneles de calor por vapor y aire, aplicadoras automáticas y semiautomáticas, pistolas industriales y refacciones para sellos y mangas termoencogibles. Fabricante directo México."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Equipos Industriales"
+    title="Maquinaria de Aplicación Termoencogible"
+    description="Túneles de calor, aplicadoras y pistolas industriales para la contracción de sellos, mangas y cápsulas de PVC. Fabricación propia. Instalación y capacitación incluidas."
+    primaryCta={{ text: 'Cotizar Maquinaria', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Ver Demo en Planta', href: '/contacto/' }}
+    metrics={[
+      { value: '120', label: 'Envases/min' },
+      { value: '180°C', label: 'Temp. máx.' },
+      { value: '24h', label: 'Refacciones' },
+      { value: '28', label: 'Años servicio' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          La película de PVC termoencogible necesita calor para contraerse y funcionar correctamente. El equipo de aplicación determina la calidad del resultado: una temperatura mal calibrada o un flujo de aire inadecuado produce sellos con arrugas, burbujas o contracción incompleta. En Sello de Garantía fabricamos y vendemos los equipos de aplicación que usamos en nuestra propia planta — túneles de calor por vapor, túneles de aire caliente, aplicadoras automáticas y semiautomáticas, y pistolas industriales para operación manual.
+        </p>
+        <p class="hero-seo__text">
+          Al comprar maquinaria con nosotros, la instalación y capacitación están incluidas. Un técnico va a su planta, instala el equipo, lo calibra con su producto real y capacita a su operador. Después de la instalación, tiene acceso a soporte técnico telefónico y refacciones enviadas en 24 horas a cualquier parte de la República. No vendemos equipos genéricos importados sin respaldo — lo que vendemos lo conocemos porque lo operamos diariamente en nuestra propia línea de producción.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Necesita maquinaria para aplicar sellos o mangas?"
+    subtitle="Venga a probar el equipo con su envase en nuestra planta. Sin costo, sin compromiso."
+    btnText="Agendar Demo"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <section class="section" id="maquinaria">
+    <div class="container">
+      <SectionHeader
+        badge="Catálogo"
+        title="Equipos de Aplicación Termoencogible"
+        subtitle="Desde la pistola de calor para producción artesanal hasta el túnel automático para líneas industriales."
+      />
+      <div class="products-grid">
+        {productos.map((p) => (
+          <article class="product-card">
+            <div class="product-card__image-wrap">
+              {p.image ? (
+                <img src={p.image} alt={p.title} class="product-card__image" loading="lazy" decoding="async" width="640" height="360" />
+              ) : (
+                <div class="product-card__placeholder"></div>
+              )}
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title">{p.title}</h3>
+              <p class="product-card__sub">{p.subtitle}</p>
+              <ul class="product-card__specs">
+                {p.specs.map((spec) => (
+                  <li class="product-card__spec">{spec}</li>
+                ))}
+              </ul>
+              <div class="product-card__ctas">
+                {p.slug ? (
+                  <a href={`/productos/${p.slug}/`} class="product-card__btn product-card__btn--primary">Ver producto</a>
+                ) : (
+                  <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                )}
+                <a href="/contacto/" class="product-card__btn product-card__btn--outline">Agendar demo</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-gray-50);">
+    <div class="container">
+      <SectionHeader
+        badge="Especificaciones"
+        title="Comparativo de Equipos"
+        subtitle="Elija el equipo correcto según su volumen de producción."
+      />
+      <div class="specs-table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Equipo</th>
+              <th>Velocidad</th>
+              <th>Aplicación ideal</th>
+              <th>Inversión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Pistola de calor</td><td>Manual</td><td>Muestras, tirajes &lt;500 pzas/día</td><td>Baja</td></tr>
+            <tr><td>Túnel aire caliente</td><td>20-60 env/min</td><td>Sellos y mangas simples</td><td>Media</td></tr>
+            <tr><td>Aplicadora semiautomática</td><td>15-30 env/min</td><td>Tirajes medios, formatos variados</td><td>Media</td></tr>
+            <tr><td>Aplicadora automática</td><td>40-100 env/min</td><td>Producción constante un solo formato</td><td>Media-Alta</td></tr>
+            <tr><td>Túnel vapor</td><td>30-120 env/min</td><td>Mangas full-body, envases complejos</td><td>Alta</td></tr>
+            <tr><td>Línea completa integrada</td><td>Hasta 120 env/min</td><td>Producción industrial 24/7</td><td>Alta</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="¿Cuál es el equipo correcto para su producción?"
+    subtitle="Nos dice su volumen diario y tipo de envase — le recomendamos el equipo exacto."
+    btnText="Consultar al Equipo"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="Sobre Maquinaria de Aplicación"
+        subtitle="Las dudas más comunes antes de invertir en equipo termoencogible."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo — equipos con respaldo real"
+    subtitle="Los mismos equipos que usamos en nuestra planta. Con instalación, capacitación y refacciones."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo { display: flex; flex-direction: column; gap: var(--space-4); }
+  .hero-seo__text { background: rgba(255,255,255,0.08); padding: var(--space-5); border-radius: var(--radius-md); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: rgba(255,255,255,0.88); }
+  .products-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+  @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+  .product-card { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04); }
+  .product-card__image-wrap { aspect-ratio: 16/9; background: var(--color-primary, #0047AB); overflow: hidden; }
+  .product-card__image { width: 100%; height: 100%; object-fit: cover; }
+  .product-card__placeholder { width: 100%; height: 100%; background: var(--color-primary, #0047AB); opacity: 0.15; }
+  .product-card__body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; gap: 0.5rem; }
+  .product-card__title { font-size: 1.125rem; font-weight: 700; color: var(--color-gray-900); margin: 0; }
+  .product-card__sub { font-size: 0.875rem; color: var(--color-gray-600); margin: 0; }
+  .product-card__specs { display: flex; flex-direction: column; gap: 0; flex: 1; margin-top: 0.25rem; }
+  .product-card__spec { font-size: 0.875rem; color: var(--color-gray-900); padding: 0.5rem 0; padding-left: 1rem; border-bottom: 1px solid var(--color-accent, #FF6B00); position: relative; }
+  .product-card__spec::before { content: "•"; position: absolute; left: 0; color: var(--color-primary, #0047AB); font-weight: 700; }
+  .product-card__spec:last-child { border-bottom: none; }
+  .product-card__ctas { display: flex; gap: 0.5rem; margin-top: auto; padding-top: 0.75rem; }
+  .product-card__btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; transition: background 0.2s; }
+  .product-card__btn--primary { background: var(--color-primary, #0047AB); color: #fff; }
+  .product-card__btn--primary:hover { background: var(--color-secondary, #1A1A2E); }
+  .product-card__btn--outline { background: transparent; color: var(--color-primary, #0047AB); border: 2px solid var(--color-primary, #0047AB); }
+  .product-card__btn--outline:hover { background: var(--color-primary, #0047AB); color: #fff; }
+  .specs-table-wrap { overflow-x: auto; margin-top: var(--space-6); }
+  .specs-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .specs-table th { text-align: left; padding: 0.875rem 1.25rem; background: var(--color-primary, #0047AB); color: #fff; font-weight: 600; }
+  .specs-table td { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--color-gray-200, #E2E8F0); color: var(--color-gray-900); }
+  .specs-table tr:nth-child(even) td { background: #fff; }
+  .specs-table tr:nth-child(odd) td { background: var(--color-gray-50, #F8FAFC); }
+</style>

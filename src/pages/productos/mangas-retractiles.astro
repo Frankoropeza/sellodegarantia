@@ -1,0 +1,430 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+
+const faqs = [
+  {
+    question: '¿Qué diferencia hay entre una manga retráctil y un sello de garantía?',
+    answer: 'El sello de garantía es una banda estrecha que sella solo la unión tapa-envase. La manga retráctil cubre una porción mayor o la totalidad del cuerpo del envase, funcionando tanto como sello de seguridad como etiqueta de presentación. Las mangas permiten impresión 360° a todo color y son la presentación premium para productos en anaquel.',
+  },
+  {
+    question: '¿Cuál es el encogimiento de las mangas?',
+    answer: 'Nuestras mangas tienen un encogimiento transversal del 55-65% dependiendo del calibre y la formulación. Esto permite cubrir botellas con curvas pronunciadas, envases de formas irregulares y contenedores con cuello diferenciado. El encogimiento longitudinal es mínimo (< 5%) para mantener la altura del diseño.',
+  },
+  {
+    question: '¿Pueden fabricar mangas para latas de aluminio?',
+    answer: 'Sí. Las mangas para latas y envases metálicos requieren un calibre específico (generalmente 45-50 micras) y un porcentaje de encogimiento calibrado para no generar arrugas en la superficie lisa del metal. Fabricamos este tipo de manga para cerveceras artesanales, conservas y bebidas energéticas.',
+  },
+  {
+    question: '¿Qué cantidad mínima necesito pedir?',
+    answer: 'Para mangas lisas el pedido mínimo es de 1,000 metros lineales. Para mangas impresas el mínimo es de 3,000 metros lineales debido al costo de los cilindros de impresión. Si su volumen es menor, podemos orientarle hacia una solución de etiqueta adhesiva o sello de garantía según su necesidad.',
+  },
+  {
+    question: '¿Las mangas requieren equipo especial para aplicarse?',
+    answer: 'Sí. A diferencia de los sellos pequeños que se aplican con pistola de calor, las mangas retráctiles requieren un aplicador (manual o automático) para colocar la manga sobre el envase y un túnel de calor para contraerla. Nosotros fabricamos ambos equipos y podemos asesorarle en la selección según su velocidad de línea.',
+  },
+  {
+    question: '¿Puedo hacer un pedido de prueba antes del tiraje completo?',
+    answer: 'Sí. Para mangas lisas podemos fabricar lotes de prueba desde 500 metros. Para mangas impresas, la inversión en cilindros de impresión se amortiza en el primer tiraje, por lo que el mínimo es mayor. Le recomendamos enviar muestras de su envase para dimensionar correctamente la manga antes de producir.',
+  },
+];
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Productos', href: '/productos/' },
+  { text: 'Mangas Retráctiles', href: '/productos/mangas-retractiles/' },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  faqSchema(faqs),
+];
+
+const productos = [
+  {
+    title: 'Manga Cuerpo Completo Lisa',
+    subtitle: 'Película PVC transparente para cobertura total del envase',
+    specs: [
+      'PVC cristal encogimiento 55-65%',
+      'Calibres: 45, 50, 60 micras',
+      'Diámetros: 40mm a 200mm',
+      'Pedido mínimo: 1,000 metros',
+    ],
+    image: '/img/productos/manga-completa-lisa-pvc.avif',
+    slug: 'manga-completa-lisa',
+  },
+  {
+    title: 'Manga Cuerpo Completo Impresa',
+    subtitle: 'Etiqueta 360° con impresión rotograbado hasta 6 tintas',
+    specs: [
+      'Impresión rotograbado 6 colores',
+      'Registro de color ±0.2mm',
+      'Diseño incluido o archivo del cliente',
+      'Pedido mínimo: 3,000 metros',
+    ],
+    image: '/img/productos/manga-completa-impresa-pvc.avif',
+    slug: 'manga-completa-impresa',
+  },
+  {
+    title: 'Manga Parcial',
+    subtitle: 'Cobertura de media botella para destacar zona de diseño',
+    specs: [
+      'Altura personalizada (50mm a 200mm)',
+      'Aplica en zona de etiqueta o cuello',
+      'Liso o impreso disponible',
+      'Encogimiento controlado sin arrugas',
+    ],
+    image: '/img/productos/manga-parcial-pvc.avif',
+    slug: 'manga-parcial',
+  },
+  {
+    title: 'Manga para Latas y Metálicos',
+    subtitle: 'Manga de PVC calibrada para superficie lisa de aluminio y hojalata',
+    specs: [
+      'Calibre 45-50 micras específico para latas',
+      'Adhesión perfecta sin burbujas',
+      'Apta para latas 250ml a 1L',
+      'Compatible con cerveceras artesanales',
+    ],
+    image: '/img/productos/manga-latas-metalicos-pvc.avif',
+    slug: 'manga-latas-metalicos',
+  },
+  {
+    title: 'Manga Multipak',
+    subtitle: 'Agrupa 2, 4 o 6 envases en una sola unidad de venta',
+    specs: [
+      'Agrupa botellas, latas o envases',
+      'Resistencia al manejo y transporte',
+      'Imprimible con promoción o diseño',
+      'Anchos desde 150mm hasta 400mm',
+    ],
+    image: '/img/productos/manga-multipak-agrupacion.avif',
+    slug: 'manga-multipak',
+  },
+  {
+    title: 'Manga con Perforación de Apertura',
+    subtitle: 'Línea de micro-perforación para retiro fácil y limpio',
+    specs: [
+      'Micro-perforación continua o punteada',
+      'Apertura sin residuos ni fragmentos',
+      'Disponible en liso o impreso',
+      'Ideal para bebidas y alimentos premium',
+    ],
+    image: '/img/productos/manga-perforacion-apertura-pvc.avif',
+    slug: 'manga-perforacion-apertura',
+  },
+];
+---
+
+<Base
+  title={`Mangas Retráctiles de PVC Termoencogible | ${SITE_NAME}`}
+  description="Mangas retráctiles de PVC para etiquetado 360° de botellas, latas y envases. Lisas o impresas a 6 tintas. Calibres 45-60 micras. Fabricante directo en México."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Etiquetado 360°"
+    title="Mangas Retráctiles de PVC Termoencogible"
+    description="Película de PVC termoencogible que cubre el cuerpo completo o parcial del envase. Impresión 360° a 6 tintas para presentación premium en anaquel. Fabricación directa en planta propia en CDMX."
+    primaryCta={{ text: 'Cotizar Mangas', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      { value: '40-200', label: 'mm diámetro' },
+      { value: '6', label: 'Tintas' },
+      { value: '65%', label: 'Encogimiento' },
+      { value: '1K', label: 'Mín. metros' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Las mangas retráctiles de PVC son la evolución del sello de garantía. En lugar de cubrir solo la unión tapa-envase, la manga envuelve la totalidad o una zona significativa del cuerpo del envase, convirtiéndose simultáneamente en sello de inviolabilidad y etiqueta de presentación. En Sello de Garantía fabricamos mangas desde 40mm hasta 200mm de diámetro en calibres de 45, 50 y 60 micras, con un porcentaje de encogimiento transversal de 55 a 65% que permite adaptarse a envases con curvas pronunciadas y geometrías complejas.
+        </p>
+        <p class="hero-seo__text">
+          La impresión en manga retráctil se realiza por rotograbado, el proceso de mayor calidad para PVC termoencogible. Hasta 6 tintas, registro de color de ±0.2mm y acabados que resisten la contracción sin perder nitidez. Fabricamos mangas lisas (para etiquetado posterior o presentación neutra), mangas impresas (con su diseño o el diseño de nuestro equipo), mangas con perforación de apertura y mangas multipak para agrupación de productos. Atendemos bebidas, alimentos, cosméticos, cerveceras artesanales, licoreras y cualquier industria que busca presentación diferenciada en punto de venta.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- CTA Post-Hero -->
+  <CtaBanner
+    title="¿Necesita mangas para su producto?"
+    subtitle="Envíenos una muestra de su envase y cotizamos en menos de 24 horas."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <!-- Productos -->
+  <section class="section" id="mangas">
+    <div class="container">
+      <SectionHeader
+        badge="Catálogo"
+        title="Tipos de Mangas Retráctiles"
+        subtitle="Desde la manga lisa más económica hasta la manga impresa full-color de alta resolución. Seleccione el tipo o contáctenos para asesoría."
+      />
+      <div class="products-grid">
+        {productos.map((p) => (
+          <article class="product-card">
+            <div class="product-card__image-wrap">
+              {p.image ? (
+                <img src={p.image} alt={p.title} class="product-card__image" loading="lazy" decoding="async" width="640" height="360" />
+              ) : (
+                <div class="product-card__placeholder"></div>
+              )}
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title">{p.title}</h3>
+              <p class="product-card__sub">{p.subtitle}</p>
+              <ul class="product-card__specs">
+                {p.specs.map((spec) => (
+                  <li class="product-card__spec">{spec}</li>
+                ))}
+              </ul>
+              <div class="product-card__ctas">
+                {p.slug ? (
+                  <a href={`/productos/${p.slug}/`} class="product-card__btn product-card__btn--primary">Ver producto</a>
+                ) : (
+                  <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                )}
+                <a href="/contacto/" class="product-card__btn product-card__btn--outline">Pedir muestra</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Especificaciones Técnicas -->
+  <section class="section" style="background: var(--color-gray-50);">
+    <div class="container">
+      <SectionHeader
+        badge="Especificaciones"
+        title="Datos Técnicos de Nuestras Mangas"
+        subtitle="Información para su equipo técnico y de compras."
+      />
+      <div class="specs-table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Especificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Material</td><td>Película PVC termoencogible</td></tr>
+            <tr><td>Calibres disponibles</td><td>45, 50 y 60 micras</td></tr>
+            <tr><td>Rango de diámetros</td><td>40mm a 200mm</td></tr>
+            <tr><td>Encogimiento transversal</td><td>55-65%</td></tr>
+            <tr><td>Encogimiento longitudinal</td><td>Menor al 5%</td></tr>
+            <tr><td>Temperatura de aplicación</td><td>85°C - 125°C</td></tr>
+            <tr><td>Impresión</td><td>Rotograbado hasta 6 tintas, registro ±0.2mm</td></tr>
+            <tr><td>Perforación</td><td>Continua o punteada (opcional)</td></tr>
+            <tr><td>Pedido mínimo (liso)</td><td>1,000 metros lineales</td></tr>
+            <tr><td>Pedido mínimo (impreso)</td><td>3,000 metros lineales</td></tr>
+            <tr><td>Entrega (liso)</td><td>5-7 días hábiles</td></tr>
+            <tr><td>Entrega (impreso)</td><td>15-20 días hábiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Pre-FAQ -->
+  <CtaBanner
+    title="¿Listo para cotizar sus mangas retráctiles?"
+    subtitle="Fabricante directo. Respuesta en menos de 24 horas."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="Sobre Mangas Retráctiles"
+        subtitle="Las dudas más comunes de nuestros clientes sobre mangas termoencogibles de PVC."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <!-- CTA Pre-Footer -->
+  <CtaBanner
+    title="Fabricante directo — precios de planta"
+    subtitle="Sin intermediarios. Usted habla directo con quien fabrica su manga."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .product-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  }
+  .product-card__image-wrap {
+    aspect-ratio: 16 / 9;
+    background: var(--color-primary, #0047AB);
+    overflow: hidden;
+  }
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .product-card__placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary, #0047AB);
+    opacity: 0.15;
+  }
+  .product-card__body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+  }
+  .product-card__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin: 0;
+  }
+  .product-card__sub {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+  .product-card__specs {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    margin-top: 0.25rem;
+  }
+  .product-card__spec {
+    font-size: 0.875rem;
+    color: var(--color-gray-900);
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+    border-bottom: 1px solid var(--color-accent, #FF6B00);
+    position: relative;
+  }
+  .product-card__spec::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary, #0047AB);
+    font-weight: 700;
+  }
+  .product-card__spec:last-child { border-bottom: none; }
+  .product-card__ctas {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+  .product-card__btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .product-card__btn--primary {
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,71,171,0.2);
+  }
+  .product-card__btn--primary:hover { background: var(--color-secondary, #1A1A2E); }
+  .product-card__btn--outline {
+    background: transparent;
+    color: var(--color-primary, #0047AB);
+    border: 2px solid var(--color-primary, #0047AB);
+  }
+  .product-card__btn--outline:hover {
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+  }
+
+  .specs-table-wrap {
+    overflow-x: auto;
+    margin-top: var(--space-6);
+  }
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .specs-table th {
+    text-align: left;
+    padding: 0.875rem 1.25rem;
+    background: var(--color-primary, #0047AB);
+    color: #fff;
+    font-weight: 600;
+  }
+  .specs-table td {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--color-gray-200, #E2E8F0);
+    color: var(--color-gray-900);
+  }
+  .specs-table tr:nth-child(even) td { background: #fff; }
+  .specs-table tr:nth-child(odd) td { background: var(--color-gray-50, #F8FAFC); }
+</style>

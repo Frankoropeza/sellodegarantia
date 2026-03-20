@@ -1,0 +1,308 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+
+const faqs = [
+  {
+    question: '¿Qué es una preforma y en qué se diferencia de una cápsula?',
+    answer: 'La preforma es una pieza de PVC termoencogible preformada que se coloca sobre el cuello o tapa de la botella antes de aplicar calor. La cápsula es el nombre comercial más común para la preforma en el segmento de vinos y licores — funcionalmente son el mismo producto. Usamos ambos términos dependiendo de la industria del cliente.',
+  },
+  {
+    question: '¿Las cápsulas para vino son compatibles con tapones de corcho y screw-cap?',
+    answer: 'Sí. Fabricamos cápsulas para ambos tipos de cierre. Para tapón de corcho el diseño incluye un reborde inferior que cubre la unión corcho-botella. Para screw-cap (tapón de rosca) la cápsula cubre el tapón y parte del cuello creando una presentación más elegante y un sello de inviolabilidad adicional.',
+  },
+  {
+    question: '¿Pueden imprimir el nombre de la bodega o marca en la cápsula?',
+    answer: 'Sí. La impresión se realiza por rotograbado antes de formar la preforma, lo que garantiza que el diseño quede perfectamente centrado sobre la botella al contraerse. Hasta 6 tintas, logotipo, cosecha, denominación de origen y cualquier dato que requiera su etiquetado.',
+  },
+  {
+    question: '¿Qué diámetros de cápsula fabrican para vino?',
+    answer: 'Las botellas de vino estándar Burdeos y Borgoña tienen cuellos de 28mm a 32mm de diámetro. Fabricamos cápsulas con diámetros internos de 30mm a 38mm para cubrir el rango completo del mercado vinícola mexicano e importado. Para mezcal y licores artesanales fabricamos formatos especiales según la forma del envase.',
+  },
+  {
+    question: '¿Cuántas piezas es el pedido mínimo de cápsulas?',
+    answer: 'Para cápsulas lisas el mínimo es de 2,000 piezas. Para cápsulas impresas el mínimo es de 5,000 piezas debido al costo de los cilindros de impresión. Si su producción es menor, podemos orientarle hacia una solución de sello de garantía banda que logra un resultado similar a menor costo.',
+  },
+  {
+    question: '¿Las preformas para salsas y aceites son aptas para contacto con alimentos?',
+    answer: 'Sí. Toda nuestra película PVC es grado alimenticio, apta para contacto indirecto con alimentos y bebidas. Proporcionamos certificación del material y ficha técnica completa para sus trámites con COFEPRIS, SENASICA o cualquier autoridad regulatoria.',
+  },
+];
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Productos', href: '/productos/' },
+  { text: 'Preformas y Cápsulas', href: '/productos/preformas-y-capsulas/' },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  faqSchema(faqs),
+];
+
+const productos = [
+  {
+    title: 'Cápsula para Vino',
+    subtitle: 'Cápsula PVC termoencogible para botellas Burdeos y Borgoña',
+    specs: [
+      'Diámetros 30mm a 38mm',
+      'Compatible con corcho y screw-cap',
+      'Liso o impreso hasta 6 tintas',
+      'Pedido mínimo: 2,000 piezas',
+    ],
+    image: '/img/productos/capsula-vino-pvc.avif',
+    slug: 'capsula-vino',
+  },
+  {
+    title: 'Cápsula para Licor',
+    subtitle: 'Cápsula de PVC para botellas de whisky, brandy, ron y vodka',
+    specs: [
+      'Diámetros 28mm a 45mm',
+      'Alta resistencia al manejo',
+      'Colores metálicos disponibles',
+      'Compatible con tapones especiales',
+    ],
+    image: '/img/productos/capsula-licor-pvc.avif',
+    slug: 'capsula-licor',
+  },
+  {
+    title: 'Cápsula para Mezcal',
+    subtitle: 'Cápsula artesanal para destilados mexicanos con presentación premium',
+    specs: [
+      'Formatos para envases artesanales irregulares',
+      'Acabados en colores naturales y terrosos',
+      'Impresión de NOM y categoría',
+      'Lotes pequeños desde 2,000 piezas',
+    ],
+    image: '/img/productos/capsula-mezcal-pvc.avif',
+    slug: 'capsula-mezcal',
+  },
+  {
+    title: 'Preforma para Salsas',
+    subtitle: 'Precinto termoencogible para frascos y botellas de salsas y aderezos',
+    specs: [
+      'PVC grado alimenticio certificado',
+      'Diámetros 20mm a 50mm',
+      'Alta resistencia a la humedad',
+      'Compatible con tapaderas metálicas y plásticas',
+    ],
+    image: '/img/productos/preforma-salsas-pvc.avif',
+    slug: 'preforma-salsas',
+  },
+  {
+    title: 'Preforma para Aceites',
+    subtitle: 'Cápsula termoencogible para aceites de oliva, vegetales y vinagres',
+    specs: [
+      'Resistencia a contacto con aceites y ácidos',
+      'Transparente para mostrar el producto',
+      'Diámetros 18mm a 38mm',
+      'Apta para exportación (documentación incluida)',
+    ],
+    image: '/img/productos/preforma-aceites-pvc.avif',
+    slug: 'preforma-aceites',
+  },
+  {
+    title: 'Preforma con Impresión Personalizada',
+    subtitle: 'Cápsula o preforma con diseño impreso en rotograbado hasta 6 tintas',
+    specs: [
+      'Impresión rotograbado alta resolución',
+      'Logotipo, cosecha, denominación de origen',
+      'Mockup 3D antes de producción',
+      'Pedido mínimo: 5,000 piezas',
+    ],
+    image: '/img/productos/preforma-impresa-pvc.avif',
+    slug: 'preforma-impresa',
+  },
+];
+---
+
+<Base
+  title={`Preformas y Cápsulas de PVC Termoencogible | ${SITE_NAME}`}
+  description="Cápsulas y preformas termoencogibles para botellas de vino, licor, mezcal, salsas y aceites. Lisas o impresas. Fabricante directo en México. Desde 2,000 piezas."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Cápsulas Premium"
+    title="Preformas y Cápsulas de PVC Termoencogible"
+    description="Cápsulas y preformas termoencogibles para el cuello y tapa de botellas. Presentación premium para vinos, licores, mezcales, salsas y aceites. Fabricación a medida en CDMX."
+    primaryCta={{ text: 'Cotizar Cápsulas', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras', href: '/contacto/' }}
+    metrics={[
+      { value: '18-45', label: 'mm diámetro' },
+      { value: '6', label: 'Tintas' },
+      { value: '2K', label: 'Mín. piezas' },
+      { value: '28', label: 'Años experiencia' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Las cápsulas y preformas termoencogibles son la forma más elegante de sellar una botella. A diferencia del sello de banda que solo cubre la unión tapa-envase, la cápsula cubre el cuello completo de la botella creando una presentación uniforme y premium. En Sello de Garantía fabricamos cápsulas desde 18mm hasta 45mm de diámetro para el segmento de bebidas alcohólicas (vinos, mezcales, licores, destilados artesanales) y para la industria alimenticia (salsas, aderezos, aceites, vinagres).
+        </p>
+        <p class="hero-seo__text">
+          Toda nuestra película PVC es grado alimenticio con certificación para contacto indirecto con alimentos y bebidas. Fabricamos cápsulas lisas en cristal o colores estándar, y cápsulas impresas por rotograbado con hasta 6 tintas para logotipo, cosecha, denominación de origen, NOM y cualquier dato legal. El pedido mínimo para cápsulas lisas es de 2,000 piezas — ideal para bodegas y productores artesanales que trabajan con lotes pequeños. Atendemos todo México con envío a domicilio.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Necesita cápsulas para sus botellas?"
+    subtitle="Envíenos una muestra de su botella y cotizamos la cápsula exacta."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section" id="capsulas">
+    <div class="container">
+      <SectionHeader
+        badge="Catálogo"
+        title="Tipos de Preformas y Cápsulas"
+        subtitle="Para cada tipo de botella y cada industria. Contáctenos para asesoría personalizada."
+      />
+      <div class="products-grid">
+        {productos.map((p) => (
+          <article class="product-card">
+            <div class="product-card__image-wrap">
+              {p.image ? (
+                <img src={p.image} alt={p.title} class="product-card__image" loading="lazy" decoding="async" width="640" height="360" />
+              ) : (
+                <div class="product-card__placeholder"></div>
+              )}
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title">{p.title}</h3>
+              <p class="product-card__sub">{p.subtitle}</p>
+              <ul class="product-card__specs">
+                {p.specs.map((spec) => (
+                  <li class="product-card__spec">{spec}</li>
+                ))}
+              </ul>
+              <div class="product-card__ctas">
+                {p.slug ? (
+                  <a href={`/productos/${p.slug}/`} class="product-card__btn product-card__btn--primary">Ver producto</a>
+                ) : (
+                  <a href="/cotizar/" class="product-card__btn product-card__btn--primary">Cotizar</a>
+                )}
+                <a href="/contacto/" class="product-card__btn product-card__btn--outline">Pedir muestra</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-gray-50);">
+    <div class="container">
+      <SectionHeader
+        badge="Especificaciones"
+        title="Datos Técnicos de Cápsulas y Preformas"
+        subtitle="Información para su equipo de producción y control de calidad."
+      />
+      <div class="specs-table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Especificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Material</td><td>Película PVC termoencogible grado alimenticio</td></tr>
+            <tr><td>Calibres disponibles</td><td>40, 50 y 60 micras</td></tr>
+            <tr><td>Rango de diámetros</td><td>18mm a 45mm</td></tr>
+            <tr><td>Encogimiento transversal</td><td>55-60%</td></tr>
+            <tr><td>Temperatura de aplicación</td><td>90°C - 120°C</td></tr>
+            <tr><td>Impresión</td><td>Rotograbado hasta 6 tintas</td></tr>
+            <tr><td>Certificación alimenticia</td><td>Grado alimenticio — contacto indirecto</td></tr>
+            <tr><td>Compatibilidad de cierre</td><td>Corcho, screw-cap, tapón metálico, plástico</td></tr>
+            <tr><td>Pedido mínimo (liso)</td><td>2,000 piezas</td></tr>
+            <tr><td>Pedido mínimo (impreso)</td><td>5,000 piezas</td></tr>
+            <tr><td>Tiempo de entrega (liso)</td><td>5-7 días hábiles</td></tr>
+            <tr><td>Tiempo de entrega (impreso)</td><td>15-20 días hábiles</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="¿Listo para cotizar sus cápsulas?"
+    subtitle="Respuesta en menos de 24 horas. Muestras sin costo a cualquier parte de México."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="Sobre Preformas y Cápsulas"
+        subtitle="Las dudas más comunes sobre cápsulas y preformas termoencogibles."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo — precios de planta"
+    subtitle="Sin intermediarios. Usted habla directo con quien fabrica su cápsula."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo { display: flex; flex-direction: column; gap: var(--space-4); }
+  .hero-seo__text { background: rgba(255,255,255,0.08); padding: var(--space-5); border-radius: var(--radius-md); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: rgba(255,255,255,0.88); }
+  .products-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+  @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+  .product-card { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04); }
+  .product-card__image-wrap { aspect-ratio: 16/9; background: var(--color-primary, #0047AB); overflow: hidden; }
+  .product-card__image { width: 100%; height: 100%; object-fit: cover; }
+  .product-card__placeholder { width: 100%; height: 100%; background: var(--color-primary, #0047AB); opacity: 0.15; }
+  .product-card__body { padding: 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; gap: 0.5rem; }
+  .product-card__title { font-size: 1.125rem; font-weight: 700; color: var(--color-gray-900); margin: 0; }
+  .product-card__sub { font-size: 0.875rem; color: var(--color-gray-600); margin: 0; }
+  .product-card__specs { display: flex; flex-direction: column; gap: 0; flex: 1; margin-top: 0.25rem; }
+  .product-card__spec { font-size: 0.875rem; color: var(--color-gray-900); padding: 0.5rem 0; padding-left: 1rem; border-bottom: 1px solid var(--color-accent, #FF6B00); position: relative; }
+  .product-card__spec::before { content: "•"; position: absolute; left: 0; color: var(--color-primary, #0047AB); font-weight: 700; }
+  .product-card__spec:last-child { border-bottom: none; }
+  .product-card__ctas { display: flex; gap: 0.5rem; margin-top: auto; padding-top: 0.75rem; }
+  .product-card__btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; transition: background 0.2s; }
+  .product-card__btn--primary { background: var(--color-primary, #0047AB); color: #fff; }
+  .product-card__btn--primary:hover { background: var(--color-secondary, #1A1A2E); }
+  .product-card__btn--outline { background: transparent; color: var(--color-primary, #0047AB); border: 2px solid var(--color-primary, #0047AB); }
+  .product-card__btn--outline:hover { background: var(--color-primary, #0047AB); color: #fff; }
+  .specs-table-wrap { overflow-x: auto; margin-top: var(--space-6); }
+  .specs-table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+  .specs-table th { text-align: left; padding: 0.875rem 1.25rem; background: var(--color-primary, #0047AB); color: #fff; font-weight: 600; }
+  .specs-table td { padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--color-gray-200, #E2E8F0); color: var(--color-gray-900); }
+  .specs-table tr:nth-child(even) td { background: #fff; }
+  .specs-table tr:nth-child(odd) td { background: var(--color-gray-50, #F8FAFC); }
+</style>
