@@ -54,12 +54,12 @@ const structuredData = [
 ];
 
 const features = [
-  { icon: '🏭', title: 'Planta Propia', description: 'Fabricación directa en nuestra planta de Iztapalapa. Sin intermediarios, sin sobreprecios. Usted trata directamente con el fabricante.' },
-  { icon: '📐', title: 'Fabricación a Medida', description: 'Cada sello, manga y etiqueta se manufactura según las medidas exactas de su envase. No vendemos medidas genéricas.' },
-  { icon: '🎨', title: 'Impresión 6 Tintas', description: 'Rotograbado de alta definición en hasta 6 colores. Logotipos, textos legales, códigos de barras — todo en una sola película.' },
-  { icon: '⚙️', title: 'Maquinaria Incluida', description: 'Fabricamos túneles de calor y aplicadoras. Le equipamos la línea completa: película + maquinaria + servicio técnico.' },
-  { icon: '🇲🇽', title: 'Cobertura Nacional', description: 'Enviamos a los 32 estados de México. Entrega directa en CDMX y zona metropolitana. Paquetería y transporte de carga al interior.' },
-  { icon: '📅', title: '28 Años de Experiencia', description: 'Desde 1998 fabricando película termoencogible. Miles de clientes en farmacéutica, alimentos, bebidas, gas y más sectores industriales.' },
+  { title: 'Planta propia en CDMX', description: 'Fabricación directa en nuestra planta de Iztapalapa. Sin intermediarios, sin sobreprecios. Usted trata directamente con el fabricante.' },
+  { title: 'Fabricación a la medida de su envase', description: 'Cada sello, manga y etiqueta se manufactura según las dimensiones exactas de su envase. No vendemos medidas genéricas.' },
+  { title: 'Impresión rotograbado a 6 tintas', description: 'Alta definición en hasta 6 colores. Logotipos, textos legales, códigos de barras — todo en una sola película.' },
+  { title: 'Maquinaria de aplicación incluida', description: 'Fabricamos túneles de calor y aplicadoras. Le equipamos la línea completa: película + maquinaria + servicio técnico.' },
+  { title: 'Envíos a los 32 estados', description: 'Cobertura nacional por paquetería y transporte de carga. Entrega directa en CDMX y zona metropolitana.' },
+  { title: '28 años en el mercado', description: 'Desde 1998 fabricando película termoencogible para farmacéutica, alimentos, bebidas, gas y más sectores industriales.' },
 ];
 ---
 
@@ -155,12 +155,11 @@ const features = [
         title="Fabricante Directo, Sin Intermediarios"
         subtitle="Cada pieza sale de nuestra planta. Controlamos materiales, impresión, corte y entrega. Así garantizamos calidad y precio."
       />
-      <div class="grid-3">
+      <div class="trust-grid">
         {features.map((f) => (
-          <div class="feature-box">
-            <span class="feature-box__icon">{f.icon}</span>
-            <h3 class="feature-box__title">{f.title}</h3>
-            <p class="feature-box__desc">{f.description}</p>
+          <div class="trust-item">
+            <h3 class="trust-item__title">{f.title}</h3>
+            <p class="trust-item__desc">{f.description}</p>
           </div>
         ))}
       </div>
@@ -219,24 +218,30 @@ const features = [
     line-height: var(--line-height-relaxed);
     color: rgba(255, 255, 255, 0.88);
   }
-  .feature-box {
-    padding: var(--space-6);
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-200);
-    border-radius: var(--radius-lg);
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
   }
-  .feature-box__icon {
-    font-size: var(--font-size-2xl);
-    display: block;
-    margin-bottom: var(--space-3);
+  @media (min-width: 640px) {
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  .feature-box__title {
+  @media (min-width: 900px) {
+    .trust-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .trust-item {
+    padding: var(--space-5) var(--space-6);
+    border-left: 3px solid var(--color-primary, #0047AB);
+    background: var(--color-gray-50, #F8FAFC);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  .trust-item__title {
     font-size: var(--font-size-base);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     color: var(--color-gray-900);
-    margin-bottom: var(--space-2);
+    margin-bottom: 0.25rem;
   }
-  .feature-box__desc {
+  .trust-item__desc {
     font-size: var(--font-size-sm);
     color: var(--color-gray-600);
     line-height: var(--line-height-relaxed);
