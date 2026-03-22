@@ -1,6 +1,6 @@
 ---
 title: "Bobina a Medida Personalizada — Ancho, Core y Largo Exactos"
-description: "Bobinas de película PVC cortadas exactamente a la medida del cliente. Ancho, diámetro de core, largo de rollo y sentido de embobinado a especificación. Sin mínimo de rollo."
+description: "Bobinas de película PVC cortadas exactamente a la medida del cliente. Ancho, diámetro de core, largo de rollo y sentido de embobinado a especificación."
 categoria: "pelicula-en-rollo"
 subcategoria: "bobinas-personalizadas"
 imagen: "/img/productos/bobina-medida-personalizada-pvc.avif"

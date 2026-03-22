@@ -1,6 +1,6 @@
 ---
 title: "Etiqueta Retráctil Parcial — Zona de Etiqueta sin Adhesivo"
-description: "Etiqueta de PVC termoencogible de altura reducida para zona de etiqueta específica. Impresión rotograbado 6 tintas. Sin adhesivo. Menor costo que etiqueta completa. Desde 2,000 metros."
+description: "Etiqueta de PVC termoencogible de altura reducida para zona de etiqueta específica. Impresión rotograbado 6 tintas. Sin adhesivo. Menor costo que etiqueta."
 categoria: "etiquetas-impresas"
 subcategoria: "retractil-parcial"
 imagen: "/img/productos/etiqueta-retractil-parcial-pvc.avif"

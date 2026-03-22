@@ -1,6 +1,6 @@
 ---
 title: "Bobina Impresa para Máquinas Automáticas — Rotograbado 6 Tintas"
-description: "Bobinas de PVC con impresión rotograbado hasta 6 tintas para máquinas automáticas de sellado y aplicación de manga. Ancho y diámetro a especificación del equipo."
+description: "Bobinas de PVC con impresión rotograbado hasta 6 tintas para máquinas automáticas de sellado y aplicación de manga. Ancho y diámetro a especificación del."
 categoria: "pelicula-en-rollo"
 subcategoria: "bobinas-impresas"
 imagen: "/img/productos/bobina-impresa-automatica-pvc.avif"

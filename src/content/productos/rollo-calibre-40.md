@@ -1,6 +1,6 @@
 ---
 title: "Rollo de Película PVC Termoencogible Calibre 40 Micras"
-description: "Película PVC termoencogible en rollo calibre 40 micras. Encogimiento 55-60%. Anchos 30-600mm. Para sellos de garantía y líneas de alta velocidad. Fabricante directo México."
+description: "Película PVC termoencogible en rollo calibre 40 micras. Encogimiento 55-60%. Anchos 30-600mm. Para sellos de garantía y líneas de alta velocidad."
 categoria: "pelicula-en-rollo"
 subcategoria: "calibre-40"
 imagen: "/img/productos/rollo-calibre-40-pvc.avif"

@@ -1,6 +1,6 @@
 ---
 title: "Rollo de Película PVC Termoencogible Calibre 50 Micras"
-description: "Película PVC termoencogible en rollo calibre 50 micras. Mayor adaptabilidad que calibre 40. Anchos 30-600mm. Versátil para sellos, mangas parciales y múltiples formatos. Fabricante México."
+description: "Película PVC termoencogible en rollo calibre 50 micras. Mayor adaptabilidad que calibre 40. Anchos 30-600mm. Versátil para sellos, mangas parciales y."
 categoria: "pelicula-en-rollo"
 subcategoria: "calibre-50"
 imagen: "/img/productos/rollo-calibre-50-pvc.avif"

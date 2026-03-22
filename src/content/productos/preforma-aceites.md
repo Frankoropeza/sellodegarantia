@@ -1,6 +1,6 @@
 ---
 title: "Preforma Termoencogible para Aceites y Vinagres — PVC Resistente"
-description: "Preforma de PVC termoencogible para botellas de aceite de oliva, aceite vegetal, vinagre y aderezos ácidos. Resistente a grasas y ácidos. Transparente o de color. Desde 2,000 piezas."
+description: "Preforma de PVC termoencogible para botellas de aceite de oliva, aceite vegetal, vinagre y aderezos ácidos. Resistente a grasas y ácidos. Transparente o."
 categoria: "preformas-y-capsulas"
 subcategoria: "preforma-aceites"
 imagen: "/img/productos/preforma-aceites-pvc.avif"

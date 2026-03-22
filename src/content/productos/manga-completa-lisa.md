@@ -1,6 +1,6 @@
 ---
 title: "Manga Retráctil Cuerpo Completo Lisa — PVC Termoencogible"
-description: "Manga de PVC termoencogible transparente para cobertura total del envase. Encogimiento 55-65%. Calibres 45-60 micras. Diámetros 40-200mm. Pedido mínimo 1,000 metros."
+description: "Manga de PVC termoencogible transparente para cobertura total del envase. Encogimiento 55-65%. Calibres 45-60 micras. Diámetros 40-200mm. Pedido mínimo."
 categoria: "mangas-retractiles"
 subcategoria: "cuerpo-completo-lisa"
 imagen: "/img/productos/manga-completa-lisa-pvc.avif"

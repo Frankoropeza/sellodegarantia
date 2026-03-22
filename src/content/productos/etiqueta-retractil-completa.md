@@ -1,6 +1,6 @@
 ---
 title: "Etiqueta Retráctil Cuerpo Completo — Cobertura 360° con Impresión"
-description: "Etiqueta de PVC termoencogible que cubre el cuerpo completo del envase con impresión rotograbado hasta 6 tintas. Sin adhesivo. Adaptación perfecta a la forma del envase. Desde 3,000 metros."
+description: "Etiqueta de PVC termoencogible que cubre el cuerpo completo del envase con impresión rotograbado hasta 6 tintas. Sin adhesivo. Adaptación perfecta a la."
 categoria: "etiquetas-impresas"
 subcategoria: "retractil-completa"
 imagen: "/img/productos/etiqueta-retractil-completa-pvc.avif"

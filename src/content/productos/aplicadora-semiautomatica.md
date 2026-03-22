@@ -1,6 +1,6 @@
 ---
 title: "Aplicadora Semiautomática de Pedal — Tirajes Bajos y Medios"
-description: "Aplicadora semiautomática de mangas termoencogibles operada con pedal. Un solo operador. Para tirajes de 20 a 80 piezas por minuto. Sin PLC, operación directa."
+description: "Aplicadora semiautomática de mangas termoencogibles operada con pedal. Un solo operador. Para tirajes de 20 a 80 piezas por minuto. Sin PLC, operación."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "aplicadora-semiautomatica"
 imagen: "/img/productos/aplicadora-semiautomatica-pedal.avif"

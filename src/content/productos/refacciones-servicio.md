@@ -1,6 +1,6 @@
 ---
 title: "Refacciones y Servicio Técnico — Mantenimiento para Maquinaria de Sellado"
-description: "Refacciones originales y servicio técnico para túneles de calor, aplicadoras y pistolas de la línea Sello de Garantía. Mantenimiento preventivo y correctivo. Servicio en CDMX y área metropolitana."
+description: "Refacciones originales y servicio técnico para túneles de calor, aplicadoras y pistolas de la línea Sello de Garantía. Mantenimiento preventivo y."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "refacciones-servicio"
 imagen: "/img/productos/refacciones-servicio-tecnico.avif"

@@ -1,6 +1,6 @@
 ---
 title: "Sello Liso Transparente PVC — Termoencogible Cristal"
-description: "Sello de garantía de PVC termoencogible transparente cristal. Evidencia apertura sin afectar la presentación del envase. Calibres 40-60 micras, diámetros 20-120mm. Pedidos desde 5,000 piezas."
+description: "Sello de garantía de PVC termoencogible transparente cristal. Evidencia apertura sin afectar la presentación del envase. Calibres 40-60 micras, diámetros."
 categoria: "sellos-de-garantia"
 subcategoria: "liso-transparente"
 imagen: "/img/productos/sello-liso-transparente-pvc.avif"

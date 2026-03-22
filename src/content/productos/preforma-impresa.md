@@ -1,6 +1,6 @@
 ---
 title: "Preforma y Cápsula con Impresión Personalizada — Rotograbado 6 Tintas"
-description: "Cápsula o preforma termoencogible de PVC con diseño impreso en rotograbado hasta 6 tintas. Logotipo, cosecha, NOM, datos legales. Mockup 3D incluido. Pedido mínimo 5,000 piezas."
+description: "Cápsula o preforma termoencogible de PVC con diseño impreso en rotograbado hasta 6 tintas. Logotipo, cosecha, NOM, datos legales. Mockup 3D incluido."
 categoria: "preformas-y-capsulas"
 subcategoria: "preforma-impresa"
 imagen: "/img/productos/preforma-impresa-pvc.avif"

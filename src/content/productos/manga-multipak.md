@@ -1,6 +1,6 @@
 ---
 title: "Manga Multipak Termoencogible — Agrupación de Envases PVC"
-description: "Manga de PVC termoencogible para agrupar 2, 4 o 6 envases en una sola unidad de venta. Anchos desde 150mm hasta 400mm. Resistente al manejo. Pedido mínimo 1,000 metros."
+description: "Manga de PVC termoencogible para agrupar 2, 4 o 6 envases en una sola unidad de venta. Anchos desde 150mm hasta 400mm. Resistente al manejo. Pedido mínimo."
 categoria: "mangas-retractiles"
 subcategoria: "manga-multipak"
 imagen: "/img/productos/manga-multipak-agrupacion.avif"

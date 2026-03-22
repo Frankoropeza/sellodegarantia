@@ -1,6 +1,6 @@
 ---
 title: "Manga Retráctil Cuerpo Completo Impresa — Rotograbado 6 Tintas"
-description: "Manga de PVC termoencogible con impresión rotograbado hasta 6 tintas. Etiquetado 360° de alta resolución. Calibres 45-60 micras. Pedido mínimo 3,000 metros."
+description: "Manga de PVC termoencogible con impresión rotograbado hasta 6 tintas. Etiquetado 360° de alta resolución. Calibres 45-60 micras. Pedido mínimo 3,000."
 categoria: "mangas-retractiles"
 subcategoria: "cuerpo-completo-impresa"
 imagen: "/img/productos/manga-completa-impresa-pvc.avif"

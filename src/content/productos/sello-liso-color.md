@@ -1,6 +1,6 @@
 ---
 title: "Sello Liso de Color PVC — Pigmentado en Masa Termoencogible"
-description: "Sello de garantía PVC termoencogible pigmentado en masa: rojo, azul, verde, dorado, negro o Pantone. Calibres 40-60 micras, diámetros 20-120mm. Color que no raspa ni destiñe. Desde 5,000 piezas."
+description: "Sello de garantía PVC termoencogible pigmentado en masa: rojo, azul, verde, dorado, negro o Pantone. Calibres 40-60 micras, diámetros 20-120mm. Color que."
 categoria: "sellos-de-garantia"
 subcategoria: "sello-liso-color"
 imagen: "/img/productos/sello-liso-color-pigmentado.avif"

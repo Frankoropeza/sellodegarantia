@@ -1,6 +1,6 @@
 ---
 title: "Cápsula PVC Termoencogible para Botella de Vino — Burdeos y Borgoña"
-description: "Cápsula termoencogible de PVC para botellas de vino. Compatible con tapón de corcho y screw-cap. Diámetros 30-38mm. Liso o impreso. Pedido mínimo 2,000 piezas. Fabricante en México."
+description: "Cápsula termoencogible de PVC para botellas de vino. Compatible con tapón de corcho y screw-cap. Diámetros 30-38mm. Liso o impreso. Pedido mínimo 2,000."
 categoria: "preformas-y-capsulas"
 subcategoria: "capsula-vino"
 imagen: "/img/productos/capsula-vino-pvc.avif"

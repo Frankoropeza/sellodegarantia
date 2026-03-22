@@ -1,6 +1,6 @@
 ---
 title: "Túnel de Calor por Vapor — Encogimiento 360° Uniforme"
-description: "Túnel de calor por vapor saturado para aplicación de manga y sellos termoencogibles. Encogimiento uniforme en toda la circunferencia. Acero inoxidable 304. Para líneas de alta velocidad."
+description: "Túnel de calor por vapor saturado para aplicación de manga y sellos termoencogibles. Encogimiento uniforme en toda la circunferencia. Acero inoxidable."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "tunel-vapor"
 imagen: "/img/productos/tunel-calor-vapor-acero.avif"

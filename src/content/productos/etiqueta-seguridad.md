@@ -1,6 +1,6 @@
 ---
 title: "Etiqueta de Seguridad con Holograma — Autenticidad y Anti-Falsificación"
-description: "Etiqueta retráctil de PVC con holograma de seguridad integrado. Evidencia manipulación, difícil de falsificar. Para medicamentos, licores premium y productos de alto valor. Desde 5,000 piezas."
+description: "Etiqueta retráctil de PVC con holograma de seguridad integrado. Evidencia manipulación, difícil de falsificar. Para medicamentos, licores premium y."
 categoria: "etiquetas-impresas"
 subcategoria: "etiqueta-seguridad"
 imagen: "/img/productos/etiqueta-seguridad-holograma-pvc.avif"

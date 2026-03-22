@@ -1,6 +1,6 @@
 ---
 title: "Sello con Perforación PVC — Apertura Fácil sin Herramientas"
-description: "Sello de garantía PVC termoencogible con micro-perforación láser o mecánica. Apertura limpia con los dedos. Horizontal o vertical. Ideal para farmacéutica y alimentos. Desde 10,000 piezas."
+description: "Sello de garantía PVC termoencogible con micro-perforación láser o mecánica. Apertura limpia con los dedos. Horizontal o vertical. Ideal para farmacéutica."
 categoria: "sellos-de-garantia"
 subcategoria: "sello-perforado"
 imagen: "/img/productos/sello-perforado-apertura.avif"

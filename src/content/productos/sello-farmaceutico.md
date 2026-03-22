@@ -1,6 +1,6 @@
 ---
 title: "Sello Farmacéutico Grado Alimenticio — Compatible COFEPRIS y FDA"
-description: "Sello de garantía PVC grado alimenticio para medicamentos y suplementos. Sin DEHP, sin metales pesados. Compatible COFEPRIS, NOM y FDA. Ficha técnica y certificado de lote incluidos. Desde 10,000 piezas."
+description: "Sello de garantía PVC grado alimenticio para medicamentos y suplementos. Sin DEHP, sin metales pesados. Compatible COFEPRIS, NOM y FDA. Ficha técnica y."
 categoria: "sellos-de-garantia"
 subcategoria: "sello-farmaceutico"
 imagen: "/img/productos/sello-farmaceutico-medicamento.avif"

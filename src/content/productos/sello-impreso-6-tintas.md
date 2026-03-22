@@ -1,6 +1,6 @@
 ---
 title: "Sello Impreso a 6 Tintas — Rotograbado sobre PVC Termoencogible"
-description: "Sello de garantía con impresión rotograbado hasta 6 tintas: logotipo, código de barras, texto legal y diseño completo sobre PVC termoencogible. Resolución 120 LPI. Cilindros incluidos. Desde 10,000 piezas."
+description: "Sello de garantía con impresión rotograbado hasta 6 tintas: logotipo, código de barras, texto legal y diseño completo sobre PVC termoencogible. Resolución."
 categoria: "sellos-de-garantia"
 subcategoria: "sello-impreso"
 imagen: "/img/productos/sello-impreso-6-tintas-rotograbado.avif"
