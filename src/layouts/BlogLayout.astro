@@ -1,0 +1,788 @@
+---
+/**
+ * BlogLayout — Sello de Garantía Blog
+ * ────────────────────────────────────
+ * Layout de 2 columnas para artículos del blog.
+ * Col izquierda: artículo completo | Col derecha: BlogSidebar sticky
+ * Hereda de Base. Sin animaciones. CSS limpio y scoped.
+ */
+import Base from './Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import TopBar from '../components/TopBar.astro';
+import Header from '../components/Header.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import WhatsAppBubble from '../components/WhatsAppBubble.astro';
+import BlogSidebar from '../components/BlogSidebar.astro';
+import Footer from '../components/Footer.astro';
+
+import { WHATSAPP, WHATSAPP_HREF, LEGAL_NAME, EXPERIENCE_YEARS } from '../lib/config';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  image: string;
+  imageAlt: string;
+  category: string;
+  schemaMarkup?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  category,
+  schemaMarkup,
+} = Astro.props;
+
+// Artículos relacionados por categoría (hardcoded por ahora)
+const relatedByCategory: Record<string, Array<{title: string; description: string; image: string; imageAlt: string; category: string; slug: string}>> = {
+  "Técnico": [
+    { 
+      title: "Calibres de Película PVC: 40, 50, 60 y 80 Micras Explicados", 
+      description: "Guía técnica sobre los 4 calibres que manejamos y cuándo usar cada uno según tu industria.",
+      image: "/img/blog/calibres-pelicula-pvc-comparacion.avif", 
+      imageAlt: "Comparación de calibres de película PVC", 
+      category: "Técnico", 
+      slug: "calibres-pelicula-pvc-40-50-60-80-micras" 
+    },
+    { 
+      title: "Velocidad de Línea y Calibre: Cálculo Práctico", 
+      description: "Cómo la velocidad de tu línea de producción determina el calibre que necesitas.",
+      image: "/img/blog/velocidad-linea-calibre.avif", 
+      imageAlt: "Línea de producción con película PVC", 
+      category: "Técnico", 
+      slug: "velocidad-linea-calibre-pelicula" 
+    },
+    { 
+      title: "Impresión Rotograbado a 6 Tintas: Procesos y Limitaciones", 
+      description: "Todo lo que debes saber sobre la impresión rotograbado en película de PVC.",
+      image: "/img/blog/rotograbado-6-tintas.avif", 
+      imageAlt: "Proceso de impresión rotograbado", 
+      category: "Técnico", 
+      slug: "impresion-rotograbado-6-tintas" 
+    },
+  ],
+  "Farmacéutica": [
+    { 
+      title: "Sellado de Garantía para Medicamentos: Normativa COFEPRIS", 
+      description: "Requisitos legales y mejores prácticas para sellos de seguridad en farmacias.",
+      image: "/img/blog/sello-garantia-farmaceutica-cofepris.avif", 
+      imageAlt: "Frasco con sello de garantía farmacéutico", 
+      category: "Farmacéutica", 
+      slug: "sello-garantia-farmaceutica-cofepris" 
+    },
+    { 
+      title: "Tapas Pequeñas y Precisión: El Reto del Calibre 40", 
+      description: "Por qué para envases pequeños de farmacéutica se recomienda película de 40 micras.",
+      image: "/img/blog/tapas-pequenas-calibre-40.avif", 
+      imageAlt: "Tapas pequeñas con película de 40 micras", 
+      category: "Farmacéutica", 
+      slug: "tapas-pequenas-calibre-40" 
+    },
+    { 
+      title: "Trazabilidad y Código de Barras en Sellos de Seguridad", 
+      description: "Impresión de códigos de barras y sistemas de trazabilidad en sellos farmacéuticos.",
+      image: "/img/blog/codigo-barras-sello-farmaceutica.avif", 
+      imageAlt: "Código de barras en sello de garantía", 
+      category: "Farmacéutica", 
+      slug: "codigo-barras-sello-farmaceutica" 
+    },
+  ],
+  "Alimentos": [
+    { 
+      title: "Película PVC para Alimentos: Grado Alimenticio y Cumplimiento", 
+      description: "Normativa FDA, BPA-free y certificaciones de seguridad alimentaria.",
+      image: "/img/blog/pelicula-pvc-grado-alimenticio.avif", 
+      imageAlt: "Frasco de alimentos con sello PVC", 
+      category: "Alimentos", 
+      slug: "pelicula-pvc-grado-alimenticio-fda" 
+    },
+    { 
+      title: "Mangas Retráctiles para Botellas de Vidrio: Guía Completa", 
+      description: "Cómo elegir la manga retráctil correcta para botellas de salsas, aceites y condimentos.",
+      image: "/img/blog/manga-retractil-botella-salsa.avif", 
+      imageAlt: "Manga retráctil en botella de vidrio", 
+      category: "Alimentos", 
+      slug: "manga-retractil-botellas-alimentos" 
+    },
+    { 
+      title: "Resistencia al Congelamiento: Película para Productos Congelados", 
+      description: "Propiedades de la película PVC a baja temperatura para alimentos congelados.",
+      image: "/img/blog/resistencia-congelamiento-pelicula.avif", 
+      imageAlt: "Producto congelado con sello de garantía", 
+      category: "Alimentos", 
+      slug: "resistencia-congelamiento-pelicula-pvc" 
+    },
+  ],
+  "Vinos": [
+    { 
+      title: "Cápsulas Termoencogibles para Botellas de Vino: Acabado Profesional", 
+      description: "Cómo elegir la cápsula correcta para cada tipo de botella y deseo visual.",
+      image: "/img/blog/capsula-botella-vino.avif", 
+      imageAlt: "Cápsula termoencogible en botella de vino", 
+      category: "Vinos", 
+      slug: "capsula-botella-vino-acabado-profesional" 
+    },
+    { 
+      title: "Calibre 40-50 Micras para Botellas Delgadas: Precisión Importa", 
+      description: "Por qué películas finas son clave para el acabado elegante en destilados.",
+      image: "/img/blog/capsula-botella-delgada-calibre-40.avif", 
+      imageAlt: "Botella de licor con cápsula fina", 
+      category: "Vinos", 
+      slug: "capsula-botella-delgada-calibre-40" 
+    },
+    { 
+      title: "Impresión Personalizada en Cápsulas: Logotipo y Regulaciones", 
+      description: "Impresión rotograbado en cápsulas con logos, regulaciones de alcohol y datos legales.",
+      image: "/img/blog/capsula-impresa-vino.avif", 
+      imageAlt: "Cápsula impresa con logo", 
+      category: "Vinos", 
+      slug: "capsula-impresa-vino-logotipo" 
+    },
+  ],
+};
+
+// Artículos populares (para sidebar)
+const popularArticles = [
+  { 
+    title: "¿Cómo Elegir el Calibre Correcto de Película PVC para tu Línea?", 
+    slug: "como-elegir-calibre-pelicula-pvc", 
+    category: "Técnico", 
+    img: "/img/blog/calibres-pelicula-pvc-40-50-60-80-micras.avif" 
+  },
+  { 
+    title: "Sellado de Garantía para Medicamentos: Normativa COFEPRIS", 
+    slug: "sello-garantia-farmaceutica-cofepris", 
+    category: "Farmacéutica", 
+    img: "/img/blog/sello-garantia-farmaceutica-cofepris.avif" 
+  },
+  { 
+    title: "Película PVC para Alimentos: Grado Alimenticio y Cumplimiento", 
+    slug: "pelicula-pvc-grado-alimenticio-fda", 
+    category: "Alimentos", 
+    img: "/img/blog/pelicula-pvc-grado-alimenticio.avif" 
+  },
+  { 
+    title: "Cápsulas Termoencogibles para Botellas de Vino: Acabado Profesional", 
+    slug: "capsula-botella-vino-acabado-profesional", 
+    category: "Vinos", 
+    img: "/img/blog/capsula-botella-vino.avif" 
+  },
+];
+
+// Articulos relacionados por categoría actual
+const relatedArticles = relatedByCategory[category] || [
+  { 
+    title: "¿Cómo Elegir el Calibre Correcto de Película PVC para tu Línea?", 
+    description: "Guía técnica para elegir entre 40, 50, 60 y 80 micras según tu industria.",
+    image: "/img/blog/calibres-pelicula-pvc-40-50-60-80-micras.avif", 
+    imageAlt: "Comparación de calibres de película PVC", 
+    category: "Técnico", 
+    slug: "como-elegir-calibre-pelicula-pvc" 
+  },
+  { 
+    title: "Sellado de Garantía para Medicamentos: Normativa COFEPRIS", 
+    description: "Requisitos legales y mejores prácticas para sellos de seguridad en farmacias.",
+    image: "/img/blog/sello-garantia-farmaceutica-cofepris.avif", 
+    imageAlt: "Frasco con sello de garantía farmacéutico", 
+    category: "Farmacéutica", 
+    slug: "sello-garantia-farmaceutica-cofepris" 
+  },
+  { 
+    title: "Película PVC para Alimentos: Grado Alimenticio y Cumplimiento", 
+    description: "Normativa FDA, BPA-free y certificaciones de seguridad alimentaria.",
+    image: "/img/blog/pelicula-pvc-grado-alimenticio.avif", 
+    imageAlt: "Frasco de alimentos con sello PVC", 
+    category: "Alimentos", 
+    slug: "pelicula-pvc-grado-alimenticio-fda" 
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={image}
+  schemaMarkup={schemaMarkup}
+>
+  <TopBar />
+  <Header />
+
+  <!-- Breadcrumbs -->
+  <nav class="blog-breadcrumbs">
+    <div class="container">
+      <Breadcrumb items={[
+        { text: "Inicio", href: "/" },
+        { text: "Blog", href: "/blog/" },
+        { text: title.length > 45 ? title.substring(0, 45) + "…" : title }
+      ]} />
+    </div>
+  </nav>
+
+  <!-- CTA Bar — barra de acceso rápido -->
+  <CtaBanner
+    headline="Nuestros Servicios"
+    items={[
+      { label: "Sellos de Garantía", href: "/productos/sellos-de-garantia/", icon: "products" },
+      { label: "Mangas Retráctiles", href: "/productos/mangas-retractiles/", icon: "products" },
+      { label: "Etiquetas Impresas", href: "/productos/etiquetas-impresas/", icon: "products" },
+      { label: "Cotiza Gratis", href: "/cotizar/", icon: "quote" },
+    ]}
+  />
+
+  <!-- Contenido del artículo: 2 columnas (artículo + sidebar) -->
+  <section class="blog-article-section">
+    <div class="container blog-article-layout">
+
+      <!-- Artículo principal -->
+      <article class="blog-article">
+
+        <!-- Imagen destacada -->
+        <div class="blog-article__hero-img">
+          <img
+            src={image}
+            alt={imageAlt}
+            loading="eager"
+            width="1200"
+            height="630"
+          />
+        </div>
+
+        <!-- Contenido del artículo (slot) -->
+        <div class="blog-content">
+          <slot />
+        </div>
+
+        <!-- CTA al final del artículo -->
+        <div class="blog-article__cta">
+          <div class="blog-article__cta-inner">
+            <h3>¿Te quedaron dudas sobre película de PVC?</h3>
+            <p>Escríbenos por WhatsApp con los detalles de tu proyecto. Te asesoramos gratis y te cotizamos en minutos.</p>
+            <div class="blog-article__cta-btns">
+              <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, leí el artículo "${title}" y quiero cotizar película de PVC para mi proyecto.`)}`}
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn-whatsapp btn-lg">
+                Cotizar por WhatsApp
+              </a>
+              <a href="/cotizar/" class="btn btn-primary btn-lg">Formulario de Cotización</a>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <div class="blog-article-sidebar">
+        <BlogSidebar 
+          popularArticles={popularArticles}
+          phone="55 5686 3599"
+          whatsapp={WHATSAPP}
+          waMessage="Hola, vi el blog de Sello de Garantía y quiero cotizar película de PVC."
+        />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Artículos relacionados -->
+  <section class="blog-related">
+    <div class="container">
+      <div class="blog-related__header">
+        <h2 class="blog-related__title">Artículos Relacionados</h2>
+        <p class="blog-related__sub">Más guías técnicas del equipo de Sello de Garantía</p>
+      </div>
+      <div class="blog-related__grid">
+        {relatedArticles.map((art) => (
+          <article class="blog-card">
+            <div class="blog-card__img">
+              <img src={art.image} alt={art.imageAlt} loading="lazy" width="400" height="240" />
+            </div>
+            <div class="blog-card__content">
+              <span class="blog-card__category">{art.category}</span>
+              <h3 class="blog-card__title">{art.title}</h3>
+              <p class="blog-card__description">{art.description}</p>
+              <a href={`/blog/${art.slug}/`} class="blog-card__link">Leer artículo →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="blog-related__link">
+        <a href="/blog/" class="btn btn-outline btn-lg">Ver todos los artículos →</a>
+      </div>
+    </div>
+  </section>
+
+  <WhatsAppBubble />
+  <Footer />
+
+</Base>
+
+<style>
+/* ──────────────────────────────────────────
+   BREADCRUMBS
+   ────────────────────────────────────────── */
+.blog-breadcrumbs {
+  border-bottom: 1px solid #e9ecef;
+  padding: 0.75rem 0;
+  background: #f8fafc;
+}
+
+/* ──────────────────────────────────────────
+   LAYOUT DE 2 COLUMNAS
+   ────────────────────────────────────────── */
+.blog-article-section {
+  background: #f8f9fa;
+  padding: 3rem 0 4rem;
+}
+
+.blog-article-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ──────────────────────────────────────────
+   ARTÍCULO
+   ────────────────────────────────────────── */
+.blog-article {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+}
+
+.blog-article__hero-img {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+}
+
+.blog-article__hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ──────────────────────────────────────────
+   TIPOGRAFÍA DEL CONTENIDO
+   ────────────────────────────────────────── */
+.blog-content {
+  padding: 2.5rem 2.5rem 2rem;
+}
+
+.blog-content :global(h2) {
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 2.5rem 0 1rem;
+  line-height: 1.25;
+  padding-left: 1rem;
+  border-left: 4px solid var(--color-primary, #0047AB);
+}
+
+.blog-content :global(h2:first-child) {
+  margin-top: 0;
+}
+
+.blog-content :global(h3) {
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 2rem 0 0.75rem;
+  line-height: 1.3;
+}
+
+.blog-content :global(p) {
+  font-family: var(--font-body, 'Open Sans', sans-serif);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #343a40;
+  margin: 0 0 1.4rem;
+}
+
+.blog-content :global(strong) {
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+}
+
+.blog-content :global(em) {
+  font-style: italic;
+}
+
+.blog-content :global(ul),
+.blog-content :global(ol) {
+  font-family: var(--font-body, 'Open Sans', sans-serif);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #343a40;
+  margin: 0 0 1.4rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.blog-content :global(ul li),
+.blog-content :global(ol li) {
+  padding-left: 1.75rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.blog-content :global(ul li::before) {
+  content: '';
+  position: absolute;
+  left: 0.25rem;
+  top: 0.65rem;
+  width: 7px;
+  height: 7px;
+  background: var(--color-primary, #0047AB);
+  border-radius: 50%;
+}
+
+.blog-content :global(ol) {
+  counter-reset: ol-counter;
+}
+
+.blog-content :global(ol li) {
+  counter-increment: ol-counter;
+}
+
+.blog-content :global(ol li::before) {
+  content: counter(ol-counter) ".";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--color-primary, #0047AB);
+  font-size: 0.875rem;
+}
+
+.blog-content :global(a) {
+  color: var(--color-primary, #0047AB);
+  text-decoration: none;
+}
+
+.blog-content :global(a:hover) {
+  text-decoration: underline;
+}
+
+.blog-content :global(blockquote) {
+  border-left: 4px solid var(--color-primary, #0047AB);
+  background: rgba(0, 71, 171, 0.05);
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.blog-content :global(blockquote p) {
+  margin: 0;
+  color: var(--color-secondary, #1A1A2E);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.0625rem;
+}
+
+.blog-content :global(img) {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  display: block;
+}
+
+.blog-content :global(figure) {
+  margin: 1.5rem 0;
+}
+
+.blog-content :global(figcaption) {
+  font-size: 0.8125rem;
+  color: #6c757d;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ──────────────────────────────────────────
+   CTA DENTRO DEL ARTÍCULO
+   ────────────────────────────────────────── */
+.blog-article__cta {
+  border-top: 1px solid #e9ecef;
+  background: #f8f9fa;
+  padding: 2.5rem;
+}
+
+.blog-article__cta-inner {
+  max-width: 640px;
+}
+
+.blog-article__cta h3 {
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 0 0 0.5rem;
+}
+
+.blog-article__cta p {
+  font-size: 0.9375rem;
+  color: #6c757d;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.blog-article__cta-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+}
+
+.btn-lg {
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--color-primary, #0047AB);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #003580;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-whatsapp:hover {
+  background: #1fb855;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-outline {
+  border: 2px solid var(--color-primary, #0047AB);
+  color: var(--color-primary, #0047AB);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--color-primary, #0047AB);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ──────────────────────────────────────────
+   SIDEBAR
+   ────────────────────────────────────────── */
+.blog-article-sidebar {
+  position: sticky;
+  top: calc(36px + 70px + 1.5rem);
+}
+
+/* ──────────────────────────────────────────
+   ARTÍCULOS RELACIONADOS
+   ────────────────────────────────────────── */
+.blog-related {
+  padding: 3.5rem 0;
+}
+
+.blog-related__header {
+  margin-bottom: 2rem;
+}
+
+.blog-related__title {
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 0 0 0.5rem;
+}
+
+.blog-related__sub {
+  font-size: 0.9375rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.blog-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.blog-related__link {
+  text-align: center;
+}
+
+/* ──────────────────────────────────────────
+   BLOG CARD
+   ────────────────────────────────────────── */
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.blog-card:hover {
+  border-color: var(--color-primary, #0047AB);
+  box-shadow: 0 4px 12px rgba(0, 71, 171, 0.1);
+}
+
+.blog-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.blog-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-card__content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card__category {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary, #0047AB);
+  margin-bottom: 0.5rem;
+}
+
+.blog-card__title {
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 0 0 0.75rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card__description {
+  font-size: 0.875rem;
+  color: #6c757d;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.blog-card__link {
+  color: var(--color-primary, #0047AB);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.blog-card__link:hover {
+  text-decoration: underline;
+}
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .blog-article-layout {
+    grid-template-columns: 1fr 280px;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .blog-article-layout {
+    grid-template-columns: 1fr 260px;
+    gap: 1.5rem;
+  }
+
+  .blog-content {
+    padding: 2rem 2rem 1.75rem;
+  }
+
+  .blog-article__cta {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .blog-article-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-article-sidebar {
+    position: static;
+    order: 2;
+  }
+
+  .blog-related__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-article-section {
+    padding: 1.5rem 0 2.5rem;
+  }
+
+  .blog-content {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .blog-article__cta {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .blog-article__cta-btns {
+    flex-direction: column;
+  }
+
+  .blog-related__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-related {
+    padding: 2.5rem 0;
+  }
+}
+</style>

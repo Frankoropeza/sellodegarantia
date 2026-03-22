@@ -3,7 +3,7 @@ import { SITE_URL } from '../lib/config';
 
 interface BreadcrumbItem {
   text: string;
-  href: string;
+  href?: string;
 }
 interface Props {
   items: BreadcrumbItem[];
@@ -18,7 +18,7 @@ const schemaData = {
     '@type': 'ListItem',
     position: i + 1,
     name: item.text,
-    item: item.href.startsWith('http') ? item.href : `${SITE_URL}${item.href}`,
+    item: item.href ? (item.href.startsWith('http') ? item.href : `${SITE_URL}${item.href}`) : `${SITE_URL}${Astro.url.pathname}`,
   })),
 };
 ---
