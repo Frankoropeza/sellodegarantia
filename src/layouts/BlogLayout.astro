@@ -546,56 +546,57 @@ const relatedArticles = relatedByCategory[category] || [
   flex-wrap: wrap;
 }
 
-.btn {
+/* Botones CTA del artículo — solo para la sección del artículo, no sobreescribe el Hero */
+.blog-article__cta .btn--primary {
+  background: var(--color-primary, #0047AB);
+  color: #fff;
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
   border-radius: 8px;
   font-family: var(--font-primary, 'Montserrat', sans-serif);
   font-weight: 600;
   text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
-  font-size: 0.9375rem;
-}
-
-.btn--lg {
-  padding: 0.875rem 1.75rem;
   font-size: 1rem;
 }
 
-.btn--primary {
-  background: var(--color-primary, #0047AB);
-  color: #fff;
-}
-
-.btn--primary:hover {
+.blog-article__cta .btn--primary:hover {
   background: #003580;
-  color: #fff;
   text-decoration: none;
 }
 
-.btn--whatsapp {
+.blog-article__cta .btn--whatsapp {
   background: #25D366;
   color: #fff;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.btn--whatsapp:hover {
+.blog-article__cta .btn--whatsapp:hover {
   background: #1fb855;
-  color: #fff;
   text-decoration: none;
 }
 
-.btn--outline {
+.blog-related__link .btn--outline {
   border: 2px solid var(--color-primary, #0047AB);
   color: var(--color-primary, #0047AB);
   background: transparent;
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  font-family: var(--font-primary, 'Montserrat', sans-serif);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.btn--outline:hover {
+.blog-related__link .btn--outline:hover {
   background: var(--color-primary, #0047AB);
   color: #fff;
   text-decoration: none;
