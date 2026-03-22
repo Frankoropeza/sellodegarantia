@@ -10,6 +10,7 @@ import Base from './Base.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import TopBar from '../components/TopBar.astro';
 import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
 import CtaBanner from '../components/CtaBanner.astro';
 import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 import BlogSidebar from '../components/BlogSidebar.astro';
@@ -212,6 +213,15 @@ const relatedArticles = relatedByCategory[category] || [
   <TopBar />
   <Header />
 
+  <!-- Hero igual al Index -->
+  <Hero
+    badge={category}
+    title={title}
+    description={description}
+    primaryCta={{ text: 'Solicitar Cotización', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Ver Productos', href: '/productos/' }}
+  />
+
   <!-- Breadcrumbs -->
   <nav class="blog-breadcrumbs">
     <div class="container">
@@ -240,17 +250,6 @@ const relatedArticles = relatedByCategory[category] || [
 
       <!-- Artículo principal -->
       <article class="blog-article">
-
-        <!-- Imagen destacada -->
-        <div class="blog-article__hero-img">
-          <img
-            src={image}
-            alt={imageAlt}
-            loading="eager"
-            width="1200"
-            height="630"
-          />
-        </div>
 
         <!-- Contenido del artículo (slot) -->
         <div class="blog-content">
