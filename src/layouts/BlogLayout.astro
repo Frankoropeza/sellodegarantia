@@ -261,21 +261,14 @@ const relatedArticles = relatedByCategory[category] || [
           <slot />
         </div>
 
-        <!-- CTA al final del artículo -->
-        <div class="blog-article__cta">
-          <div class="blog-article__cta-inner">
-            <h3>¿Te quedaron dudas sobre película de PVC?</h3>
-            <p>Escríbenos por WhatsApp con los detalles de tu proyecto. Te asesoramos gratis y te cotizamos en minutos.</p>
-            <div class="blog-article__cta-btns">
-              <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, leí el artículo "${title}" y quiero cotizar película de PVC para mi proyecto.`)}`}
-                 target="_blank" rel="noopener noreferrer"
-                 class="cta-btn-whatsapp">
-                Cotizar por WhatsApp
-              </a>
-              <a href="/cotizar/" class="cta-btn-primary">Formulario de Cotización</a>
-            </div>
-          </div>
-        </div>
+        <!-- CTA igual al Index -->
+        <CtaBanner
+          title="¿Busca un fabricante de sellos de garantía?"
+          subtitle="Cotización en menos de 24 horas. Muestras sin costo."
+          btnText="Cotizar Ahora"
+          btnHref="/cotizar/"
+          variant="accent"
+        />
 
       </article>
 
