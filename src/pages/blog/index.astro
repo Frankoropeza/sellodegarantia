@@ -1,0 +1,340 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import { SITE_NAME, SITE_URL } from '../../lib/config';
+
+const title = 'Blog de Sellos de Garantía PVC | Guías Técnicas y Noticias';
+const description = 'Guías técnicas sobre película PVC termoencogible, calibres, normativas COFEPRIS y más. Fabricante con 28 años. Sello de Garantía.';
+const canonical = 'https://sellodegarantia.com/blog/';
+
+const articles = [
+  {
+    title: '¿Cómo Elegir el Calibre Correcto de Película PVC?',
+    description: 'Guía técnica: calibres 40, 50, 60 y 80 micras. Cuál usar según tu envase, industria y velocidad de línea.',
+    slug: 'como-elegir-calibre-pelicula-pvc',
+    category: 'Técnico',
+    image: '/img/blog/calibres-pelicula-pvc-40-50-60-80-micras.avif',
+    imageAlt: 'Comparación calibres película PVC termoencogible'
+  },
+  {
+    title: 'Normativa COFEPRIS para Sellos de Garantía en Medicamentos',
+    description: 'Qué exige COFEPRIS para sellos de seguridad en medicamentos y cómo cumplir la norma.',
+    slug: 'normativa-cofepris-sellos-farmaceuticos',
+    category: 'Farmacéutica',
+    image: '/img/blog/cofepris-normativa-sellos-farmaceuticos.avif',
+    imageAlt: 'Sello de garantía farmacéutico con aprobación COFEPRIS'
+  },
+  {
+    title: 'Película Termoencogible vs Etiqueta Adhesiva',
+    description: 'Comparativa honesta en 8 criterios: costos, durabilidad, visual y cuándo usar cada una.',
+    slug: 'pelicula-pvc-vs-etiqueta-adhesiva',
+    category: 'Técnico',
+    image: '/img/blog/versatilidad-pelicula-pvc-industrias.avif',
+    imageAlt: 'Comparativa película termoencogible vs etiqueta adhesiva'
+  },
+  {
+    title: 'Cómo Calcular Cuánta Película PVC Necesitas',
+    description: 'Fórmula paso a paso con tabla de referencia por tipo de envase y margen de desperdicio.',
+    slug: 'calcular-cantidad-pelicula-pvc',
+    category: 'Técnico',
+    image: '/img/blog/escala-produccion-linea-automatizada.avif',
+    imageAlt: 'Línea de producción automatizada película PVC'
+  },
+  {
+    title: '5 Industrias que Más Usan Sellos de Garantía PVC en México',
+    description: 'Farmacéutica, alimentos, agua, vinos y gas: requisitos específicos y calibres recomendados.',
+    slug: 'industrias-que-usan-sellos-pvc-mexico',
+    category: 'Industrias',
+    image: '/img/blog/blog-hero-rollo-pvc-transparente.avif',
+    imageAlt: 'Rollo de película PVC transparente para industrias'
+  }
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Inicio',
+      item: SITE_URL
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: `${SITE_URL}blog/`
+    }
+  ]
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description: description,
+  url: canonical,
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}img/logo.avif`
+    }
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: articles.map((article, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${SITE_URL}blog/${article.slug}/`,
+      name: article.title,
+      description: article.description,
+      image: `${SITE_URL}${article.image.replace(/^\//, '')}`
+    }))
+  }
+};
+
+const structuredData = [breadcrumbSchema, collectionSchema];
+---
+
+<Base
+  title={title}
+  description={description}
+  canonical={canonical}
+  structuredData={structuredData}
+>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="blog-hero">
+      <div class="container">
+        <div class="blog-hero__content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/" class="breadcrumb__link">Inicio</a>
+            <span class="breadcrumb__separator">/</span>
+            <span class="breadcrumb__current">Blog</span>
+          </nav>
+          
+          <h1 class="blog-hero__title">Blog Técnico: Todo sobre Película PVC y Sellos de Garantía</h1>
+          <p class="blog-hero__subtitle">Guías prácticas, normativas y casos reales de fabricación con 28 años de experiencia</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="blog-articles">
+      <div class="container">
+        <div class="articles-grid">
+          {articles.map((article) => (
+            <article class="article-card">
+              <div class="article-card__image-wrapper">
+                <img
+                  src={article.image}
+                  alt={article.imageAlt}
+                  class="article-card__image"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="240"
+                />
+              </div>
+              
+              <div class="article-card__content">
+                <span class="article-card__category">{article.category}</span>
+                <h2 class="article-card__title">{article.title}</h2>
+                <p class="article-card__description">{article.description}</p>
+                
+                <a href={`/blog/${article.slug}/`} class="article-card__link">
+                  Leer artículo →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <CtaBanner
+      title="¿Busca un fabricante de sellos de garantía?"
+      subtitle="Cotización en menos de 24 horas. Muestras sin costo."
+      btnText="Cotizar Ahora"
+      btnHref="/cotizar/"
+      variant="accent"
+    />
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .blog-hero {
+    padding: var(--space-12) 0;
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary-lighter) 100%);
+  }
+
+  .blog-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+  }
+
+  .breadcrumb__link {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .breadcrumb__link:hover {
+    opacity: 0.7;
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-gray-400);
+  }
+
+  .breadcrumb__current {
+    color: var(--color-gray-700);
+    font-weight: var(--font-weight-500);
+  }
+
+  .blog-hero__title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .blog-hero__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-700);
+    margin: 0;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero {
+      padding: var(--space-8) 0;
+    }
+
+    .blog-hero__title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .blog-hero__subtitle {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  .blog-articles {
+    padding: var(--space-12) 0;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .article-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .article-card__image-wrapper {
+    overflow: hidden;
+    height: 200px;
+    background: var(--color-gray-100);
+  }
+
+  .article-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .article-card:hover .article-card__image {
+    transform: scale(1.05);
+  }
+
+  .article-card__content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-4);
+    flex-grow: 1;
+  }
+
+  .article-card__category {
+    display: inline-block;
+    width: fit-content;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-600);
+    text-transform: uppercase;
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: var(--space-2);
+  }
+
+  .article-card__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    margin: 0 0 var(--space-2) 0;
+    line-height: 1.4;
+    flex-grow: 1;
+  }
+
+  .article-card__description {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    margin: 0 0 var(--space-3) 0;
+    line-height: 1.6;
+  }
+
+  .article-card__link {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-600);
+    font-size: var(--font-size-sm);
+    transition: color 0.2s ease;
+  }
+
+  .article-card__link:hover {
+    color: var(--color-primary-dark);
+  }
+
+  @media (max-width: 768px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
