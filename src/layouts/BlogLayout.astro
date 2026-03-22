@@ -269,10 +269,10 @@ const relatedArticles = relatedByCategory[category] || [
             <div class="blog-article__cta-btns">
               <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hola, leí el artículo "${title}" y quiero cotizar película de PVC para mi proyecto.`)}`}
                  target="_blank" rel="noopener noreferrer"
-                 class="btn btn-whatsapp btn-lg">
+                 class="btn btn--whatsapp btn--lg">
                 Cotizar por WhatsApp
               </a>
-              <a href="/cotizar/" class="btn btn-primary btn-lg">Formulario de Cotización</a>
+              <a href="/cotizar/" class="btn btn--primary btn--lg">Formulario de Cotización</a>
             </div>
           </div>
         </div>
@@ -315,7 +315,7 @@ const relatedArticles = relatedByCategory[category] || [
         ))}
       </div>
       <div class="blog-related__link">
-        <a href="/blog/" class="btn btn-outline btn-lg">Ver todos los artículos →</a>
+        <a href="/blog/" class="btn btn--outline btn--lg">Ver todos los artículos →</a>
       </div>
     </div>
   </section>
@@ -559,23 +559,23 @@ const relatedArticles = relatedByCategory[category] || [
   font-size: 0.9375rem;
 }
 
-.btn-lg {
+.btn--lg {
   padding: 0.875rem 1.75rem;
   font-size: 1rem;
 }
 
-.btn-primary {
+.btn--primary {
   background: var(--color-primary, #0047AB);
   color: #fff;
 }
 
-.btn-primary:hover {
+.btn--primary:hover {
   background: #003580;
   color: #fff;
   text-decoration: none;
 }
 
-.btn-whatsapp {
+.btn--whatsapp {
   background: #25D366;
   color: #fff;
   display: flex;
@@ -583,19 +583,19 @@ const relatedArticles = relatedByCategory[category] || [
   gap: 0.5rem;
 }
 
-.btn-whatsapp:hover {
+.btn--whatsapp:hover {
   background: #1fb855;
   color: #fff;
   text-decoration: none;
 }
 
-.btn-outline {
+.btn--outline {
   border: 2px solid var(--color-primary, #0047AB);
   color: var(--color-primary, #0047AB);
   background: transparent;
 }
 
-.btn-outline:hover {
+.btn--outline:hover {
   background: var(--color-primary, #0047AB);
   color: #fff;
   text-decoration: none;
