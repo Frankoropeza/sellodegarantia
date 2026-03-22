@@ -1,0 +1,373 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+const title = "Cómo Calcular Cuánta Película PVC Necesitas para tu Producción: Fórmula Paso a Paso";
+const description = "Fórmula práctica para calcular metros de película PVC según tu envase, velocidad de línea y volumen. Incluye calculadora y ejemplos reales.";
+const canonical = "https://sellodegarantia.com/blog/calcular-cantidad-pelicula-pvc/";
+
+const schemaMarkup = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cómo Calcular Cuánta Película PVC Necesitas para tu Producción: Fórmula Paso a Paso",
+    "description": "Fórmula práctica para calcular metros de película PVC según tu envase, velocidad de línea y volumen. Incluye calculadora y ejemplos reales.",
+    "author": { "@type": "Organization", "name": "Tumipack México", "url": "https://sellodegarantia.com" },
+    "publisher": { "@type": "Organization", "name": "Tumipack México", "url": "https://sellodegarantia.com", "logo": { "@type": "ImageObject", "url": "https://sellodegarantia.com/img/logo.avif" } },
+    "image": "https://sellodegarantia.com/img/blog/escala-produccion-linea-automatizada.avif",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://sellodegarantia.com/blog/calcular-cantidad-pelicula-pvc/" },
+    "datePublished": "2026-03-22",
+    "dateModified": "2026-03-22"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cómo sé cuántos metros de película necesito por mes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Multiplica el perímetro de tu envase (en cm) × cantidad de piezas que produces × 1.20 (margen de desperdicio 20%). Esto te da metros lineales de película por mes. Ejemplo: perímetro 15 cm × 100,000 piezas × 1.20 = 18,000 metros/mes." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué margen de desperdicio debo considerar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Depende de tu línea: líneas nuevas automáticas = 10-15% desperdicio. Líneas manual o semiautomáticas = 20-30%. Líneas antiguas o con mucha vibración = 30-40%. Siempre suma un 20% mínimo como margen de seguridad." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo calculo el perímetro si mi envase no es perfectamente cilíndrico?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Mide el diámetro en la parte más ancha donde va el sello. Usa la fórmula perímetro = π × diámetro. Para envases ovales o irregulares, mide con una cinta métrica alrededor de la parte donde va la película y usa ese número directo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si calculo mal y compro menos película?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Te quedas sin película a mitad de producción. Cambiar de proveedor, esperar nuevas entregas, paralizar línea = pérdida de dinero y clientes. Mejor calcular generoso y tener stock que quedarse corto. Película bien almacenada (seco, fresco) dura años." }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Tumipack México",
+    "url": "https://sellodegarantia.com",
+    "telephone": "+525556863599",
+    "address": { "@type": "PostalAddress", "addressLocality": "Iztapalapa", "addressRegion": "CDMX", "addressCountry": "MX" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "ratingCount": "47"
+    }
+  }
+]);
+
+const image = "/img/blog/escala-produccion-linea-automatizada.avif";
+const imageAlt = "Cálculo de película PVC para producción industrial";
+const category = "Técnico";
+
+---
+
+<BlogLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  image={image}
+  imageAlt={imageAlt}
+  category={category}
+  schemaMarkup={schemaMarkup}
+>
+      <p>Uno de los errores más comunes que vemos es que fabricantes ordenen película PVC sin haber calculado correctamente cuánto necesitan. Resultado: se quedan cortos a mitad de producción, cierran línea esperando entregas urgentes, pierden clientes, o gastan más dinero comprando cantidades pequeñas a precio premium.</p>
+
+      <p>Calcular cuánta película necesitas no es magia — es matemática simple. Necesitas saber tres números: el perímetro de tu envase, cuántas piezas produces, y qué margen de desperdicio aceptas.</p>
+
+      <p>En esta guía te mostramos la fórmula exacta, ejemplos reales, tabla de referencia por tipo de envase, y cómo hacer tu primer pedido sin quedarte corto.</p>
+
+      <h2>Los 3 Datos que Necesitas Antes de Calcular</h2>
+
+      <h3>1. Perímetro Exacto de tu Envase (en centímetros)</h3>
+
+      <p>Este es el número más importante. Es la distancia alrededor de tu envase en la parte donde va el sello de película.</p>
+
+      <p><strong>Cómo medirlo:</strong><br/>
+      Si tu envase es cilíndrico (botella, frasco, lata):<br/>
+      Perímetro = π (3.14159) × Diámetro</p>
+
+      <p>Ejemplo: botella con diámetro 8 cm<br/>
+      Perímetro = 3.14159 × 8 = 25.13 cm</p>
+
+      <p><strong>Alternativa más fácil:</strong> toma una cinta métrica y mide directamente alrededor del envase en la línea donde va el sello. Es más preciso porque algunas botellas no son perfectamente cilíndricas.</p>
+
+      <h3>2. Cantidad de Piezas que Produces por Período</h3>
+
+      <p>¿Cuántas unidades produces al mes? ¿Al año? Aquí entra el número absoluto. Ejemplo: 150,000 piezas/mes.</p>
+
+      <h3>3. Margen de Desperdicio (Típicamente 15-30%)</h3>
+
+      <p>Ninguna línea es 100% eficiente. Hay:</p>
+
+      <ul>
+        <li>Piezas de prueba al inicio de línea.</li>
+        <li>Arrugas y errores de posicionamiento.</li>
+        <li>Recortes de película al cambiar rollo.</li>
+        <li>Defectos que descartamos.</li>
+      </ul>
+
+      <p>El desperdicio varía según tu equipo:</p>
+
+      <ul>
+        <li><strong>Línea automática nueva:</strong> 10-15% desperdicio.</li>
+        <li><strong>Línea semiautomática estándar:</strong> 20-25% desperdicio.</li>
+        <li><strong>Línea manual o antigua:</strong> 30-40% desperdicio.</li>
+      </ul>
+
+      <p>Recomendación: suma un margen conservador (20-25%). Es mejor tener película de más que quedarte corto.</p>
+
+      <h2>La Fórmula (Con Ejemplos Concretos)</h2>
+
+      <p><strong>Fórmula base:</strong></p>
+
+      <p style="background: #f0f5ff; padding: 1.5rem; border-radius: 8px; font-weight: 600; text-align: center; font-size: 1.1rem; margin: 1.5rem 0;">
+        Metros de película = (Perímetro en cm ÷ 100) × Piezas × Margen de desperdicio
+      </p>
+
+      <p><strong>Ejemplo #1: Frasco de mermelada</strong></p>
+
+      <ul>
+        <li>Perímetro: 20 cm</li>
+        <li>Producción: 100,000 piezas/mes</li>
+        <li>Margen de desperdicio: 20% (1.20)</li>
+      </ul>
+
+      <p>Cálculo:<br/>
+      (20 ÷ 100) × 100,000 × 1.20 = 0.20 × 100,000 × 1.20 = <strong>24,000 metros/mes</strong></p>
+
+      <p><strong>Ejemplo #2: Botella de agua 500ml</strong></p>
+
+      <ul>
+        <li>Perímetro: 18 cm</li>
+        <li>Producción: 500,000 piezas/mes</li>
+        <li>Margen de desperdicio: 15% (1.15)</li>
+      </ul>
+
+      <p>Cálculo:<br/>
+      (18 ÷ 100) × 500,000 × 1.15 = 0.18 × 500,000 × 1.15 = <strong>103,500 metros/mes</strong></p>
+
+      <p><strong>Ejemplo #3: Garrafón de agua 20L</strong></p>
+
+      <ul>
+        <li>Perímetro: 35 cm</li>
+        <li>Producción: 50,000 piezas/mes</li>
+        <li>Margen de desperdicio: 25% (1.25)</li>
+      </ul>
+
+      <p>Cálculo:<br/>
+      (35 ÷ 100) × 50,000 × 1.25 = 0.35 × 50,000 × 1.25 = <strong>21,875 metros/mes</strong></p>
+
+      <h2>Tabla de Referencia por Tipo de Envase</h2>
+
+      <p>Aquí están los perímetros aproximados de envases comunes en México. Úsalos como punto de partida (verifica con tu envase específico):</p>
+
+      <div class="table-wrapper">
+        <table class="reference-table">
+          <thead>
+            <tr>
+              <th>Tipo de Envase</th>
+              <th>Volumen / Tamaño</th>
+              <th>Perímetro Aprox.</th>
+              <th>Industria Típica</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frasco de tapa rosca</td>
+              <td>30-60 ml</td>
+              <td>10-15 cm</td>
+              <td>Farmacéutica, cosméticos</td>
+            </tr>
+            <tr>
+              <td>Frasco cosmético</td>
+              <td>50-100 ml</td>
+              <td>13-18 cm</td>
+              <td>Belleza, suplementos</td>
+            </tr>
+            <tr>
+              <td>Lata de aluminio</td>
+              <td>355-500 ml</td>
+              <td>25-28 cm</td>
+              <td>Bebidas, alimentos</td>
+            </tr>
+            <tr>
+              <td>Botella de vino</td>
+              <td>750 ml</td>
+              <td>22-25 cm</td>
+              <td>Vinos y licores</td>
+            </tr>
+            <tr>
+              <td>Botella de agua</td>
+              <td>500 ml - 1L</td>
+              <td>18-22 cm</td>
+              <td>Bebidas, agua</td>
+            </tr>
+            <tr>
+              <td>Frasco de salsa/mermelada</td>
+              <td>250-500 ml</td>
+              <td>18-24 cm</td>
+              <td>Alimentos</td>
+            </tr>
+            <tr>
+              <td>Botella de licor pequeña</td>
+              <td>375 ml</td>
+              <td>18-20 cm</td>
+              <td>Licores, destilados</td>
+            </tr>
+            <tr>
+              <td>Botella grande / Vino Magnum</td>
+              <td>1.5L</td>
+              <td>26-30 cm</td>
+              <td>Vinos premium</td>
+            </tr>
+            <tr>
+              <td>Garrafón de agua</td>
+              <td>20L</td>
+              <td>32-38 cm</td>
+              <td>Agua embotellada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Margen de Desperdicio: Cuánto Agregar</h2>
+
+      <p>El desperdicio es el factor que más varía entre líneas. No es fijo — depende de tu equipo y operarios.</p>
+
+      <h3>Línea Automática Nueva</h3>
+
+      <p>Máquinas de última generación, bien calibradas, operadas por personal experimentado.</p>
+
+      <ul>
+        <li>Desperdicio típico: 8-12%</li>
+        <li>Multiplicador: 1.10</li>
+      </ul>
+
+      <h3>Línea Semiautomática Estándar</h3>
+
+      <p>Equipos de hace 5-10 años, buen estado, mantenimiento regular.</p>
+
+      <ul>
+        <li>Desperdicio típico: 18-22%</li>
+        <li>Multiplicador: 1.20</li>
+      </ul>
+
+      <h3>Línea Manual o Antigua</h3>
+
+      <p>Equipos antiguos (20+ años), mucha vibración, requieren ajustes frecuentes.</p>
+
+      <ul>
+        <li>Desperdicio típico: 25-35%</li>
+        <li>Multiplicador: 1.30</li>
+      </ul>
+
+      <h3>Primera Vez Corriendo Película Nueva</h3>
+
+      <p>Cuando usas película de un nuevo proveedor o calibre diferente, agrega 5-10% extra como margen de prueba. Es dinero bien gastado para asegurar que la línea funciona sin sorpresas.</p>
+
+      <h2>Cómo Hacer tu Primer Pedido Sin Quedarte Corto</h2>
+
+      <p><strong>Paso 1: Calcula el consumo mensual</strong> (como explicamos arriba).</p>
+
+      <p><strong>Paso 2: Multiplica por 2-3 meses</strong> para tu primer pedido.</p>
+
+      <p>¿Por qué? Porque:</p>
+
+      <ul>
+        <li>Tu cálculo podría tener un pequeño error.</li>
+        <li>Tu línea podría tener más desperdicio del estimado.</li>
+        <li>Es mejor tener stock que quedarte corto a mitad de mes.</li>
+        <li>Película PVC bien almacenada dura años — no es un gasto, es inventario.</li>
+      </ul>
+
+      <p><strong>Paso 3: Califica tu proveedor</strong> (nosotros en este caso).</p>
+
+      <ul>
+        <li>¿Tiene stock disponible en calibre que necesitas?</li>
+        <li>¿Puede hacer entrega rápida?</li>
+        <li>¿Proporciona Certificado de Análisis?</li>
+        <li>¿Tiene apoyo técnico si hay problemas?</li>
+      </ul>
+
+      <p><strong>Paso 4: Negocia términos</strong></p>
+
+      <ul>
+        <li>¿Cuál es el mínimo de pedido?</li>
+        <li>¿Hay descuento por volumen?</li>
+        <li>¿Plazo de entrega?</li>
+        <li>¿Términos de pago?</li>
+      </ul>
+
+      <p><strong>Paso 5: Prueba la película antes de producir en volumen</strong></p>
+
+      <ul>
+        <li>Pide un rollo de prueba (1,000-2,000 metros).</li>
+        <li>Corre una pequeña tanda (5,000-10,000 piezas).</li>
+        <li>Ajusta temperatura, velocidad, posicionamiento.</li>
+        <li>Una vez que funciona perfecto, haz el pedido grande.</li>
+      </ul>
+
+      <p><strong>Paso 6: Establece un plan de reorden automático</strong></p>
+
+      <p>Una vez que sabes tu consumo exacto, negocia con el proveedor entregas regulares. Ejemplo: "Cada mes necesito 25,000 metros. Entrégame 25,000 metros el día 25 de cada mes".</p>
+
+      <p>Así nunca te quedas sin película y siempre tienes stock fresco.</p>
+
+      <h2>Ejemplo Paso a Paso: Farmacéutica Real en México</h2>
+
+      <p><strong>Contexto:</strong> Fabricante de cápsulas en Monterrey. Produce medicamentos, necesita sello de garantía. Línea semiautomática, 40 años de antigüedad pero bien mantenida.</p>
+
+      <p><strong>Datos:</strong></p>
+
+      <ul>
+        <li>Envase: frasco de vidrio de 30 ml con tapa rosca</li>
+        <li>Medida de perímetro: 12 cm (medida directa con cinta métrica)</li>
+        <li>Producción actual: 400,000 piezas/mes (objetivo a 2 años)</li>
+        <li>Línea: semiautomática, desperdicio esperado 22%</li>
+        <li>Calibre a usar: 40 micras (recomendación para farmacéutica)</li>
+      </ul>
+
+      <p><strong>Cálculo:</strong><br/>
+      (12 ÷ 100) × 400,000 × 1.22 = 0.12 × 400,000 × 1.22 = <strong>58,560 metros/mes</strong></p>
+
+      <p><strong>Primer pedido (recomendación):</strong> 3 meses × 58,560 = 175,680 metros<br/>
+      <strong>Formato típico:</strong> 8-10 rollos de película de ~18,000-20,000 metros cada uno</p>
+
+      <p><strong>Costo aproximado (a precio 2026):</strong> $0.45/metro = 175,680 × $0.45 = $79,056 primer pedido<br/>
+      Pedidos subsecuentes (mensual): ~$26,352</p>
+
+      <h2>Preguntas Frecuentes</h2>
+
+      <h3>¿Qué pasa si calcul mal y compro película de más?</h3>
+
+      <p>No es "gasto muerto". Película PVC bien almacenada (seco, oscuro, fresco) dura años. Es inventario. Además, si tu producción crece (lo normal), la usas. Es mucho mejor tener de más que quedarte corto.</p>
+
+      <h3>¿Puedo usar una película diferente a mitad de producción?</h3>
+
+      <p>Técnicamente sí, pero no es recomendable. Diferentes proveedores pueden tener variaciones pequeñas en elasticidad, temperatura de encogimiento, etc. Si cambias película, probablemente necesites recalibrar tu línea (temperatura, velocidad). Costo de tiempo parado. Mejor mantener el mismo proveedor.</p>
+
+      <h3>¿El calibre afecta la cantidad que necesito?</h3>
+
+      <p>No. El perímetro de tu envase es el mismo independientemente del calibre. Lo que cambia es el costo por metro y el rendimiento. Película de 40 micras cuesta igual metros pero menos dinero total. Película de 80 micras cuesta más por metro.</p>
+
+      <h3>¿Cómo almaceno película si no la uso inmediatamente?</h3>
+
+      <p>Guardarla en:</p>
+
+      <ul>
+        <li>Lugar seco (humedad máx 60%).</li>
+        <li>Temperatura ambiente 15-25°C (no mucho calor ni frío).</li>
+        <li>Oscuro o con iluminación indirecta (UV degrada PVC).</li>
+        <li>Protegida de polvo y suciedad.</li>
+      </ul>
+
+      <p>Así, la película mantiene propiedades perfectas hasta 3-5 años.</p>
+
+      <p>Si tienes dudas sobre tu cálculo específico, <a href="/cotizar/">contacta a Tumipack</a>. Pasas los datos de tu envase y producción, nosotros calculamos exactamente cuánto necesitas y hacemos recomendación. Es consultoría técnica sin costo.</p>
+
+</BlogLayout>

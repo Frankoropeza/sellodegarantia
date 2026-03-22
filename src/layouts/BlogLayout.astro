@@ -469,6 +469,53 @@ const relatedArticles = relatedByCategory[category] || [
   text-decoration: underline;
 }
 
+/* ──────────────────────────────────────────
+   TABLAS
+   ────────────────────────────────────────── */
+.blog-content :global(.table-wrapper) {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.blog-content :global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  font-family: var(--font-body, 'Open Sans', sans-serif);
+}
+
+.blog-content :global(table thead) {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.blog-content :global(table th) {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: var(--color-secondary, #1A1A2E);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.blog-content :global(table td) {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  color: #343a40;
+  line-height: 1.6;
+}
+
+.blog-content :global(table tbody tr:hover) {
+  background: #f8f9fa;
+}
+
+.blog-content :global(table tbody tr:last-child td) {
+  border-bottom: none;
+}
+
 .blog-content :global(blockquote) {
   border-left: 4px solid var(--color-primary, #0047AB);
   background: rgba(0, 71, 171, 0.05);
