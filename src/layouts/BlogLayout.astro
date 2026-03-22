@@ -546,8 +546,8 @@ const relatedArticles = relatedByCategory[category] || [
   flex-wrap: wrap;
 }
 
-/* Botones CTA del artículo */
-.cta-btn-primary {
+/* Botones CTA del artículo — :global para que Astro no rompa los selectores */
+:global(.cta-btn-primary) {
   background: var(--color-primary, #0047AB);
   color: #fff;
   display: inline-block;
@@ -559,13 +559,13 @@ const relatedArticles = relatedByCategory[category] || [
   font-size: 1rem;
 }
 
-.cta-btn-primary:hover {
+:global(.cta-btn-primary:hover) {
   background: #003580;
   color: #fff;
   text-decoration: none;
 }
 
-.cta-btn-whatsapp {
+:global(.cta-btn-whatsapp) {
   background: #25D366;
   color: #fff;
   display: inline-flex;
@@ -579,13 +579,13 @@ const relatedArticles = relatedByCategory[category] || [
   font-size: 1rem;
 }
 
-.cta-btn-whatsapp:hover {
+:global(.cta-btn-whatsapp:hover) {
   background: #1fb855;
   color: #fff;
   text-decoration: none;
 }
 
-.cta-btn-outline {
+:global(.cta-btn-outline) {
   border: 2px solid var(--color-primary, #0047AB);
   color: var(--color-primary, #0047AB);
   background: transparent;
@@ -598,7 +598,7 @@ const relatedArticles = relatedByCategory[category] || [
   font-size: 1rem;
 }
 
-.cta-btn-outline:hover {
+:global(.cta-btn-outline:hover) {
   background: var(--color-primary, #0047AB);
   color: #fff;
   text-decoration: none;
