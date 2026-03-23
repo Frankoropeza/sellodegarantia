@@ -1,5 +1,5 @@
 ---
-title: "Manga Retráctil Parcial — Cobertura de Zona Específica del Envase"
+title: "Manga Retráctil Parcial para Envases PVC"
 description: "Manga de PVC termoencogible de altura reducida para cubrir zona de etiqueta, cuello o base del envase. Liso o impreso. Calibres 45-60 micras. Desde 1,000."
 categoria: "mangas-retractiles"
 subcategoria: "manga-parcial"

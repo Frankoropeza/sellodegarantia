@@ -1,5 +1,5 @@
 ---
-title: "Manga Retráctil para Latas y Envases Metálicos — PVC Calibrado"
+title: "Manga Retráctil para Latas y Envases Metálicos"
 description: "Manga de PVC termoencogible calibrada para superficies de aluminio y hojalata. Sin burbujas ni arrugas. Calibre 45-50 micras. Para latas 250ml a 1L."
 categoria: "mangas-retractiles"
 subcategoria: "manga-latas-metalicos"

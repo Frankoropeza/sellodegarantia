@@ -1,5 +1,5 @@
 ---
-title: "Túnel de Calor por Aire Caliente — Temperatura Ajustable 90-200°C"
+title: "Túnel de Calor por Aire Caliente Industrial"
 description: "Túnel de calor por aire para mangas y sellos termoencogibles. Sin caldera. Temperatura ajustable 90-200°C. Para tirajes medios. Instalación simple,."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "tunel-aire"

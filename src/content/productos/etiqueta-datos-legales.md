@@ -1,5 +1,5 @@
 ---
-title: "Etiqueta Retráctil con Datos Legales — NOM, Código de Barras y Tabla Nutrimental"
+title: "Etiqueta Retráctil con Datos Legales y NOM"
 description: "Etiqueta de PVC termoencogible con información normativa completa: NOM-051, NOM-073, COFEPRIS, código de barras EAN-13, QR y tabla nutrimental. Alta."
 categoria: "etiquetas-impresas"
 subcategoria: "datos-legales"

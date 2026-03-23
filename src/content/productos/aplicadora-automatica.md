@@ -1,5 +1,5 @@
 ---
-title: "Aplicadora Automática de Mangas y Sellos — Hasta 300 Piezas/Minuto"
+title: "Aplicadora Automática de Mangas PVC"
 description: "Máquina aplicadora automática de mangas termoencogibles y sellos. Velocidad hasta 300 piezas/minuto. Integración con líneas de producción existentes."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "aplicadora-automatica"

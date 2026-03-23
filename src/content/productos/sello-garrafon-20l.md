@@ -1,5 +1,5 @@
 ---
-title: "Sello para Garrafón 20L — PVC Termoencogible PET y Policarbonato"
+title: "Sello para Garrafón 20L PVC Termoencogible"
 description: "Banda termoencogible PVC para garrafones de agua 20 litros. Calibre 60 micras (PET) y 80 micras (policarbonato retornable). Resistente a lavado."
 categoria: "sellos-de-garantia"
 subcategoria: "sello-garrafon"

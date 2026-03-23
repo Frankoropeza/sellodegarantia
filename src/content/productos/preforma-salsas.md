@@ -1,5 +1,5 @@
 ---
-title: "Preforma Termoencogible para Salsas y Aderezos — PVC Grado Alimenticio"
+title: "Preforma PVC para Salsas y Aderezos"
 description: "Preforma de PVC termoencogible para frascos y botellas de salsas, aderezos, mole, chilpotle y condimentos. Resistente a humedad y aceites. Diámetros."
 categoria: "preformas-y-capsulas"
 subcategoria: "preforma-salsas"

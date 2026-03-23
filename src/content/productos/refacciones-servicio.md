@@ -1,5 +1,5 @@
 ---
-title: "Refacciones y Servicio Técnico — Mantenimiento para Maquinaria de Sellado"
+title: "Refacciones y Servicio Técnico de Sellado"
 description: "Refacciones originales y servicio técnico para túneles de calor, aplicadoras y pistolas de la línea Sello de Garantía. Mantenimiento preventivo y."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "refacciones-servicio"

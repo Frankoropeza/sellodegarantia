@@ -1,5 +1,5 @@
 ---
-title: "Cápsula PVC Termoencogible para Botella de Licor — Whisky, Ron, Vodka"
+title: "Cápsula PVC para Botella de Licor"
 description: "Cápsula termoencogible de PVC para botellas de licor. Diámetros 28-45mm. Alta resistencia. Colores metálicos disponibles. Compatible con tapones."
 categoria: "preformas-y-capsulas"
 subcategoria: "capsula-licor"

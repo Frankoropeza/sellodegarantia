@@ -1,5 +1,5 @@
 ---
-title: "Etiqueta Retráctil Promocional — Edición Limitada y Temporadas"
+title: "Etiqueta Retráctil Promocional PVC"
 description: "Etiqueta de PVC termoencogible para campañas de temporada, ediciones limitadas y lanzamientos de producto. Diseño por nuestro equipo. Producción express."
 categoria: "etiquetas-impresas"
 subcategoria: "etiqueta-promocional"

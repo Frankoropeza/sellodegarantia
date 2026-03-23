@@ -1,5 +1,5 @@
 ---
-title: "Diseño Personalizado de Etiqueta Retráctil — Servicio Completo"
+title: "Diseño Personalizado de Etiqueta Retráctil"
 description: "Servicio de diseño gráfico especializado en etiquetas retráctiles de PVC. Mockup 3D incluido. Diseñadores con experiencia en PVC termoencogible. Arte."
 categoria: "etiquetas-impresas"
 subcategoria: "diseno-personalizado"

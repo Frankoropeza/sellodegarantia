@@ -1,5 +1,5 @@
 ---
-title: "Cápsula PVC Termoencogible para Mezcal y Destilados Artesanales"
+title: "Cápsula PVC para Mezcal y Destilados"
 description: "Cápsula termoencogible de PVC para mezcal, sotol, raicilla y destilados artesanales. Formatos irregulares disponibles. Incluye NOM y categoría. Lotes."
 categoria: "preformas-y-capsulas"
 subcategoria: "capsula-mezcal"

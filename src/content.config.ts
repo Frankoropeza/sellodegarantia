@@ -26,4 +26,24 @@ const productos = defineCollection({
   }),
 });
 
-export const collections = { productos };
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.coerce.date(),
+    category: z.string(),
+    heroImage: z.string(),
+    heroImageAlt: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    readTime: z.string().optional(),
+    location: z.string().optional(),
+    author: z.string().default('Equipo Sello de Garantía'),
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })).optional(),
+  }),
+});
+
+export const collections = { productos, blog };

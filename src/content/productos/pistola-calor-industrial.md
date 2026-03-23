@@ -1,5 +1,5 @@
 ---
-title: "Pistola de Calor Industrial — 1500-2000W para Aplicación Manual de Sellos"
+title: "Pistola de Calor Industrial 1500-2000W"
 description: "Pistola de calor industrial 1500-2000W para aplicación manual de mangas y sellos termoencogibles. Temperatura regulable. Para tirajes pequeños, muestras y."
 categoria: "maquinaria-de-aplicacion"
 subcategoria: "pistola-calor"

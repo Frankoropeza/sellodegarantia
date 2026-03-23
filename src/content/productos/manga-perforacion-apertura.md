@@ -1,5 +1,5 @@
 ---
-title: "Manga Retráctil con Perforación de Apertura — PVC Termoencogible"
+title: "Manga Retráctil con Perforación de Apertura"
 description: "Manga de PVC termoencogible con micro-perforación de apertura fácil. Retiro limpio sin residuos. Liso o impreso. Calibres 45-60 micras. Ideal para."
 categoria: "mangas-retractiles"
 subcategoria: "manga-perforacion-apertura"
