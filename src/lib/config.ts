@@ -54,6 +54,7 @@ export const EMPLOYEES = '6-10';
 export const CATEGORIES = [
   {
     title: 'Sellos de Garantía',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
     slug: 'sellos-de-garantia',
     subtitle: 'Bandas de PVC termoencogible para inviolabilidad de envases',
     subcategories: [
@@ -67,6 +68,7 @@ export const CATEGORIES = [
   },
   {
     title: 'Mangas Retráctiles',
+    image: '/img/productos/manga-completa-lisa-pvc.avif',
     slug: 'mangas-retractiles',
     subtitle: 'Mangas de PVC full-body para etiquetado envolvente 360°',
     subcategories: [
@@ -80,6 +82,7 @@ export const CATEGORIES = [
   },
   {
     title: 'Etiquetas Impresas',
+    image: '/img/productos/etiqueta-retractil-completa-pvc.avif',
     slug: 'etiquetas-impresas',
     subtitle: 'Etiquetas de PVC con impresión hasta 6 colores en rotograbado',
     subcategories: [
@@ -93,6 +96,7 @@ export const CATEGORIES = [
   },
   {
     title: 'Preformas y Cápsulas',
+    image: '/img/productos/capsula-vino-pvc.avif',
     slug: 'preformas-y-capsulas',
     subtitle: 'Preformas termoencogibles para botellas de vino, licor y salsas',
     subcategories: [
@@ -106,6 +110,7 @@ export const CATEGORIES = [
   },
   {
     title: 'Película en Rollo',
+    image: '/img/productos/rollo-calibre-50-pvc.avif',
     slug: 'pelicula-en-rollo',
     subtitle: 'Rollos de PVC termoencogible para líneas de producción automatizadas',
     subcategories: [
@@ -119,6 +124,7 @@ export const CATEGORIES = [
   },
   {
     title: 'Maquinaria de Aplicación',
+    image: '/img/productos/tunel-calor-vapor-frontal.avif',
     slug: 'maquinaria-de-aplicacion',
     subtitle: 'Túneles de calor y aplicadoras para líneas de empaque industrial',
     subcategories: [
