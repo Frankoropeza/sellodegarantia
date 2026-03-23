@@ -1,5 +1,5 @@
 ---
-title: "Película PVC en Rollo Calibre 60 Micras — Alta Adaptabilidad"
+title: "Rollo PVC Calibre 60 Micras | Adaptable"
 description: "Película termoencogible PVC calibre 60 micras en rollo. Encogimiento hasta 68%. Ideal para envases irregulares y de gran formato. Pedido mínimo 50kg."
 categoria: "pelicula-en-rollo"
 subcategoria: "calibre-60"

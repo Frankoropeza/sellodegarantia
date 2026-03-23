@@ -1,5 +1,5 @@
 ---
-title: "Película PVC en Rollo Calibre 80 Micras — Máxima Resistencia"
+title: "Rollo PVC Calibre 80 Micras | Máxima Resistencia"
 description: "Película termoencogible PVC calibre 80 micras. La más resistente del catálogo. Para garrafones, transporte pesado y envases industriales. Pedido mínimo."
 categoria: "pelicula-en-rollo"
 subcategoria: "calibre-80"
