@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import IndustryCard from '../../components/IndustryCard.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+
+import { INDUSTRIES } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, breadcrumbSchema } from '../../lib/seo';
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Industrias', href: '/industrias/' },
+];
+
+const industriasConHref = [
+  { ...INDUSTRIES[0], href: '/industrias/farmaceutica/' },
+  { ...INDUSTRIES[1], href: '/industrias/alimentos-bebidas/' },
+  { ...INDUSTRIES[2], href: '/industrias/agua-embotellado/' },
+  { ...INDUSTRIES[3], href: '/industrias/vinos-licores/' },
+  { ...INDUSTRIES[4], href: '/industrias/productos-naturales/' },
+  { ...INDUSTRIES[5], href: '/industrias/gas-petroquimica/' },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  breadcrumbSchema(breadcrumbs),
+];
+---
+
+<Base
+  title="Industrias que Atendemos | Sello de Garantía"
+  description="Fabricamos sellos de garantía y película PVC termoencogible para farmacéutica, alimentos, agua, vinos, productos naturales y gas. 28 años de experiencia."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="28 años atendiendo industria mexicana"
+    title="¿Para qué industrias fabricamos sellos de garantía?"
+    description="Fabricamos sellos de garantía, mangas retráctiles y película PVC termoencogible para 6 sectores industriales en México. Cada industria tiene requerimientos específicos de calibre, resistencia e impresión que conocemos a detalle."
+    primaryCta={{ text: 'Solicitar Cotización', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Ver Productos', href: '/productos/' }}
+    metrics={[
+      { value: '6', label: 'Sectores' },
+      { value: '28', label: 'Años' },
+      { value: '32', label: 'Estados' },
+      { value: '4', label: 'Calibres' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Cada sector industrial tiene necesidades distintas de sellado. La farmacéutica exige trazabilidad COFEPRIS. Los alimentos requieren película grado alimenticio. El agua necesita resistencia al transporte. Los vinos piden acabado profesional. Sello de Garantía fabrica la película PVC termoencogible correcta para cada caso desde nuestra planta en Iztapalapa, CDMX.
+        </p>
+        <p class="hero-seo__text">
+          Trabajamos con calibres de 40, 50, 60 y 80 micras, impresión rotograbado a 6 tintas y fabricación a medida exacta. Tumipack México SA de CV atiende farmacéuticas, purificadoras, embotelladoras, vinícolas, laboratorios naturistas y gaseras en los 32 estados de la República Mexicana.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Necesita sellos para su industria?"
+    subtitle="Cotización especializada en menos de 24 horas."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        badge="Sectores"
+        title="¿Qué industrias usan sellos de garantía de PVC?"
+        subtitle="Seleccione su industria para ver los productos específicos, especificaciones técnicas y preguntas frecuentes de su sector."
+      />
+      <div class="grid-3">
+        {industriasConHref.map((ind) => (
+          <IndustryCard
+            title={ind.name}
+            description={ind.description}
+            href={ind.href}
+            image={ind.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo para su industria"
+    subtitle="28 años de experiencia. Planta propia. Precios de fábrica."
+    btnText="Contactar"
+    btnHref="/contacto/"
+    variant="primary"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+</style>

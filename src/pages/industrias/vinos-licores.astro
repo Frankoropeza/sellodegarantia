@@ -1,0 +1,199 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../../lib/seo';
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Industrias', href: '/industrias/' },
+  { text: 'Vinos y Licores', href: '/industrias/vinos-licores/' },
+];
+
+const faqs = [
+  {
+    question: '¿Qué tipo de cápsula se usa para botellas de vino?',
+    answer: 'Para vino usamos cápsulas termoencogibles de PVC que cubren el corcho y el cuello de la botella. Se fabrican en calibre 50-60 micras con acabado liso o impreso. Disponibles en colores sólidos, metalizados y con impresión de marca a 6 tintas.',
+  },
+  {
+    question: '¿Fabrican cápsulas para mezcal y destilados artesanales?',
+    answer: 'Sí. Fabricamos cápsulas para mezcal, tequila, ron, whisky y destilados artesanales. Cada cápsula se hace a la medida del cuello de la botella. Ofrecemos acabados que van desde transparente hasta colores metalizados con impresión de marca.',
+  },
+  {
+    question: '¿Las cápsulas se pueden imprimir con logotipo?',
+    answer: 'Sí. Imprimimos por rotograbado a 6 tintas el logotipo, nombre de la marca, denominación de origen, contenido alcohólico y cualquier dato que necesite. La impresión es resistente y da un acabado profesional a la botella.',
+  },
+  {
+    question: '¿Qué pedido mínimo manejan para vinícolas?',
+    answer: 'Para cápsulas lisas el mínimo es 5,000 piezas. Para cápsulas impresas el mínimo es 10,000 piezas. Atendemos desde vinícolas boutique con tirajes pequeños hasta productores industriales con millones de piezas.',
+  },
+  {
+    question: '¿Las cápsulas se adaptan a cualquier forma de botella?',
+    answer: 'Sí. Fabricamos cápsulas a la medida exacta del cuello de su botella, sea bordelesa, borgoña, renana o cualquier formato. Solo necesitamos una muestra de la botella o las medidas del cuello para fabricar la cápsula correcta.',
+  },
+  {
+    question: '¿Qué acabados están disponibles para vinos premium?',
+    answer: 'Ofrecemos colores sólidos (negro, dorado, burdeos, verde), colores metalizados, transparente y combinaciones con impresión. Para vinos premium el acabado impreso con logotipo en relieve visual da una presentación de alta gama.',
+  },
+];
+
+const productos = [
+  {
+    title: 'Cápsula para Vino',
+    description: 'Cápsula termoencogible PVC para botellas de vino. Acabado profesional en colores sólidos, metalizados o con impresión a 6 tintas.',
+    href: '/productos/capsula-vino/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Cápsula para Licor',
+    description: 'Cápsula de PVC para botellas de licor, tequila, ron y whisky. Fabricación a medida del cuello de su botella.',
+    href: '/productos/capsula-licor/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Cápsula para Mezcal',
+    description: 'Cápsula termoencogible para mezcal y destilados artesanales. Acabados premium con impresión de marca y denominación de origen.',
+    href: '/productos/capsula-mezcal/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Sello Impreso a 6 Tintas',
+    description: 'Sello con logotipo, marca y datos legales impresos por rotograbado. Complemento ideal para cápsulas de vinos y licores.',
+    href: '/productos/sello-impreso-6-tintas/',
+    image: '/img/productos/sello-impreso-6-tintas-pvc.avif',
+  },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  serviceSchema({
+    name: 'Cápsulas Termoencogibles para Vinos y Licores',
+    description: 'Fabricación de cápsulas y sellos termoencogibles de PVC para botellas de vino, mezcal, tequila y destilados. Acabados premium, impresión a 6 tintas.',
+    url: '/industrias/vinos-licores/',
+    category: 'Cápsulas para Vinos y Licores',
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
+];
+---
+
+<Base
+  title="Cápsulas Termoencogibles para Vinos y Licores"
+  description="Cápsulas y sellos termoencogibles PVC para vino, mezcal, tequila y licores. Acabado premium, impresión 6 tintas. Fabricante directo 28 años."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Vinos y Licores"
+    title="¿Qué cápsulas termoencogibles usan vinos y licores?"
+    description="Fabricamos cápsulas y sellos termoencogibles de PVC para botellas de vino, mezcal, tequila y destilados. Acabados en colores sólidos, metalizados e impresos a 6 tintas. A medida del cuello de su botella."
+    primaryCta={{ text: 'Cotizar Cápsulas', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      { value: '28', label: 'Años' },
+      { value: '50-60', label: 'Micras' },
+      { value: '6', label: 'Tintas' },
+      { value: '5K', label: 'Mín. pzas' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          La industria vinícola y licorera en México exige cápsulas que den un acabado profesional a la botella y al mismo tiempo garanticen la inviolabilidad del producto. Una cápsula mal aplicada arruina la presentación de un vino o mezcal premium. En Sello de Garantía fabricamos cápsulas termoencogibles de PVC a la medida exacta del cuello de cada botella desde nuestra planta en Iztapalapa, CDMX.
+        </p>
+        <p class="hero-seo__text">
+          Ofrecemos cápsulas en calibre 50-60 micras con acabados en colores sólidos (negro, dorado, burdeos, verde), metalizados e impresos a 6 tintas con logotipo y denominación de origen. Tumipack México SA de CV atiende vinícolas en Baja California, Querétaro, Guanajuato, Coahuila y mezcaleras en Oaxaca, Guerrero y Durango. 28 años fabricando para la industria.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Necesita cápsulas para su vinícola o destilería?"
+    subtitle="Muestras sin costo. Acabados premium para su marca."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        badge="Productos Recomendados"
+        title="¿Qué productos de PVC usa la industria vinícola?"
+        subtitle="Cápsulas y sellos diseñados para botellas de vino, mezcal, tequila y destilados artesanales."
+      />
+      <div class="grid-2">
+        {productos.map((p) => (
+          <ServiceCard
+            title={p.title}
+            description={p.description}
+            href={p.href}
+            image={p.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo de cápsulas para vinos"
+    subtitle="28 años fabricando para vinícolas y destilerías mexicanas."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="¿Qué preguntan las vinícolas y destilerías?"
+        subtitle="Dudas comunes sobre cápsulas, acabados, impresión y pedidos para la industria de vinos y licores."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Dé a su vino la presentación que merece"
+    subtitle="Cápsulas a medida, acabados premium, entrega nacional."
+    btnText="Contactar Ahora"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+</style>

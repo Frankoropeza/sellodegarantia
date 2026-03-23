@@ -11,7 +11,7 @@ import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 import { SITE_NAME } from '../../lib/config';
-import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+import { organizationSchema, localBusinessSchema, faqSchema, serviceSchema, breadcrumbSchema } from '../../lib/seo';
 
 const faqs = [
   {
@@ -49,7 +49,14 @@ const breadcrumbs = [
 const structuredData = [
   organizationSchema(),
   localBusinessSchema(),
+  serviceSchema({
+    name: 'Sellos de Garantía PVC Termoencogible',
+    description: 'Fabricación de sellos de garantía de PVC termoencogible: lisos, de color, impresos a 6 tintas y con perforación. Calibres 40-80 micras, diámetros 20-120mm.',
+    url: '/productos/sellos-de-garantia/',
+    category: 'Sellos de Garantía',
+  }),
   faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
 ];
 
 const productos = [

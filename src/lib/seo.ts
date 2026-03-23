@@ -127,6 +127,35 @@ export function breadcrumbSchema(items: { text: string; href: string }[]) {
   };
 }
 
+export function serviceSchema(opts: {
+  name: string;
+  description: string;
+  url: string;
+  category?: string;
+  image?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: opts.name,
+    description: opts.description,
+    url: opts.url.startsWith('http') ? opts.url : `${SITE_URL}${opts.url}`,
+    provider: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+      telephone: `+52 ${PHONE}`,
+      email: EMAIL,
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Mexico',
+    },
+    serviceType: opts.category || 'Packaging Services',
+    ...(opts.image ? { image: opts.image } : {}),
+  };
+}
+
 export function productSchema(opts: {
   name: string;
   description: string;

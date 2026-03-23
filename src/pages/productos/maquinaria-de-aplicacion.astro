@@ -11,7 +11,7 @@ import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 import { SITE_NAME } from '../../lib/config';
-import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+import { organizationSchema, localBusinessSchema, faqSchema, serviceSchema, breadcrumbSchema } from '../../lib/seo';
 
 const faqs = [
   {
@@ -49,7 +49,14 @@ const breadcrumbs = [
 const structuredData = [
   organizationSchema(),
   localBusinessSchema(),
+  serviceSchema({
+    name: 'Maquinaria de Aplicación para Sellos y Mangas',
+    description: 'Fabricación de túneles de calor por vapor y aire, aplicadoras automáticas y semiautomáticas, pistolas industriales para contracción de sellos y mangas PVC.',
+    url: '/productos/maquinaria-de-aplicacion/',
+    category: 'Maquinaria de Aplicación',
+  }),
   faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
 ];
 
 const productos = [

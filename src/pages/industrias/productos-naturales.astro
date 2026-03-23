@@ -1,0 +1,199 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../../lib/seo';
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Industrias', href: '/industrias/' },
+  { text: 'Productos Naturales', href: '/industrias/productos-naturales/' },
+];
+
+const faqs = [
+  {
+    question: '¿Los sellos sirven para suplementos alimenticios?',
+    answer: 'Sí. Nuestros sellos de PVC termoencogible son grado alimenticio y se usan en frascos de suplementos alimenticios, vitaminas, proteínas y productos herbales. Proporcionamos ficha técnica del material para trámites ante COFEPRIS.',
+  },
+  {
+    question: '¿Qué calibre se recomienda para frascos de productos naturales?',
+    answer: 'Para frascos de suplementos y productos naturales usamos calibre 40-50 micras. Estos calibres dan buena contracción sobre tapas de 25mm a 50mm de diámetro y evidencian apertura sin dejar residuos en el frasco.',
+  },
+  {
+    question: '¿Pueden imprimir información de ingredientes en el sello?',
+    answer: 'Sí. Nuestro sistema de rotograbado a 6 tintas permite imprimir lista de ingredientes, información nutrimental, logotipo, lote y cualquier dato requerido. La impresión es nítida y legible incluso en sellos de diámetro pequeño.',
+  },
+  {
+    question: '¿Los sellos cumplen con normativa para suplementos?',
+    answer: 'Sí. La película PVC es grado alimenticio apta para contacto indirecto. Cumple los requerimientos de COFEPRIS para suplementos alimenticios y productos naturistas. Entregamos fichas técnicas para su expediente regulatorio.',
+  },
+  {
+    question: '¿Cuál es el pedido mínimo para marcas pequeñas?',
+    answer: 'Para sellos lisos el mínimo es 5,000 piezas, ideal para marcas que están iniciando. Para sellos impresos el mínimo es 10,000 piezas. Fabricamos tirajes cortos para pruebas de mercado y volúmenes industriales.',
+  },
+  {
+    question: '¿Fabrican etiquetas termoencogibles para productos naturales?',
+    answer: 'Sí. Además de sellos de garantía, fabricamos etiquetas retráctiles de cuerpo completo con impresión a 6 tintas. Son ideales para productos naturales que necesitan imagen de anaquel atractiva con toda la información legal.',
+  },
+];
+
+const productos = [
+  {
+    title: 'Sello Farmacéutico',
+    description: 'Sello de garantía PVC grado alimenticio para frascos de suplementos y productos naturales. Compatible COFEPRIS.',
+    href: '/productos/sello-farmaceutico/',
+    image: '/img/productos/sello-frasco-farmaceutico.avif',
+  },
+  {
+    title: 'Sello Liso Transparente',
+    description: 'Sello cristal para inviolabilidad de frascos de vitaminas, proteínas y productos herbales. Desde 5,000 piezas.',
+    href: '/productos/sello-liso-transparente/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Sello Impreso a 6 Tintas',
+    description: 'Logotipo, ingredientes y datos legales impresos sobre película PVC. Imagen profesional para su producto natural.',
+    href: '/productos/sello-impreso-6-tintas/',
+    image: '/img/productos/sello-impreso-6-tintas-pvc.avif',
+  },
+  {
+    title: 'Etiqueta Retráctil Completa',
+    description: 'Etiquetado 360° para frascos de suplementos. Impresión a 6 colores con información completa del producto.',
+    href: '/productos/etiqueta-retractil-completa/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  serviceSchema({
+    name: 'Sellos para Productos Naturales y Suplementos',
+    description: 'Fabricación de sellos de garantía PVC para suplementos alimenticios, vitaminas, productos herbales y naturistas. Grado alimenticio, compatible COFEPRIS.',
+    url: '/industrias/productos-naturales/',
+    category: 'Sellos para Productos Naturales',
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
+];
+---
+
+<Base
+  title="Sellos para Productos Naturales y Suplementos"
+  description="Sellos de garantía PVC para suplementos, vitaminas y productos naturales. Grado alimenticio, compatible COFEPRIS. Fabricante directo 28 años."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Productos Naturales"
+    title="¿Qué sellos de garantía necesitan los productos naturales?"
+    description="Fabricamos sellos de garantía de PVC grado alimenticio para suplementos alimenticios, vitaminas, proteínas, productos herbales y naturistas. Compatible COFEPRIS. Impresión a 6 tintas con ingredientes y datos legales."
+    primaryCta={{ text: 'Cotizar Sellos Naturistas', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      { value: '28', label: 'Años' },
+      { value: '40-50', label: 'Micras' },
+      { value: '6', label: 'Tintas' },
+      { value: '5K', label: 'Mín. pzas' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          El mercado de productos naturales y suplementos alimenticios en México crece cada año, y con él la necesidad de sellos que garanticen inviolabilidad al consumidor. Un frasco de vitaminas o un producto herbal sin sello visible pierde credibilidad en el punto de venta. En Sello de Garantía fabricamos bandas termoencogibles de PVC grado alimenticio para este sector desde nuestra planta en Iztapalapa, CDMX.
+        </p>
+        <p class="hero-seo__text">
+          Nuestros sellos para productos naturales se fabrican en calibre 40-50 micras para frascos de 25mm a 50mm de diámetro. Imprimimos ingredientes, información nutrimental, logotipo y datos de COFEPRIS por rotograbado a 6 tintas. Tumipack México SA de CV atiende laboratorios naturistas, marcas de suplementos y distribuidores en los 32 estados de la República.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Necesita sellos para sus suplementos o productos naturales?"
+    subtitle="Grado alimenticio. Fichas técnicas para COFEPRIS incluidas."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        badge="Productos Recomendados"
+        title="¿Qué productos de PVC usan los naturistas?"
+        subtitle="Sellos y etiquetas diseñados para suplementos, vitaminas y productos herbales."
+      />
+      <div class="grid-2">
+        {productos.map((p) => (
+          <ServiceCard
+            title={p.title}
+            description={p.description}
+            href={p.href}
+            image={p.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo de sellos para naturistas"
+    subtitle="28 años fabricando para laboratorios y marcas de suplementos."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="¿Qué preguntan las marcas de productos naturales?"
+        subtitle="Dudas comunes sobre sellos para suplementos, normativa y pedidos mínimos."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Proteja sus productos naturales con el sello correcto"
+    subtitle="Grado alimenticio, impresión profesional, entrega nacional."
+    btnText="Contactar Ahora"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+</style>

@@ -1,0 +1,199 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../../lib/seo';
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Industrias', href: '/industrias/' },
+  { text: 'Alimentos y Bebidas', href: '/industrias/alimentos-bebidas/' },
+];
+
+const faqs = [
+  {
+    question: '¿La película PVC es grado alimenticio?',
+    answer: 'Sí. Nuestra película PVC termoencogible es grado alimenticio, apta para contacto indirecto con alimentos y bebidas. Cumple con los estándares de seguridad alimentaria requeridos en México. Entregamos ficha técnica del material.',
+  },
+  {
+    question: '¿Qué productos alimenticios usan sellos termoencogibles?',
+    answer: 'Salsas, miel, mermeladas, condimentos, conservas, jugos, bebidas energéticas, aceites comestibles, vinagres, aderezos y suplementos alimenticios. Cualquier producto en frasco o botella que necesite evidencia de inviolabilidad usa sellos de PVC termoencogible.',
+  },
+  {
+    question: '¿Pueden imprimir información nutricional en el sello?',
+    answer: 'Sí. Nuestro sistema de rotograbado a 6 tintas reproduce textos legales, tabla nutricional, código de barras, logotipo y cualquier información que la normativa alimentaria exija. La impresión resiste el calor de aplicación y el almacenamiento.',
+  },
+  {
+    question: '¿Qué calibre se recomienda para salsas y conservas?',
+    answer: 'Para salsas, conservas y productos en frasco de vidrio recomendamos calibre 50-60 micras. Estos calibres ofrecen buena contracción sobre tapas twist-off y resistencia al manejo en cadena de distribución. Para envases PET usamos 40-50 micras.',
+  },
+  {
+    question: '¿Fabrican mangas retráctiles para etiquetado completo?',
+    answer: 'Sí. Además de sellos de garantía, fabricamos mangas retráctiles de cuerpo completo para etiquetado 360°. Son ideales para bebidas, jugos y productos que necesitan imagen de marca envolvente con información legal, código de barras y diseño personalizado.',
+  },
+  {
+    question: '¿Hacen entregas programadas para líneas de producción?',
+    answer: 'Sí. Ofrecemos programas de entrega semanal o quincenal para empresas con líneas de producción continua. Esto garantiza abasto constante sin que usted acumule inventario excesivo. Coordinamos con su área de compras.',
+  },
+];
+
+const productos = [
+  {
+    title: 'Sello Liso Transparente',
+    description: 'Sello de garantía PVC cristal para inviolabilidad de salsas, miel, conservas y bebidas. Grado alimenticio.',
+    href: '/productos/sello-liso-transparente/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Sello Impreso a 6 Tintas',
+    description: 'Logotipo, datos legales y código de barras impresos sobre película PVC para productos alimenticios.',
+    href: '/productos/sello-impreso-6-tintas/',
+    image: '/img/productos/sello-impreso-6-tintas-pvc.avif',
+  },
+  {
+    title: 'Manga Retráctil Completa Impresa',
+    description: 'Etiquetado envolvente 360° para bebidas, jugos y alimentos. Impresión rotograbado a 6 colores.',
+    href: '/productos/manga-completa-impresa/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Preforma para Salsas y Aderezos',
+    description: 'Preforma termoencogible para frascos de salsas, aderezos y conservas. Sellado seguro sobre tapa twist-off.',
+    href: '/productos/preforma-salsas/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  serviceSchema({
+    name: 'Sellos de Garantía para Alimentos y Bebidas',
+    description: 'Fabricación de sellos de garantía y mangas retráctiles de PVC grado alimenticio para la industria de alimentos y bebidas en México. Impresión a 6 tintas, calibres 40-80 micras.',
+    url: '/industrias/alimentos-bebidas/',
+    category: 'Sellos para Alimentos y Bebidas',
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
+];
+---
+
+<Base
+  title="Sellos para Alimentos y Bebidas México"
+  description="Sellos de garantía PVC grado alimenticio para salsas, bebidas, conservas y más. Impresión a 6 tintas. Fabricante directo con 28 años. Envíos nacionales."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Alimentos y Bebidas"
+    title="¿Qué sellos de garantía necesita la industria alimentaria?"
+    description="Fabricamos sellos de garantía y mangas retráctiles de PVC grado alimenticio para salsas, bebidas, conservas, miel, jugos y más. Impresión a 6 tintas con datos legales. Calibres de 40 a 80 micras."
+    primaryCta={{ text: 'Cotizar Sellos Alimentarios', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      { value: '28', label: 'Años' },
+      { value: '6', label: 'Tintas' },
+      { value: '4', label: 'Calibres' },
+      { value: '32', label: 'Estados' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          La industria de alimentos y bebidas en México necesita sellos que garanticen la inviolabilidad del producto desde la planta hasta el anaquel. Un sello de PVC termoencogible grado alimenticio protege salsas, conservas, miel, jugos, bebidas y condimentos contra contaminación y adulteración. En Sello de Garantía fabricamos estas bandas de seguridad en nuestra planta de Iztapalapa desde 1998.
+        </p>
+        <p class="hero-seo__text">
+          Ofrecemos sellos lisos, impresos a 6 tintas con logotipo y datos legales, y mangas retráctiles de cuerpo completo para etiquetado 360°. Trabajamos con calibres de 40 a 80 micras según el tipo de envase. Tumipack México SA de CV atiende empresas alimentarias en los 32 estados con entregas programadas para líneas de producción continua.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Busca sellos grado alimenticio para su producto?"
+    subtitle="Película PVC apta para alimentos. Cotización en menos de 24 horas."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        badge="Productos Recomendados"
+        title="¿Qué productos de PVC usa la industria alimentaria?"
+        subtitle="Sellos, mangas y preformas diseñados para alimentos y bebidas. Todos en PVC grado alimenticio."
+      />
+      <div class="grid-2">
+        {productos.map((p) => (
+          <ServiceCard
+            title={p.title}
+            description={p.description}
+            href={p.href}
+            image={p.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo de sellos para alimentos"
+    subtitle="28 años fabricando para la industria alimentaria mexicana."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="¿Qué preguntan las empresas de alimentos y bebidas?"
+        subtitle="Las dudas más comunes sobre sellos de garantía para productos alimenticios."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Proteja sus alimentos con el sello correcto"
+    subtitle="Grado alimenticio, impresión a 6 tintas, entrega nacional."
+    btnText="Contactar Ahora"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+</style>

@@ -11,7 +11,7 @@ import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 import { SITE_NAME } from '../../lib/config';
-import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+import { organizationSchema, localBusinessSchema, faqSchema, serviceSchema, breadcrumbSchema } from '../../lib/seo';
 
 const faqs = [
   {
@@ -49,7 +49,14 @@ const breadcrumbs = [
 const structuredData = [
   organizationSchema(),
   localBusinessSchema(),
+  serviceSchema({
+    name: 'Preformas y Cápsulas Termoencogibles',
+    description: 'Fabricación de cápsulas y preformas termoencogibles de PVC para botellas de vino, licor, mezcal, salsas y aceites. Lisas o impresas a 6 tintas.',
+    url: '/productos/preformas-y-capsulas/',
+    category: 'Preformas y Cápsulas',
+  }),
   faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
 ];
 
 const productos = [

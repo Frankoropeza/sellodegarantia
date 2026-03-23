@@ -11,7 +11,7 @@ import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 import { SITE_NAME } from '../../lib/config';
-import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+import { organizationSchema, localBusinessSchema, faqSchema, serviceSchema, breadcrumbSchema } from '../../lib/seo';
 
 const faqs = [
   {
@@ -49,7 +49,14 @@ const breadcrumbs = [
 const structuredData = [
   organizationSchema(),
   localBusinessSchema(),
+  serviceSchema({
+    name: 'Mangas Retráctiles PVC Termoencogible',
+    description: 'Fabricación de mangas retráctiles de PVC para etiquetado 360° de botellas, latas y envases. Lisas o impresas a 6 tintas. Calibres 45-60 micras.',
+    url: '/productos/mangas-retractiles/',
+    category: 'Mangas Retráctiles',
+  }),
   faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
 ];
 
 const productos = [

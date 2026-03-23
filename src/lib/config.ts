@@ -133,14 +133,14 @@ export const CATEGORIES = [
 ];
 
 export const INDUSTRIES = [
-  { name: 'Farmacéutica', href: '/#industrias', image: '/img/industrias/farmaceutica.avif', description: 'Sellos de seguridad para medicamentos, suplementos y dispositivos médicos. Cumplimiento normativo COFEPRIS y trazabilidad garantizada.' },
-  { name: 'Alimentos y Bebidas', href: '/#industrias', image: '/img/industrias/alimentos-bebidas.avif', description: 'Película grado alimenticio para salsas, miel, mermeladas, condimentos y conservas. Sellado que mantiene la frescura.' },
-  { name: 'Agua y Embotellado', href: '/#industrias', image: '/img/industrias/agua-embotellado.avif', description: 'Sellos para garrafones de 20L, botellas PET y presentaciones de agua purificada. Resistencia al manejo y transporte.' },
-  { name: 'Vinos y Licores', href: '/#industrias', image: '/img/industrias/vinos-licores.avif', description: 'Cápsulas y sellos termoencogibles para botellas de vidrio. Acabado profesional para destilados, mezcales y vinos.' },
-  { name: 'Productos Naturales', href: '/#industrias', image: '/img/industrias/productos-naturales.avif', description: 'Sellos para suplementos herbales, remedios naturistas y productos orgánicos. Garantía de inviolabilidad al consumidor.' },
-  { name: 'Gas y Petroquímica', href: '/#industrias', image: '/img/industrias/gas-petroquimica.avif', description: 'Sellos de alta resistencia para contenedores de gas LP, aditivos y productos químicos industriales.' },
-  { name: 'Papelería', href: '/#industrias', image: '/img/industrias/papeleria.avif', description: 'Empaque termoencogible para sets de papelería, material escolar y artículos de oficina. Presentación limpia en anaquel.' },
-  { name: 'Juguetes', href: '/#industrias', image: '/img/industrias/juguetes.avif', description: 'Sellado de seguridad para juguetes y artículos infantiles. Empaque que protege el producto y cumple normativa de seguridad.' },
+  { name: 'Farmacéutica', href: '/industrias/farmaceutica/', image: '/img/industrias/farmaceutica.avif', description: 'Sellos de seguridad para medicamentos, suplementos y dispositivos médicos. Cumplimiento normativo COFEPRIS y trazabilidad garantizada.' },
+  { name: 'Alimentos y Bebidas', href: '/industrias/alimentos-bebidas/', image: '/img/industrias/alimentos-bebidas.avif', description: 'Película grado alimenticio para salsas, miel, mermeladas, condimentos y conservas. Sellado que mantiene la frescura.' },
+  { name: 'Agua y Embotellado', href: '/industrias/agua-embotellado/', image: '/img/industrias/agua-embotellado.avif', description: 'Sellos para garrafones de 20L, botellas PET y presentaciones de agua purificada. Resistencia al manejo y transporte.' },
+  { name: 'Vinos y Licores', href: '/industrias/vinos-licores/', image: '/img/industrias/vinos-licores.avif', description: 'Cápsulas y sellos termoencogibles para botellas de vidrio. Acabado profesional para destilados, mezcales y vinos.' },
+  { name: 'Productos Naturales', href: '/industrias/productos-naturales/', image: '/img/industrias/productos-naturales.avif', description: 'Sellos para suplementos herbales, remedios naturistas y productos orgánicos. Garantía de inviolabilidad al consumidor.' },
+  { name: 'Gas y Petroquímica', href: '/industrias/gas-petroquimica/', image: '/img/industrias/gas-petroquimica.avif', description: 'Sellos de alta resistencia para contenedores de gas LP, aditivos y productos químicos industriales.' },
+  { name: 'Papelería', href: '/industrias/', image: '/img/industrias/papeleria.avif', description: 'Empaque termoencogible para sets de papelería, material escolar y artículos de oficina. Presentación limpia en anaquel.' },
+  { name: 'Juguetes', href: '/industrias/', image: '/img/industrias/juguetes.avif', description: 'Sellado de seguridad para juguetes y artículos infantiles. Empaque que protege el producto y cumple normativa de seguridad.' },
 ];
 
 export const NAV_LINKS = [
@@ -152,7 +152,7 @@ export const NAV_LINKS = [
   },
   {
     text: 'Industrias',
-    href: '#industrias',
+    href: '/industrias/',
     children: INDUSTRIES.slice(0, 6).map((i) => ({ text: i.name, href: i.href })),
   },
   { text: 'Nosotros', href: '/nosotros/' },

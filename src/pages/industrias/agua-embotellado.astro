@@ -1,0 +1,199 @@
+---
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/Footer.astro';
+import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
+
+import { SITE_NAME } from '../../lib/config';
+import { organizationSchema, localBusinessSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../../lib/seo';
+
+const breadcrumbs = [
+  { text: 'Inicio', href: '/' },
+  { text: 'Industrias', href: '/industrias/' },
+  { text: 'Agua y Embotellado', href: '/industrias/agua-embotellado/' },
+];
+
+const faqs = [
+  {
+    question: '¿Qué sello se usa para garrafones de 20 litros?',
+    answer: 'Para garrafones de 20L usamos sellos de PVC termoencogible en calibre 60-80 micras. Estos calibres resisten el manejo brusco durante reparto y transporte. El sello se fabrica al diámetro exacto de la tapa del garrafón PET o policarbonato.',
+  },
+  {
+    question: '¿Los sellos resisten el transporte y reparto a domicilio?',
+    answer: 'Sí. Nuestros sellos para garrafón se fabrican en calibre 60-80 micras específicamente para resistir golpes, apilamiento y manejo durante el reparto. La película de alta resistencia no se rompe ni se despega durante la distribución normal.',
+  },
+  {
+    question: '¿Pueden imprimir la marca de mi purificadora en el sello?',
+    answer: 'Sí. Imprimimos por rotograbado a 6 tintas el logotipo de su purificadora, teléfono, dirección, datos de NOM y cualquier información que necesite. Un sello impreso refuerza la imagen de marca y genera confianza en el consumidor.',
+  },
+  {
+    question: '¿Cuál es el pedido mínimo para purificadoras?',
+    answer: 'Para sellos lisos el mínimo es 5,000 piezas. Para sellos impresos el mínimo es 10,000 piezas. Para purificadoras con alto volumen de producción ofrecemos programas de entrega semanal con precios por volumen.',
+  },
+  {
+    question: '¿También fabrican sellos para botellas de agua PET?',
+    answer: 'Sí. Fabricamos sellos para botellas de agua de 500ml, 1L, 1.5L y presentaciones jumbo. Para botellas PET usamos calibre 40-50 micras. También fabricamos mangas retráctiles de cuerpo completo para etiquetado de la botella.',
+  },
+  {
+    question: '¿Qué equipo necesito para aplicar los sellos?',
+    answer: 'Para tirajes pequeños puede usar una pistola de calor industrial. Para líneas de producción recomendamos un túnel de calor por vapor o aire caliente. Nosotros fabricamos ambos equipos y los calibramos para sus sellos específicos.',
+  },
+];
+
+const productos = [
+  {
+    title: 'Sello para Garrafón 20L',
+    description: 'Banda termoencogible de alta resistencia para garrafones de agua purificada PET y policarbonato. Calibre 60-80 micras.',
+    href: '/productos/sello-garrafon-20l/',
+    image: '/img/productos/sello-garrafon-20-litros.avif',
+  },
+  {
+    title: 'Sello Impreso a 6 Tintas',
+    description: 'Sello con logotipo, teléfono y datos de su purificadora impreso por rotograbado. Refuerza imagen de marca.',
+    href: '/productos/sello-impreso-6-tintas/',
+    image: '/img/productos/sello-impreso-6-tintas-pvc.avif',
+  },
+  {
+    title: 'Sello Liso Transparente',
+    description: 'Sello cristal para inviolabilidad básica en botellas de agua PET y garrafones. Desde 5,000 piezas.',
+    href: '/productos/sello-liso-transparente/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+  {
+    title: 'Túnel de Calor por Vapor',
+    description: 'Equipo industrial para aplicación automática de sellos en líneas de embotellado de agua. Contracción uniforme.',
+    href: '/productos/tunel-calor-vapor/',
+    image: '/img/productos/sello-liso-transparente-pvc.avif',
+  },
+];
+
+const structuredData = [
+  organizationSchema(),
+  localBusinessSchema(),
+  serviceSchema({
+    name: 'Sellos para Garrafón y Agua Embotellada',
+    description: 'Fabricación de sellos de garantía PVC termoencogible para garrafones de 20L y botellas de agua. Calibres 40-80 micras, lisos e impresos a 6 tintas.',
+    url: '/industrias/agua-embotellado/',
+    category: 'Sellos para Agua Embotellada',
+  }),
+  faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
+];
+---
+
+<Base
+  title="Sellos para Garrafón de Agua Purificada"
+  description="Sellos de garantía para garrafones 20L y botellas de agua. PVC alta resistencia, calibre 60-80 micras. Fabricante directo 28 años. Envíos nacionales."
+  structuredData={structuredData}
+>
+  <TopBar />
+  <Header />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <Hero
+    badge="Agua y Embotellado"
+    title="¿Qué sellos de garantía usan las purificadoras de agua?"
+    description="Fabricamos sellos de PVC termoencogible de alta resistencia para garrafones de 20L, botellas PET y presentaciones de agua purificada. Calibres 60-80 micras que resisten transporte y reparto a domicilio."
+    primaryCta={{ text: 'Cotizar Sellos para Agua', href: '/cotizar/' }}
+    secondaryCta={{ text: 'Pedir Muestras Gratis', href: '/contacto/' }}
+    metrics={[
+      { value: '60-80', label: 'Micras' },
+      { value: '20L', label: 'Garrafón' },
+      { value: '6', label: 'Tintas' },
+      { value: '5K', label: 'Mín. pzas' },
+    ]}
+  >
+    <Fragment slot="hero-seo">
+      <div class="hero-seo">
+        <p class="hero-seo__text">
+          Las purificadoras de agua en México necesitan sellos de garantía que resistan el manejo brusco del reparto a domicilio. Un sello débil en un garrafón de 20 litros se rompe durante el transporte, generando devoluciones y desconfianza. En Sello de Garantía fabricamos bandas termoencogibles de PVC en calibre 60-80 micras diseñadas para garrafones PET y policarbonato.
+        </p>
+        <p class="hero-seo__text">
+          Ofrecemos sellos lisos y sellos impresos con el logotipo de su purificadora, teléfono, dirección y datos de NOM. Nuestros sellos para garrafón se aplican con túnel de calor (que también fabricamos) y resisten apilamiento, golpes y condiciones de transporte. Tumipack México SA de CV atiende purificadoras en los 32 estados con programas de entrega semanal.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <CtaBanner
+    title="¿Busca sellos para su purificadora?"
+    subtitle="Muestras sin costo. Precios por volumen para producción continua."
+    btnText="Solicitar Cotización"
+    btnHref="/cotizar/"
+    variant="accent"
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader
+        badge="Productos Recomendados"
+        title="¿Qué productos de PVC usan las purificadoras?"
+        subtitle="Sellos de alta resistencia y maquinaria de aplicación para líneas de embotellado de agua."
+      />
+      <div class="grid-2">
+        {productos.map((p) => (
+          <ServiceCard
+            title={p.title}
+            description={p.description}
+            href={p.href}
+            image={p.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Fabricante directo de sellos para purificadoras"
+    subtitle="28 años atendiendo la industria del agua embotellada."
+    btnText="Cotizar Ahora"
+    btnHref="/cotizar/"
+    variant="primary"
+  />
+
+  <section class="section" id="faq">
+    <div class="container">
+      <SectionHeader
+        badge="Preguntas Frecuentes"
+        title="¿Qué preguntan las purificadoras de agua?"
+        subtitle="Dudas comunes sobre sellos para garrafón, resistencia, impresión y pedidos mínimos."
+      />
+    </div>
+    <FaqSection items={faqs} />
+  </section>
+
+  <CtaBanner
+    title="Proteja sus garrafones con el sello correcto"
+    subtitle="Alta resistencia, impresión con su marca, entrega nacional."
+    btnText="Contactar Ahora"
+    btnHref="/contacto/"
+    variant="accent"
+  />
+
+  <Footer />
+  <WhatsAppBubble />
+</Base>
+
+<style>
+  .hero-seo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .hero-seo__text {
+    background: rgba(255, 255, 255, 0.08);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.88);
+  }
+</style>

@@ -11,7 +11,7 @@ import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 
 import { SITE_NAME } from '../../lib/config';
-import { organizationSchema, localBusinessSchema, faqSchema } from '../../lib/seo';
+import { organizationSchema, localBusinessSchema, faqSchema, serviceSchema, breadcrumbSchema } from '../../lib/seo';
 
 const faqs = [
   {
@@ -49,7 +49,14 @@ const breadcrumbs = [
 const structuredData = [
   organizationSchema(),
   localBusinessSchema(),
+  serviceSchema({
+    name: 'Etiquetas Impresas PVC Termoencogible',
+    description: 'Fabricación de etiquetas retráctiles de PVC con impresión rotograbado hasta 6 tintas. Cobertura 360°, datos legales, hologramas y diseño personalizado.',
+    url: '/productos/etiquetas-impresas/',
+    category: 'Etiquetas Impresas',
+  }),
   faqSchema(faqs),
+  breadcrumbSchema(breadcrumbs),
 ];
 
 const productos = [
