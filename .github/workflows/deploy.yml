@@ -33,6 +33,11 @@ jobs:
       - name: Build Astro
         run: npm run build
 
+      # Gate de deploy del portafolio: el dominio debe servir este SHA
+      # en /build-id.txt (verificable con curl tras el deploy).
+      - name: Sellar build-id
+        run: echo "${{ github.sha }}" > dist/build-id.txt
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
