@@ -49,26 +49,6 @@ if (faqs && faqs.length > 0) {
   });
 }
 
-schemas.push({
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: 'Tumipack México',
-  url: SITE_URL,
-  telephone: '+525556863599',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Iztapalapa',
-    addressRegion: 'CDMX',
-    addressCountry: 'MX',
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    bestRating: '5',
-    ratingCount: '47',
-  },
-});
-
 const schemaMarkup = JSON.stringify(schemas);
 ---
 
@@ -79,6 +59,7 @@ const schemaMarkup = JSON.stringify(schemas);
   image={heroImage}
   imageAlt={heroImageAlt || title}
   category={category}
+  heroHeadingLevel={['manga-retractil-vs-etiqueta-adhesiva', 'sellos-garantia-personalizados-mexico'].includes(post.id) ? 'h1' : 'h2'}
   schemaMarkup={schemaMarkup}
 >
   <Content />
