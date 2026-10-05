@@ -14,6 +14,7 @@ interface Props {
   metrics?: Metric[];
   primaryCta?: Cta;
   secondaryCta?: Cta;
+  headingLevel?: 'h1' | 'h2';
 }
 
 const {
@@ -23,14 +24,16 @@ const {
   metrics = [],
   primaryCta,
   secondaryCta,
+  headingLevel = 'h1',
 } = Astro.props;
+const Heading = headingLevel;
 ---
 
 <section class="hero">
   <div class="hero__inner">
     <div class="hero__col1">
       {badge && <span class="hero__badge">{badge}</span>}
-      <h1 class="hero__title">{title}</h1>
+      <Heading class="hero__title">{title}</Heading>
       <p class="hero__desc">{description}</p>
       <div class="hero__ctas">
         {primaryCta && <a href={primaryCta.href} class="btn btn--primary btn--lg">{primaryCta.text}</a>}

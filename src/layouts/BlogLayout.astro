@@ -26,6 +26,7 @@ interface Props {
   imageAlt: string;
   category: string;
   schemaMarkup?: string;
+  heroHeadingLevel?: 'h1' | 'h2';
 }
 
 const {
@@ -36,60 +37,61 @@ const {
   imageAlt,
   category,
   schemaMarkup,
+  heroHeadingLevel = 'h1',
 } = Astro.props;
 
 // Artículos relacionados por categoría (hardcoded por ahora)
 const relatedByCategory: Record<string, Array<{title: string; description: string; image: string; imageAlt: string; category: string; slug: string}>> = {
   "Técnico": [
     { 
-      title: "Calibres de Película PVC: 40, 50, 60 y 80 Micras Explicados", 
-      description: "Guía técnica sobre los 4 calibres que manejamos y cuándo usar cada uno según tu industria.",
-      image: "/img/blog/calibres-pelicula-pvc-comparacion.avif", 
+      title: "Cómo calcular película PVC para producción",
+      description: "Fórmula paso a paso para calcular metros de película PVC según envase y volumen.",
+      image: "/img/blog/calcular-pelicula-pvc-produccion.avif",
       imageAlt: "Comparación de calibres de película PVC", 
       category: "Técnico", 
-      slug: "calibres-pelicula-pvc-40-50-60-80-micras" 
+      slug: "calcular-cantidad-pelicula-pvc"
     },
     { 
-      title: "Velocidad de Línea y Calibre: Cálculo Práctico", 
-      description: "Cómo la velocidad de tu línea de producción determina el calibre que necesitas.",
-      image: "/img/blog/velocidad-linea-calibre.avif", 
+      title: "Manga retráctil vs etiqueta adhesiva",
+      description: "Guía para elegir entre manga retráctil PVC y etiqueta adhesiva.",
+      image: "/img/blog/manga-retractil-vs-etiqueta-adhesiva.avif",
       imageAlt: "Línea de producción con película PVC", 
       category: "Técnico", 
-      slug: "velocidad-linea-calibre-pelicula" 
+      slug: "manga-retractil-vs-etiqueta-adhesiva"
     },
     { 
-      title: "Impresión Rotograbado a 6 Tintas: Procesos y Limitaciones", 
-      description: "Todo lo que debes saber sobre la impresión rotograbado en película de PVC.",
-      image: "/img/blog/rotograbado-6-tintas.avif", 
+      title: "Calibres de película PVC termoencogible",
+      description: "Guía técnica para elegir película PVC de 40, 50, 60 y 80 micras.",
+      image: "/img/blog/calibres-pelicula-pvc-40-50-60-80-micras.avif",
       imageAlt: "Proceso de impresión rotograbado", 
       category: "Técnico", 
-      slug: "impresion-rotograbado-6-tintas" 
+      slug: "como-elegir-calibre-pelicula-pvc"
     },
   ],
   "Farmacéutica": [
     { 
-      title: "Sellado de Garantía para Medicamentos: Normativa COFEPRIS", 
-      description: "Requisitos legales y mejores prácticas para sellos de seguridad en farmacias.",
-      image: "/img/blog/sello-garantia-farmaceutica-cofepris.avif", 
+      title: "Normativa COFEPRIS para sellos en medicamentos",
+      description: "Requisitos COFEPRIS para película PVC en medicamentos.",
+      image: "/img/blog/cofepris-sellos-garantia-medicamentos.avif",
       imageAlt: "Frasco con sello de garantía farmacéutico", 
       category: "Farmacéutica", 
-      slug: "sello-garantia-farmaceutica-cofepris" 
+      slug: "normativa-cofepris-sellos-garantia"
     },
     { 
-      title: "Tapas Pequeñas y Precisión: El Reto del Calibre 40", 
-      description: "Por qué para envases pequeños de farmacéutica se recomienda película de 40 micras.",
-      image: "/img/blog/tapas-pequenas-calibre-40.avif", 
+      title: "Cómo calcular película PVC para producción",
+      description: "Fórmula para estimar película PVC según envase y volumen.",
+      image: "/img/blog/calcular-pelicula-pvc-produccion.avif",
       imageAlt: "Tapas pequeñas con película de 40 micras", 
       category: "Farmacéutica", 
-      slug: "tapas-pequenas-calibre-40" 
+      slug: "calcular-cantidad-pelicula-pvc"
     },
     { 
-      title: "Trazabilidad y Código de Barras en Sellos de Seguridad", 
-      description: "Impresión de códigos de barras y sistemas de trazabilidad en sellos farmacéuticos.",
-      image: "/img/blog/codigo-barras-sello-farmaceutica.avif", 
+      title: "Manga retráctil vs etiqueta adhesiva",
+      description: "Comparativa para seleccionar la solución de empaque adecuada.",
+      image: "/img/blog/manga-retractil-vs-etiqueta-adhesiva.avif",
       imageAlt: "Código de barras en sello de garantía", 
       category: "Farmacéutica", 
-      slug: "codigo-barras-sello-farmaceutica" 
+      slug: "manga-retractil-vs-etiqueta-adhesiva"
     },
   ],
   "Alimentos": [
@@ -155,52 +157,29 @@ const popularArticles = [
     img: "/img/blog/calibres-pelicula-pvc-40-50-60-80-micras.avif" 
   },
   { 
-    title: "Sellado de Garantía para Medicamentos: Normativa COFEPRIS", 
-    slug: "sello-garantia-farmaceutica-cofepris", 
+    title: "Normativa COFEPRIS para sellos en medicamentos",
+    slug: "normativa-cofepris-sellos-garantia",
     category: "Farmacéutica", 
-    img: "/img/blog/sello-garantia-farmaceutica-cofepris.avif" 
+    img: "/img/blog/cofepris-sellos-garantia-medicamentos.avif"
   },
   { 
-    title: "Película PVC para Alimentos: Grado Alimenticio y Cumplimiento", 
-    slug: "pelicula-pvc-grado-alimenticio-fda", 
-    category: "Alimentos", 
-    img: "/img/blog/pelicula-pvc-grado-alimenticio.avif" 
+    title: "Manga retráctil vs etiqueta adhesiva",
+    slug: "manga-retractil-vs-etiqueta-adhesiva",
+    category: "Técnico",
+    img: "/img/blog/manga-retractil-vs-etiqueta-adhesiva.avif"
   },
   { 
-    title: "Cápsulas Termoencogibles para Botellas de Vino: Acabado Profesional", 
-    slug: "capsula-botella-vino-acabado-profesional", 
-    category: "Vinos", 
-    img: "/img/blog/capsula-botella-vino.avif" 
+    title: "Cómo calcular película PVC para producción",
+    slug: "calcular-cantidad-pelicula-pvc",
+    category: "Técnico",
+    img: "/img/blog/calcular-pelicula-pvc-produccion.avif"
   },
 ];
 
 // Articulos relacionados por categoría actual
-const relatedArticles = relatedByCategory[category] || [
-  { 
-    title: "¿Cómo Elegir el Calibre Correcto de Película PVC para tu Línea?", 
-    description: "Guía técnica para elegir entre 40, 50, 60 y 80 micras según tu industria.",
-    image: "/img/blog/calibres-pelicula-pvc-40-50-60-80-micras.avif", 
-    imageAlt: "Comparación de calibres de película PVC", 
-    category: "Técnico", 
-    slug: "como-elegir-calibre-pelicula-pvc" 
-  },
-  { 
-    title: "Sellado de Garantía para Medicamentos: Normativa COFEPRIS", 
-    description: "Requisitos legales y mejores prácticas para sellos de seguridad en farmacias.",
-    image: "/img/blog/sello-garantia-farmaceutica-cofepris.avif", 
-    imageAlt: "Frasco con sello de garantía farmacéutico", 
-    category: "Farmacéutica", 
-    slug: "sello-garantia-farmaceutica-cofepris" 
-  },
-  { 
-    title: "Película PVC para Alimentos: Grado Alimenticio y Cumplimiento", 
-    description: "Normativa FDA, BPA-free y certificaciones de seguridad alimentaria.",
-    image: "/img/blog/pelicula-pvc-grado-alimenticio.avif", 
-    imageAlt: "Frasco de alimentos con sello PVC", 
-    category: "Alimentos", 
-    slug: "pelicula-pvc-grado-alimenticio-fda" 
-  },
-];
+const relatedArticles = category === 'Farmacéutica'
+  ? relatedByCategory.Farmacéutica
+  : relatedByCategory.Técnico;
 ---
 
 <Base
@@ -220,6 +199,7 @@ const relatedArticles = relatedByCategory[category] || [
     description={description}
     primaryCta={{ text: 'Solicitar Cotización', href: '/cotizar/' }}
     secondaryCta={{ text: 'Ver Productos', href: '/productos/' }}
+    headingLevel={heroHeadingLevel}
   >
     <div slot="hero-seo">
       <p>Tumipack México SA de CV lleva 28 años fabricando película PVC termoencogible para sellos de garantía, mangas retráctiles y etiquetas impresas. Planta propia en Iztapalapa, CDMX. Impresión rotograbado hasta 6 tintas. Cobertura a los 32 estados de la República.</p>
