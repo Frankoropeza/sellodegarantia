@@ -11,7 +11,7 @@ import WhatsAppBubble from '../../components/WhatsAppBubble.astro';
 
 import { getCollection, render } from 'astro:content';
 import { SITE_NAME, CATEGORIES, WHATSAPP } from '../../lib/config';
-import { organizationSchema, localBusinessSchema, productSchema } from '../../lib/seo';
+import { organizationSchema, localBusinessSchema } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const productos = await getCollection('productos');
@@ -42,13 +42,6 @@ const related = allProducts.filter(p => p.id !== producto.id).sort((a, b) => a.d
 const structuredData = [
   organizationSchema(),
   localBusinessSchema(),
-  productSchema({
-    name: data.title,
-    description: data.description,
-    url: `/productos/${producto.id}/`,
-    category: parentTitle,
-    image: data.imagen ? `https://sellodegarantia.com${data.imagen}` : undefined,
-  }),
 ];
 
 const waMsg = `Hola, me interesa cotizar: ${data.title.split('—')[0].trim()}`;

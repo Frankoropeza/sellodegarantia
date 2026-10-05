@@ -25,11 +25,6 @@ export function organizationSchema() {
       postalCode: LOCATION.zip,
       addressCountry: LOCATION.country,
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: GEO.lat,
-      longitude: GEO.lng,
-    },
     areaServed: {
       '@type': 'Country',
       name: 'Mexico',
@@ -41,7 +36,7 @@ export function organizationSchema() {
 export function localBusinessSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Manufacturer',
+    '@type': 'LocalBusiness',
     name: SITE_NAME,
     legalName: LEGAL_NAME,
     url: SITE_URL,
@@ -49,7 +44,6 @@ export function localBusinessSchema() {
     description: SITE_DESCRIPTION,
     telephone: `+52 ${PHONE}`,
     email: EMAIL,
-    priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
       streetAddress: LOCATION.street,
@@ -154,50 +148,4 @@ export function serviceSchema(opts: {
     serviceType: opts.category || 'Packaging Services',
     ...(opts.image ? { image: opts.image } : {}),
   };
-}
-
-export function productSchema(opts: {
-  name: string;
-  description: string;
-  url: string;
-  category?: string;
-  image?: string;
-}) {
-  const schema: Record<string, unknown> = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: opts.name,
-    description: opts.description,
-    url: opts.url.startsWith('http') ? opts.url : `${SITE_URL}${opts.url}`,
-    brand: {
-      '@type': 'Brand',
-      name: SITE_NAME,
-    },
-    manufacturer: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    category: opts.category || 'Packaging Materials',
-    countryOfOrigin: {
-      '@type': 'Country',
-      name: 'Mexico',
-    },
-    offers: {
-      '@type': 'Offer',
-      availability: 'https://schema.org/InStock',
-      priceCurrency: 'MXN',
-      price: '0',
-      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
-      url: `${SITE_URL}/cotizar/`,
-      seller: {
-        '@type': 'Organization',
-        name: SITE_NAME,
-      },
-    },
-  };
-  if (opts.image) {
-    schema.image = opts.image;
-  }
-  return schema;
 }
